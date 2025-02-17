@@ -1,20 +1,23 @@
 package application.aicomic.mapper;
 
+import org.mapstruct.MappingTarget;
+
 import application.aicomic.dataAccess.ComicsDTO;
-import application.aicomic.dataAccess.OrdersDTO;
-import application.aicomic.dataAccess.WalletsDTO;
 import application.aicomic.dataAccess.CommentsDTO;
 import application.aicomic.dataAccess.CurrentChapterDTO;
+import application.aicomic.dataAccess.GenresDTO;
 import application.aicomic.dataAccess.OrderDetailsDTO;
+import application.aicomic.dataAccess.OrdersDTO;
 import application.aicomic.dataAccess.TransactionsDTO;
+import application.aicomic.dataAccess.WalletsDTO;
 import application.aicomic.models.Comics;
-import application.aicomic.models.Orders;
-import application.aicomic.models.Wallets;
 import application.aicomic.models.Comments;
 import application.aicomic.models.CurrentChapter;
+import application.aicomic.models.Genres;
 import application.aicomic.models.OrderDetails;
+import application.aicomic.models.Orders;
 import application.aicomic.models.Transactions;
-import org.mapstruct.MappingTarget;
+import application.aicomic.models.Wallets;
 
 @org.mapstruct.Mapper(componentModel = "spring")
 public interface Mapper {
@@ -41,4 +44,8 @@ public interface Mapper {
     void updateOrders(@MappingTarget Orders orders, OrdersDTO ordersDTO);
 
     void updateWallets(@MappingTarget Wallets wallets, WalletsDTO owalletsDTO);
+    
+    Genres toGenres(GenresDTO genresDTO);
+
+    void updateGenres(@MappingTarget Genres genres, GenresDTO genresDTO);
 }

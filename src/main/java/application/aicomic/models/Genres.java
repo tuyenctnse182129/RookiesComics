@@ -1,9 +1,19 @@
 package application.aicomic.models;
 
-import jakarta.persistence.*;
-import lombok.Data;
-
 import java.util.List;
+
+import application.aicomic.enums.CommentsEnums;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 @Entity
 @Table(name = "Genres")
@@ -20,6 +30,10 @@ public class Genres {
     @Column(name = "genres_description", length = 250)
     private String genresDescription;
 
+    @NotNull
+    @Column(name = "status")
+    private byte status = CommentsEnums.AVAILABLE.getValue();
+    
     @ManyToMany
     @JoinTable(
             name = "Genres_Comics",
