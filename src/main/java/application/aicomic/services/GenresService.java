@@ -13,13 +13,13 @@ import application.aicomic.repositories.GenresRepository;
 
 @Service
 public class GenresService {
-    private final GenresRepository genresRepository;
-    private final Mapper mapper;
+    private GenresRepository genresRepository;
+    private Mapper mapper;
 
-    public GenresService(GenresRepository genresRepository, Mapper mapper) {
-        this.genresRepository = genresRepository;
-        this.mapper = mapper;
-    }
+//    public GenresService(GenresRepository genresRepository, Mapper mapper) {
+//        this.genresRepository = genresRepository;
+//        this.mapper = mapper;
+//    }
 
     // Get all genres
     public List<Genres> getAllGenres() {
