@@ -59,6 +59,14 @@ public class UsersService {
         }
     }
 
+    public List<Users> getAdminAndStaffUsers() {
+        return usersRepository.findByRoleIn(List.of((byte) 1, (byte) 2,(byte) 3, (byte) 4));
+    }
+
+    public List<Users> getCustomerUsers() {
+        return usersRepository.findByRoleIn(List.of((byte) 5, (byte) 6,(byte) 7, (byte) 8));
+    }
+
 
     /*public UserServiceResponseDto getById(String id) {
         Optional<Users> userOptional = usersRepository.findById(id);

@@ -23,15 +23,15 @@ public class CommentsController {
         return commentsService.addComment(comments);
     }
 
-    @PutMapping("/{update}")
+    @PutMapping("/{updateId}")
     public Comments updateComment(@PathVariable String id, @RequestBody CommentsDTO commentsDTO) {
         return commentsService.updateComment(id, commentsDTO);
     }
-    @GetMapping("/{getById}")
+    @GetMapping("/{id}")
     public Comments getCommentById(@PathVariable String id) {
         return commentsService.getCommentById(id);
     }
-    @DeleteMapping("/{delete}")
+    @DeleteMapping("/{deleteId}")
     public Comments deleteComment(@PathVariable String id) {
         return commentsService.deleteComment(id);
     }

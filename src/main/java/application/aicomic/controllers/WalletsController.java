@@ -28,12 +28,12 @@ public class WalletsController {
         return walletsService.getWalletById(walletsId);
     }
 
-    @PostMapping("/{create}")
+    @PostMapping("/new-wallet")
     public Wallets createWallets(@RequestBody Wallets wallets) {
         return walletsService.saveWallets(wallets);
     }
 
-    @PutMapping("/{update}")
+    @PutMapping("/updating")
     public Wallets updateWallets(@PathVariable String id, @RequestBody WalletsDTO walletsDTO) {
         return walletsService.updateWallets(id, walletsDTO);
     }

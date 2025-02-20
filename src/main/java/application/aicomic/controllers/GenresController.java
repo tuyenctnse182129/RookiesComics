@@ -48,14 +48,14 @@ public class GenresController {
     }
 
     // Update an existing genre
-    @PutMapping("/{id}")
+    @PutMapping("/{updateId}")
     public ResponseEntity<Genres> updateGenre(@PathVariable String id, @RequestBody GenresDTO genresDTO) {
         Genres updatedGenre = genresService.updateGenre(id, genresDTO);
         return ResponseEntity.ok(updatedGenre);
     }
 
     // Soft delete a genre
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{deleteId}")
     public ResponseEntity<Genres> deleteGenre(@PathVariable String id) {
         Genres deletedGenre = genresService.deleteGenre(id);
         return ResponseEntity.ok(deletedGenre);

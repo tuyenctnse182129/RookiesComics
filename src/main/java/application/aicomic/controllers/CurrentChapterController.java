@@ -20,15 +20,15 @@ public class CurrentChapterController {
         return currentChapterService.addCurrentChapter(currentChapter);
     }
 
-    @PutMapping("/{update}")
+    @PutMapping("/{updateId}")
     public CurrentChapter updateCurrentChapter(@PathVariable String id, @RequestBody CurrentChapterDTO currentChapterDTO) {
         return currentChapterService.updateCurrentChapter(id, currentChapterDTO);
     }
-    @GetMapping("/{getById}")
+    @GetMapping("/{id}")
     public CurrentChapter getCurrentChapterById(@PathVariable String id) {
         return currentChapterService.getCurrentChapterById(id);
     }
-    @DeleteMapping("/{delete}")
+    @DeleteMapping("/{deleteId}")
     public CurrentChapter deleteCurrentChapter(@PathVariable String id) {
         return currentChapterService.deleteCurrentChapter(id);
     }

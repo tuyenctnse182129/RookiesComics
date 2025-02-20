@@ -1,8 +1,11 @@
 package application.aicomic.controllers;
 
 import application.aicomic.config.Config;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.UnsupportedEncodingException;
@@ -43,7 +46,7 @@ public class VnPayController {
         vnp_Params.put("vnp_OrderType", orderType);
 
         vnp_Params.put("vnp_Locale", "vn");
-        vnp_Params.put("vnp_ReturnUrl", "http://localhost:8080/vnpays/return");
+        vnp_Params.put("vnp_ReturnUrl", "http://localhost:8080/transaction/return");
         //vnp_Params.put("vnp_ReturnUrl", Config.vnp_ReturnUrl);
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
 
@@ -89,4 +92,5 @@ public class VnPayController {
         System.out.println("Generated VNPAY URL: " + paymentUrl);
         return paymentUrl;
     }
+
 }

@@ -6,6 +6,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.oidc.web.logout.OidcClientInitiatedLogoutSuccessHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
 
 @Configuration
 public class SecurityConfig {
@@ -18,20 +23,30 @@ public class SecurityConfig {
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
                 http
-                                .authorizeHttpRequests(auth -> auth
-                                                .requestMatchers("/users/login", "/users/logout", "/comics").permitAll()
-                                                .anyRequest().authenticated())
-                                .oauth2Login(oauth2 -> oauth2 //
-                                                .loginPage("/oauth2/authorization/google") // Tùy chỉnh trang login
-                                )
-                                .logout(logout -> logout
-                                                .logoutSuccessHandler(oidcLogoutSuccessHandler()) // Xử lý logout với
-                                                                                                  // OAuth2
-                                                .invalidateHttpSession(true)
-                                                .deleteCookies("JSESSIONID"))
-                                .csrf(csrf -> csrf.disable());
+                        .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                        .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+                        .csrf(csrf -> csrf.disable());
 
                 return http.build();
+        }
+
+        @Bean
+        public CorsConfigurationSource corsConfigurationSource() {
+                CorsConfiguration configuration = new CorsConfiguration();
+                configuration.setAllowedOrigins(List.of("http://localhost:3000")); // Đảm bảo trùng với FE
+                configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                configuration.setAllowedHeaders(List.of("*"));
+                configuration.setAllowCredentials(true);
+                configuration.addExposedHeader("Authorization");
+                configuration.addExposedHeader("Cross-Origin-Opener-Policy");
+                configuration.addExposedHeader("Cross-Origin-Embedder-Policy");
+
+                // Thêm header này để tránh lỗi COOP
+                configuration.addExposedHeader("Cross-Origin-Resource-Policy");
+
+                UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+                source.registerCorsConfiguration("/**", configuration);
+                return source;
         }
 
         /**

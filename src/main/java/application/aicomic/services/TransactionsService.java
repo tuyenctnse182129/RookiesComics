@@ -8,8 +8,11 @@ import application.aicomic.mapper.Mapper;
 import application.aicomic.models.Comments;
 import application.aicomic.models.Transactions;
 import application.aicomic.repositories.TransactionsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -44,4 +47,34 @@ public class TransactionsService {
         }
         return null;
     }
+
+    public void saveTransactionToDB(String transactionCode, String amount, String bankName, String payDate, boolean isSuccess) {
+        try {
+            System.out.println("🔹 Đang lưu giao dịch...");
+            System.out.println("Mã giao dịch: " + transactionCode);
+            System.out.println("Số tiền: " + amount);
+            System.out.println("Ngân hàng: " + bankName);
+            System.out.println("Ngày thanh toán: " + payDate);
+            System.out.println("Trạng thái: " + (isSuccess ? "PAID" : "NOT_PAID"));
+
+
+            Transactions transaction = new Transactions();
+            System.out.println("walletId: " + transaction.getWalletId());
+            System.out.println("orderId: " + transaction.getOrderId());
+            System.out.println("purchasedCoinId: " + transaction.getPurchasedCoinId());
+            transactionsRepository.save(transaction);
+            transaction.setTransactionCode(transactionCode);
+            transaction.setAmount(Double.parseDouble(amount) / 100);
+            transaction.setBankName(bankName);
+            transaction.setTransactionTime(LocalDateTime.parse(payDate, DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
+            transaction.setStatus(isSuccess ? TransactionsEnums.PAID.getValue() : TransactionsEnums.NOT_PAID.getValue());
+
+            transactionsRepository.save(transaction);
+            System.out.println("✅ Giao dịch đã lưu thành công!");
+        } catch (Exception e) {
+            System.out.println("❌ Lỗi khi lưu giao dịch:");
+            e.printStackTrace();
+        }
+    }
+
 }

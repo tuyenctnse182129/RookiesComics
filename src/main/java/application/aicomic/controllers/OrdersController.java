@@ -1,21 +1,13 @@
 package application.aicomic.controllers;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import application.aicomic.services.OrdersService;
 import application.aicomic.dataAccess.OrdersDTO;
 import application.aicomic.models.Orders;
 import java.util.List;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/orders")
 @RestController
 public class OrdersController {
@@ -31,17 +23,17 @@ public class OrdersController {
         return ordersService.getOrdersById(ordersId);
     }
 
-    @PostMapping("/{create}")
+    @PostMapping("/new-order")
     public Orders createOrders(@RequestBody Orders orders) {
         return ordersService.saveOrders(orders);
     }
 
-    @PutMapping("/{update}")
+    @PutMapping("/{updateId}")
     public Orders updateOrders(@PathVariable String id, @RequestBody OrdersDTO ordersDTO) {
         return ordersService.updateOrders(id, ordersDTO);
     }
 
-    @DeleteMapping("/{delete}")
+    @DeleteMapping("/{deleteId}")
     public Orders deleteOrders(@PathVariable String id) {
         return ordersService.deleteOrders(id);
     }
