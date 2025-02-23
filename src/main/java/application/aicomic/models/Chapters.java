@@ -40,6 +40,10 @@ public class Chapters {
     @Column(name = "status")
     private byte status;
 
+    @NotNull
+    @Column(name = "type")
+    private byte type;
+
     @ManyToOne
     @JoinColumn(name = "comic_id", referencedColumnName = "comic_id", insertable = false, updatable = false)
     private Comics comic;

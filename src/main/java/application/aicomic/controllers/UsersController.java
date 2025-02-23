@@ -2,11 +2,13 @@ package application.aicomic.controllers;
 
 import application.aicomic.models.Users;
 import application.aicomic.repositories.UsersRepository;
+import application.aicomic.services.JwtService;
 import application.aicomic.services.UsersService;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,14 +26,18 @@ import java.util.Optional;
 public class UsersController {
     private final UsersService usersService;
     private final UsersRepository usersRepository;
+    private final JwtService jwtService;
+
+    @Autowired
+    public UsersController(UsersService usersService, UsersRepository usersRepository, JwtService jwtService) {
+        this.usersService = usersService;
+        this.usersRepository = usersRepository;
+        this.jwtService = jwtService;
+    }
 
     @Value("${spring.security.oauth2.client.registration.google.client-id}")
     private String googleClientId;
 
-    public UsersController(UsersService usersService, UsersRepository usersRepository) {
-        this.usersService = usersService;
-        this.usersRepository = usersRepository;
-    }
 
     @GetMapping
     public List<Users> getAllUsers() {
@@ -63,11 +69,14 @@ public class UsersController {
         return usersService.getCustomerUsers();
     }
 
-
     @PostMapping("/login/google")
-    public ResponseEntity<?> loginWithGoogle(@RequestBody String credential) {
+    public ResponseEntity<?> loginWithGoogle(@RequestBody Map<String, String> request) {
         try {
-            credential = credential.replaceAll("[\\[\\]\"]", "");
+            String credential = request.get("credential");
+            if (credential == null || credential.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", "Missing credential"));
+            }
+
             GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(
                     new NetHttpTransport(),
                     JacksonFactory.getDefaultInstance())
@@ -82,10 +91,14 @@ public class UsersController {
             GoogleIdToken.Payload payload = idToken.getPayload();
             Users user = processUser(payload);
 
+            // Tạo JWT
+            String token = jwtService.generateToken(user.getEmail(), String.valueOf(user.getRole()));
+
             String redirectUrl = switch (user.getRole()) {
-                case 1, 2 -> "/admin-dashboard";
-                case 3, 4 -> "/staff";
-                case 5, 6, 7, 8 -> "/customers/";
+                case 1, 2 -> "/admin";
+                case 3 -> "/moderator";
+                case 4 -> "/staffpage";
+                case 5, 6, 7, 8 -> "/";
                 default -> null;
             };
 
@@ -93,7 +106,7 @@ public class UsersController {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Role not recognized"));
             }
 
-            return ResponseEntity.ok(Map.of("redirectUrl", redirectUrl));
+            return ResponseEntity.ok(Map.of("token", token, "redirectUrl", redirectUrl));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -112,7 +125,7 @@ public class UsersController {
             newUser.setEmail(email);
             newUser.setFirstName(firstName);
             newUser.setLastName(lastName);
-            newUser.setRole((byte) 3);
+            newUser.setRole((byte) 5);
             return usersRepository.save(newUser);
         });
     }

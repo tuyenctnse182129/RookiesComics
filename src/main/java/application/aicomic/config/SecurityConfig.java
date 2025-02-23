@@ -35,7 +35,7 @@ public class SecurityConfig {
                 CorsConfiguration configuration = new CorsConfiguration();
                 configuration.setAllowedOrigins(List.of("http://localhost:3000")); // Đảm bảo trùng với FE
                 configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-                configuration.setAllowedHeaders(List.of("*"));
+                configuration.setAllowedHeaders(List.of("Content-Type", "Authorization"));
                 configuration.setAllowCredentials(true);
                 configuration.addExposedHeader("Authorization");
                 configuration.addExposedHeader("Cross-Origin-Opener-Policy");
