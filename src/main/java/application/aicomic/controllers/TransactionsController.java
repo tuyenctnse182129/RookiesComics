@@ -1,26 +1,38 @@
 package application.aicomic.controllers;
 
 import application.aicomic.config.Config;
-import application.aicomic.dataAccess.CommentsDTO;
 import application.aicomic.dataAccess.TransactionsDTO;
-import application.aicomic.models.Comments;
+import application.aicomic.enums.TransactionsEnums;
+import application.aicomic.enums.OrdersEnums;
 import application.aicomic.models.Transactions;
+import application.aicomic.repositories.TransactionsRepository;
+import application.aicomic.services.OrdersService;
 import application.aicomic.services.TransactionsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
 @RequestMapping("/transaction")
 @RestController
 public class TransactionsController {
+    @Autowired
     private TransactionsService transactionsService;
+    @Autowired
+    private TransactionsRepository transactionsRepository;
+    @Autowired
+    private OrdersService orderService;
 
     // Inject TransactionsService
-    public TransactionsController(TransactionsService transactionsService) {
+    public TransactionsController(TransactionsService transactionsService, TransactionsRepository transactionsRepository, OrdersService orderService) {
         this.transactionsService = transactionsService;
+        this.transactionsRepository = transactionsRepository;
+        this.orderService = orderService;
     }
 
     @GetMapping("/getAll")
@@ -49,7 +61,7 @@ public class TransactionsController {
     }
 
     @GetMapping("/return")
-    public ResponseEntity<String> vnpReturn(@RequestParam Map<String, String> queryParams) {
+    public ResponseEntity<String> vnpReturn(@RequestParam Map<String, String> queryParams, @RequestParam String orderId) {
         try {
             System.out.println("🔹 VNPAY Response: " + queryParams);
 
@@ -72,7 +84,24 @@ public class TransactionsController {
             }
 
             boolean isSuccess = "00".equals(vnp_ResponseCode);
-            transactionsService.saveTransactionToDB(vnp_TxnRef, vnp_Amount, vnp_BankCode, vnp_PayDate, isSuccess);
+            // Lưu giao dịch
+            Transactions transaction = new Transactions();
+            transaction.setOrderId(orderId);
+            transaction.setTransactionCode(vnp_TxnRef);
+            transaction.setAmount(Double.parseDouble(vnp_Amount) / 100);
+            transaction.setBankName(vnp_BankCode);
+            transaction.setTransactionTime(LocalDateTime.parse(vnp_PayDate, DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
+            transaction.setStatus(isSuccess ? TransactionsEnums.PAID.getValue() : TransactionsEnums.NOT_PAID.getValue());
+
+            transactionsRepository.save(transaction);
+
+            // Cập nhật trạng thái đơn hàng
+            if (isSuccess) {
+                boolean updated = orderService.updateOrderStatus(orderId, OrdersEnums.PENDING.getOrder_status());
+                if (!updated) {
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cập nhật trạng thái đơn hàng thất bại");
+                }
+            }
 
             return ResponseEntity.ok(isSuccess ? "✅ Payment successful" : "❌ Payment failed");
         } catch (Exception e) {

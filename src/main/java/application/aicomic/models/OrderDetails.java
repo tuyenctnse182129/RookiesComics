@@ -1,5 +1,6 @@
 package application.aicomic.models;
 
+import application.aicomic.enums.OrderDetailsEnums;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -32,4 +33,8 @@ public class OrderDetails {
     @NotNull
     @Column(name = "price")
     private double price;
+
+    @NotNull
+    @Column(name = "status")
+    private Byte status = OrderDetailsEnums.ACTIVE.getValue();
 }

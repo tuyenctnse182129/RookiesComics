@@ -1,5 +1,6 @@
 package application.aicomic.models;
 
+import application.aicomic.enums.OrdersEnums;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -23,10 +24,13 @@ public class Orders {
     private int quantity;
 
     @Column(name = "order_status")
-    private byte orderStatus;
+    private byte status = OrdersEnums.UNORDERED.getOrder_status();
 
     @Column(name = "type")
     private byte type;
+
+    @Column(name = "total_price")
+    private double totalPrice;
 
     @NotNull
     @Column(name = "wallet_id", length = 50)

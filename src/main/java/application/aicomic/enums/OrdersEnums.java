@@ -6,24 +6,6 @@ public enum OrdersEnums {
     COMPLETED((byte) 2),
     CANCELLED((byte) 3);
 
-//    private final byte value;
-//
-//    OrdersEnums(byte value) {
-//        this.value = value;
-//    }
-//
-//    public byte getValue() {
-//        return value;
-//    }
-//
-//    public static OrdersEnums fromValue(byte value) {
-//        for (OrdersEnums x : OrdersEnums.values()) {
-//            if (x.getValue() == value) {
-//                return x;
-//            }
-//        }
-//        throw new IllegalArgumentException("No OrdersEnums with value" + value);
-//    }
     private final byte order_status;
 
     OrdersEnums(byte order_status) {

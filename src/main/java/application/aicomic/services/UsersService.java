@@ -67,38 +67,4 @@ public class UsersService {
         return usersRepository.findByRoleIn(List.of((byte) 5, (byte) 6,(byte) 7, (byte) 8));
     }
 
-
-    /*public UserServiceResponseDto getById(String id) {
-        Optional<Users> userOptional = usersRepository.findById(id);
-
-        return userOptional.map(users -> new UserServiceResponseDto(true, "User found.", Collections.singletonList(users))).orElseGet(() -> new UserServiceResponseDto(false, "No user found for the given user ID.", Collections.emptyList()));
-    }
-
-    public UserServiceResponseDto deleteUser(String id) {
-        UserServiceResponseDto response = new UserServiceResponseDto();
-
-        try {
-            Optional<Users> userOptional = usersRepository.findById(id);
-            if (userOptional.isEmpty()) {
-                response.setSucceed(false);
-                response.setMessage("User not found.");
-                return response;
-            }
-
-            // Cập nhật trạng thái người dùng
-            Users user = userOptional.get();
-            user.setStatus((byte) 0);
-            usersRepository.save(user);
-
-            response.setSucceed(true);
-            response.setMessage("User status updated to inactive (deleted).");
-        } catch (Exception ex) {
-            logger.error("Error updating user status: ", ex);
-            response.setSucceed(false);
-            response.setMessage("An error occurred: " + ex.getMessage());
-        }
-
-        return response;
-    }*/
-
 }
