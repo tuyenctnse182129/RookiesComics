@@ -1,15 +1,16 @@
 package application.aicomic.services;
 
 import application.aicomic.dataAccess.UserServiceResponseDto;
+import application.aicomic.enums.OrdersEnums;
+import application.aicomic.enums.Role;
+import application.aicomic.models.Orders;
 import application.aicomic.models.Users;
 import application.aicomic.repositories.UsersRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UsersService {
@@ -65,6 +66,36 @@ public class UsersService {
 
     public List<Users> getCustomerUsers() {
         return usersRepository.findByRoleIn(List.of((byte) 5, (byte) 6,(byte) 7, (byte) 8));
+    }
+
+    public boolean updateUserRole(String userId, byte newRoleByte) {
+        Optional<Users> userOpt = usersRepository.findById(userId);
+        if (userOpt.isPresent()) {
+            Users user = userOpt.get();
+            Role currentRole = Role.fromValue(user.getRole());
+            Role newRole = Role.fromValue(newRoleByte);
+
+            // Kiểm tra trạng thái hợp lệ
+            if (!isValidRoleTransition(currentRole, newRole)) {
+                return false; // Tránh cập nhật trạng thái sai logic
+            }
+
+            user.setRole(newRole.getValue());
+            usersRepository.save(user);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isValidRoleTransition(Role currentRole, Role newRole) {
+        Map<Role, List<Role>> validTransitions = new HashMap<>();
+
+        validTransitions.put(Role.CUSTOMER_NORMAL, List.of(Role.CUSTOMER_READER, Role.CUSTOMER_AUTHOR, Role.CUSTOMER_VIP));
+        validTransitions.put(Role.CUSTOMER_READER, List.of(Role.CUSTOMER_AUTHOR, Role.CUSTOMER_VIP));
+        validTransitions.put(Role.CUSTOMER_AUTHOR, List.of(Role.CUSTOMER_VIP));
+        validTransitions.put(Role.CUSTOMER_VIP, List.of());
+
+        return validTransitions.getOrDefault(currentRole, List.of()).contains(newRole);
     }
 
 }

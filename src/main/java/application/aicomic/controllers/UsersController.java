@@ -69,6 +69,16 @@ public class UsersController {
         return usersService.getCustomerUsers();
     }
 
+    @PutMapping("/{id}/role")
+    public ResponseEntity<?> updateUserRole(@PathVariable String id, @RequestParam byte role) {
+        boolean updated = usersService.updateUserRole(id, role);
+        if (updated) {
+            return ResponseEntity.ok("Cập nhật vai trò thành công");
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Không thể cập nhật vai trò khách hàng");
+    }
+
+
     @PostMapping("/login/google")
     public ResponseEntity<?> loginWithGoogle(@RequestBody Map<String, String> request) {
         try {
