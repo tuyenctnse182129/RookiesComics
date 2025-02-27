@@ -33,7 +33,7 @@ public class SecurityConfig {
         @Bean
         public CorsConfigurationSource corsConfigurationSource() {
                 CorsConfiguration configuration = new CorsConfiguration();
-                configuration.setAllowedOrigins(List.of("http://localhost:3000")); // Đảm bảo trùng với FE
+                configuration.setAllowedOrigins(List.of("http://localhost:3000", "http://10.0.2.2:3000", "http://10.0.2.2")); // Đảm bảo trùng với FE
                 configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                 configuration.setAllowedHeaders(List.of("Content-Type", "Authorization"));
                 configuration.setAllowCredentials(true);

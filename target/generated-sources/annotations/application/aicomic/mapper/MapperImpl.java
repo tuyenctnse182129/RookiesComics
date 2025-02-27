@@ -32,7 +32,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-23T12:27:43+0700",
+    date = "2025-02-27T13:08:37+0700",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 23.0.1 (Oracle Corporation)"
 )
 @Component
@@ -122,9 +122,6 @@ public class MapperImpl implements Mapper {
         Transactions transactions = new Transactions();
 
         transactions.setTransactionId( transactionsDTO.getTransactionId() );
-        transactions.setTransactionCode( transactionsDTO.getTransactionCode() );
-        transactions.setContent( transactionsDTO.getContent() );
-        transactions.setBankName( transactionsDTO.getBankName() );
         transactions.setTransactionTime( transactionsDTO.getTransactionTime() );
         transactions.setAmount( transactionsDTO.getAmount() );
         transactions.setStatus( transactionsDTO.getStatus() );
@@ -142,9 +139,6 @@ public class MapperImpl implements Mapper {
         }
 
         transactions.setTransactionId( transactionsDTO.getTransactionId() );
-        transactions.setTransactionCode( transactionsDTO.getTransactionCode() );
-        transactions.setContent( transactionsDTO.getContent() );
-        transactions.setBankName( transactionsDTO.getBankName() );
         transactions.setTransactionTime( transactionsDTO.getTransactionTime() );
         transactions.setAmount( transactionsDTO.getAmount() );
         transactions.setStatus( transactionsDTO.getStatus() );
@@ -165,6 +159,7 @@ public class MapperImpl implements Mapper {
         orderDetails.setOrderId( orderDetailsDTO.getOrderId() );
         orderDetails.setChapterId( orderDetailsDTO.getChapterId() );
         orderDetails.setPrice( orderDetailsDTO.getPrice() );
+        orderDetails.setStatus( orderDetailsDTO.getStatus() );
 
         return orderDetails;
     }
@@ -179,6 +174,7 @@ public class MapperImpl implements Mapper {
         orderDetails.setOrderId( orderDetailsDTO.getOrderId() );
         orderDetails.setChapterId( orderDetailsDTO.getChapterId() );
         orderDetails.setPrice( orderDetailsDTO.getPrice() );
+        orderDetails.setStatus( orderDetailsDTO.getStatus() );
     }
 
     @Override
@@ -226,7 +222,9 @@ public class MapperImpl implements Mapper {
         orders.setOrderId( ordersDTO.getOrderId() );
         orders.setOrderTime( xmlGregorianCalendarToLocalDateTime( localDateToXmlGregorianCalendar( ordersDTO.getOrderTime() ) ) );
         orders.setQuantity( ordersDTO.getQuantity() );
+        orders.setStatus( ordersDTO.getStatus() );
         orders.setType( ordersDTO.getType() );
+        orders.setTotalPrice( ordersDTO.getTotalPrice() );
         orders.setUserId( ordersDTO.getUserId() );
     }
 
@@ -276,6 +274,9 @@ public class MapperImpl implements Mapper {
         }
 
         purchasedCoins.setPurchasedCoinId( purchasedCoinsDTO.getPurchasedCoinId() );
+        purchasedCoins.setTransactionCode( purchasedCoinsDTO.getTransactionCode() );
+        purchasedCoins.setContent( purchasedCoinsDTO.getContent() );
+        purchasedCoins.setBankName( purchasedCoinsDTO.getBankName() );
         if ( purchasedCoinsDTO.getAmount() != null ) {
             purchasedCoins.setAmount( purchasedCoinsDTO.getAmount().doubleValue() );
         }
@@ -284,9 +285,7 @@ public class MapperImpl implements Mapper {
         }
         purchasedCoins.setType( mapType( purchasedCoinsDTO.getType() ) );
         purchasedCoins.setStatus( mapStatus( purchasedCoinsDTO.getStatus() ) );
-        purchasedCoins.setDescription( purchasedCoinsDTO.getDescription() );
         purchasedCoins.setPurchaseTime( purchasedCoinsDTO.getPurchaseTime() );
-        purchasedCoins.setTransactionCode( purchasedCoinsDTO.getTransactionCode() );
         purchasedCoins.setUserId( purchasedCoinsDTO.getUserId() );
         purchasedCoins.setUser( purchasedCoinsDTO.getUser() );
         if ( purchasedCoins.getTransactions() != null ) {

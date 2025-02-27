@@ -3,6 +3,7 @@ package application.aicomic.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import org.checkerframework.common.aliasing.qual.Unique;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,6 +16,16 @@ public class PurchasedCoins {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "purchased_coin_id", length = 50)
     private String purchasedCoinId;
+
+    @Unique
+    @Column(name = "transaction_code", length = 50)
+    private String transactionCode;
+
+    @Column(name = "content", length = 255)
+    private String content;
+
+    @Column(name = "bank_name", length = 50)
+    private String bankName;
 
     @NotNull
     @Column(name = "amount")
@@ -32,14 +43,8 @@ public class PurchasedCoins {
     @Column(name = "status")
     private byte status;
 
-    @Column(name = "description", length = 250)
-    private String description;
-
     @Column(name = "purchase_time")
     private LocalDateTime purchaseTime;
-
-    @Column(name = "transaction_code", length = 50)
-    private String transactionCode;
 
     @NotNull
     @Column(name = "user_id", length = 50)

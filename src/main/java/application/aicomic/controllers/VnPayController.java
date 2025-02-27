@@ -1,11 +1,6 @@
 package application.aicomic.controllers;
 
 import application.aicomic.config.Config;
-import application.aicomic.models.Orders;
-import application.aicomic.services.OrdersService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
@@ -17,23 +12,13 @@ import java.util.*;
 @RestController
 @RequestMapping("/vnpays")
 public class VnPayController {
-    @Autowired
-    private OrdersService orderService;
 
-    @GetMapping("/pay/{orderId}")
-    public String getPay(@PathVariable String orderId) throws UnsupportedEncodingException {
-        // Lấy thông tin đơn hàng từ orderId
-        Orders order = orderService.getOrdersById(orderId);
-        if (order == null) {
-            throw new RuntimeException("Order not found");
-        }
-
-        double amount = order.getTotalPrice(); // VNPAY yêu cầu số tiền
-
-
+    @GetMapping("/payment")
+    public String getPay() throws UnsupportedEncodingException {
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
         String orderType = "other";
+        long amount = 10000*100;
         String bankCode = "NCB";
 
         String vnp_TxnRef = Config.getRandomNumber(8);
@@ -46,9 +31,6 @@ public class VnPayController {
         vnp_Params.put("vnp_Command", vnp_Command);
         vnp_Params.put("vnp_TmnCode", vnp_TmnCode);
         vnp_Params.put("vnp_Amount", String.valueOf(amount));
-        vnp_Params.put("vnp_OrderInfo", "Thanh toan don hang:" + orderId);
-        vnp_Params.put("vnp_OrderType", "other");
-        vnp_Params.put("vnp_Locale", "vn");
         vnp_Params.put("vnp_CurrCode", "VND");
 
         if (bankCode != null && !bankCode.isEmpty()) {
@@ -59,7 +41,7 @@ public class VnPayController {
         vnp_Params.put("vnp_OrderType", orderType);
 
         vnp_Params.put("vnp_Locale", "vn");
-        vnp_Params.put("vnp_ReturnUrl", "http://localhost:8080/transaction/return?orderId=" + orderId);
+        vnp_Params.put("vnp_ReturnUrl", "http://localhost:8080/purchasedCoins/returning");
         //vnp_Params.put("vnp_ReturnUrl", Config.vnp_ReturnUrl);
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
 

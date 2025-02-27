@@ -27,9 +27,10 @@ public enum PurchasedCoinsEnums {
 
     // For status
     public enum Status {
-        PENDING((byte) 1),
-        COMPLETED((byte) 2),
-        CANCELLED((byte) 3);
+        CANCELED((byte) 1),
+        NOT_PAID((byte) 2),
+        PROCESSING((byte) 3),
+        PAID((byte) 4);
 
         private final byte value;
 

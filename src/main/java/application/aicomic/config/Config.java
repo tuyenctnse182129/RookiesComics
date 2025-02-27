@@ -13,12 +13,11 @@ import java.util.*;
 
 public class Config {
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    //public static String vnp_ReturnUrl = "http://localhost:8080/vnpay_jsp/vnpay_return.jsp";
     public static String vnp_TmnCode = "H4IBZY7B";
     public static String secretKey = "SJF8M4GRVTN6245GQSTGDNTVB7Q313U4";
     public static String vnp_ApiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
 
-    public static String vnp_ReturnUrl = "http://localhost:8080/transaction/return";
+    public static String vnp_ReturnUrl = "http://localhost:8080/purchasedCoins/returning";
 
     public static String md5(String message) {
         String digest = null;
@@ -55,27 +54,6 @@ public class Config {
         }
         return digest;
     }
-
-//    //Util for VNPAY
-//    public static String hashAllFields(Map fields) {
-//        List fieldNames = new ArrayList(fields.keySet());
-//        Collections.sort(fieldNames);
-//        StringBuilder sb = new StringBuilder();
-//        Iterator itr = fieldNames.iterator();
-//        while (itr.hasNext()) {
-//            String fieldName = (String) itr.next();
-//            String fieldValue = (String) fields.get(fieldName);
-//            if ((fieldValue != null) && (fieldValue.length() > 0)) {
-//                sb.append(fieldName);
-//                sb.append("=");
-//                sb.append(fieldValue);
-//            }
-//            if (itr.hasNext()) {
-//                sb.append("&");
-//            }
-//        }
-//        return hmacSHA512(secretKey,sb.toString());
-//    }
 
     public static String hashAllFields(Map<String, String> fields) throws Exception {
         List<String> fieldNames = new ArrayList<>(fields.keySet());

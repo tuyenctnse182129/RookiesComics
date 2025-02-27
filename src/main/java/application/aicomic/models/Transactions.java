@@ -18,16 +18,6 @@ public class Transactions {
     @Column(name = "transaction_id", length = 50)
     private String transactionId;
 
-    @Unique
-    @Column(name = "transaction_code", length = 50)
-    private String transactionCode;
-
-    @Column(name = "content", length = 255)
-    private String content;
-
-    @Column(name = "bank_name", length = 50)
-    private String bankName;
-
     @Column(name = "transaction_time")
     private LocalDateTime transactionTime;
 
