@@ -44,6 +44,7 @@ public class WalletsService {
     public Wallets saveWallets(Wallets wallets) {
         return walletsRepository.save(wallets);
     }
+
     public Wallets updateWallets(String id, WalletsDTO walletsDTO) {
         Wallets wallets = walletsRepository.findById(id).orElseThrow(() -> new RuntimeException("Orders not found"));
         mapper.updateWallets(wallets, walletsDTO);

@@ -6,4 +6,5 @@ import java.util.List;
 import application.aicomic.models.Comics;
 
 public interface WalletsRepository extends JpaRepository<Wallets, String> {
+
 }

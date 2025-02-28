@@ -6,6 +6,7 @@ import application.aicomic.dataAccess.CurrentChapterDTO;
 import application.aicomic.dataAccess.GenresDTO;
 import application.aicomic.dataAccess.OrderDetailsDTO;
 import application.aicomic.dataAccess.OrdersDTO;
+import application.aicomic.dataAccess.PurchasedCoinsDTO;
 import application.aicomic.dataAccess.TransactionsDTO;
 import application.aicomic.dataAccess.WalletsDTO;
 import application.aicomic.models.Comics;
@@ -14,11 +15,14 @@ import application.aicomic.models.CurrentChapter;
 import application.aicomic.models.Genres;
 import application.aicomic.models.OrderDetails;
 import application.aicomic.models.Orders;
+import application.aicomic.models.PurchasedCoins;
 import application.aicomic.models.Transactions;
 import application.aicomic.models.Wallets;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeConstants;
@@ -28,8 +32,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-20T14:42:06+0700",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.12 (Oracle Corporation)"
+    date = "2025-02-27T13:08:37+0700",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 23.0.1 (Oracle Corporation)"
 )
 @Component
 public class MapperImpl implements Mapper {
@@ -118,9 +122,6 @@ public class MapperImpl implements Mapper {
         Transactions transactions = new Transactions();
 
         transactions.setTransactionId( transactionsDTO.getTransactionId() );
-        transactions.setTransactionCode( transactionsDTO.getTransactionCode() );
-        transactions.setContent( transactionsDTO.getContent() );
-        transactions.setBankName( transactionsDTO.getBankName() );
         transactions.setTransactionTime( transactionsDTO.getTransactionTime() );
         transactions.setAmount( transactionsDTO.getAmount() );
         transactions.setStatus( transactionsDTO.getStatus() );
@@ -138,9 +139,6 @@ public class MapperImpl implements Mapper {
         }
 
         transactions.setTransactionId( transactionsDTO.getTransactionId() );
-        transactions.setTransactionCode( transactionsDTO.getTransactionCode() );
-        transactions.setContent( transactionsDTO.getContent() );
-        transactions.setBankName( transactionsDTO.getBankName() );
         transactions.setTransactionTime( transactionsDTO.getTransactionTime() );
         transactions.setAmount( transactionsDTO.getAmount() );
         transactions.setStatus( transactionsDTO.getStatus() );
@@ -161,6 +159,7 @@ public class MapperImpl implements Mapper {
         orderDetails.setOrderId( orderDetailsDTO.getOrderId() );
         orderDetails.setChapterId( orderDetailsDTO.getChapterId() );
         orderDetails.setPrice( orderDetailsDTO.getPrice() );
+        orderDetails.setStatus( orderDetailsDTO.getStatus() );
 
         return orderDetails;
     }
@@ -175,6 +174,7 @@ public class MapperImpl implements Mapper {
         orderDetails.setOrderId( orderDetailsDTO.getOrderId() );
         orderDetails.setChapterId( orderDetailsDTO.getChapterId() );
         orderDetails.setPrice( orderDetailsDTO.getPrice() );
+        orderDetails.setStatus( orderDetailsDTO.getStatus() );
     }
 
     @Override
@@ -222,7 +222,9 @@ public class MapperImpl implements Mapper {
         orders.setOrderId( ordersDTO.getOrderId() );
         orders.setOrderTime( xmlGregorianCalendarToLocalDateTime( localDateToXmlGregorianCalendar( ordersDTO.getOrderTime() ) ) );
         orders.setQuantity( ordersDTO.getQuantity() );
+        orders.setStatus( ordersDTO.getStatus() );
         orders.setType( ordersDTO.getType() );
+        orders.setTotalPrice( ordersDTO.getTotalPrice() );
         orders.setUserId( ordersDTO.getUserId() );
     }
 
@@ -263,6 +265,45 @@ public class MapperImpl implements Mapper {
         genres.setGenresName( genresDTO.getGenresName() );
         genres.setGenresDescription( genresDTO.getGenresDescription() );
         genres.setStatus( genresDTO.getStatus() );
+    }
+
+    @Override
+    public void updatePurchasedCoins(PurchasedCoins purchasedCoins, PurchasedCoinsDTO purchasedCoinsDTO) {
+        if ( purchasedCoinsDTO == null ) {
+            return;
+        }
+
+        purchasedCoins.setPurchasedCoinId( purchasedCoinsDTO.getPurchasedCoinId() );
+        purchasedCoins.setTransactionCode( purchasedCoinsDTO.getTransactionCode() );
+        purchasedCoins.setContent( purchasedCoinsDTO.getContent() );
+        purchasedCoins.setBankName( purchasedCoinsDTO.getBankName() );
+        if ( purchasedCoinsDTO.getAmount() != null ) {
+            purchasedCoins.setAmount( purchasedCoinsDTO.getAmount().doubleValue() );
+        }
+        if ( purchasedCoinsDTO.getNumberOfCoin() != null ) {
+            purchasedCoins.setNumberOfCoin( purchasedCoinsDTO.getNumberOfCoin().doubleValue() );
+        }
+        purchasedCoins.setType( mapType( purchasedCoinsDTO.getType() ) );
+        purchasedCoins.setStatus( mapStatus( purchasedCoinsDTO.getStatus() ) );
+        purchasedCoins.setPurchaseTime( purchasedCoinsDTO.getPurchaseTime() );
+        purchasedCoins.setUserId( purchasedCoinsDTO.getUserId() );
+        purchasedCoins.setUser( purchasedCoinsDTO.getUser() );
+        if ( purchasedCoins.getTransactions() != null ) {
+            List<Transactions> list = purchasedCoinsDTO.getTransactions();
+            if ( list != null ) {
+                purchasedCoins.getTransactions().clear();
+                purchasedCoins.getTransactions().addAll( list );
+            }
+            else {
+                purchasedCoins.setTransactions( null );
+            }
+        }
+        else {
+            List<Transactions> list = purchasedCoinsDTO.getTransactions();
+            if ( list != null ) {
+                purchasedCoins.setTransactions( new ArrayList<Transactions>( list ) );
+            }
+        }
     }
 
     private XMLGregorianCalendar localDateToXmlGregorianCalendar( LocalDate localDate ) {
