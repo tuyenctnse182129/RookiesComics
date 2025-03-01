@@ -2,9 +2,12 @@ package application.aicomic.enums;
 
 public enum ComicsEnums {
     DELETED((byte) 0),
-    UPDATE((byte) 1),
-    COMPLETED((byte) 2),
-    STOPPED((byte) 3);
+    PROCESSING((byte) 1),
+    ONGOING((byte) 2),
+    COMPLETED((byte) 3),
+    STOPPED((byte) 4),
+    APPROVED((byte) 5),
+    REJECTED((byte) 6);
 
     private final byte value;
 

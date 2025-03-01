@@ -1,20 +1,14 @@
 
 package application.aicomic.controllers;
 
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.*;
 
 import application.aicomic.services.ComicsService;
 
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import application.aicomic.dataAccess.ComicsDTO;
 import application.aicomic.models.Comics;
@@ -41,9 +35,39 @@ public class ComicsController {
         return comicsService.getComicsByName(comicName);
     }
 
+    @GetMapping("/processing/{isProcessing}")
+    public ResponseEntity<List<Comics>> getComicsByProcessingStatus(@RequestParam(defaultValue = "false") boolean isProcessing) {
+        List<Comics> comicsList = comicsService.getComicsByProcessingStatus(isProcessing);
+        return ResponseEntity.ok(comicsList);
+    }
+    @PutMapping("/approved/{isApproved}")
+    public ResponseEntity<List<Comics>> getComicsByApprovedStatus(@RequestParam(defaultValue = "false") boolean isApproved) {
+        List<Comics> comicsList = comicsService.getComicsByApprovedStatus(isApproved);
+        return ResponseEntity.ok(comicsList);
+    }
+    @PutMapping("/rejected/{isRejected}")
+    public ResponseEntity<List<Comics>> getComicsByRejectedStatus(@RequestParam(defaultValue = "false") boolean isRejected) {
+        List<Comics> comicsList = comicsService.getComicsByRejectedStatus(isRejected);
+        return ResponseEntity.ok(comicsList);
+    }
+    @GetMapping("/ongoing/{isOnGoing}")
+    public ResponseEntity<List<Comics>> getComicsByOnGoingStatus(@RequestParam(defaultValue = "false") boolean isOnGoing) {
+        List<Comics> comicsList = comicsService.getComicsByOnGoingStatus(isOnGoing);
+        return ResponseEntity.ok(comicsList);
+    }
     @GetMapping("/completed/{isCompleted}")
-    public ResponseEntity<List<Comics>> getComicsByCompletionStatus(@PathVariable boolean isCompleted) {
+    public ResponseEntity<List<Comics>> getComicsByCompletionStatus(@RequestParam(defaultValue = "false") boolean isCompleted) {
         List<Comics> comicsList = comicsService.getComicsByCompletionStatus(isCompleted);
+        return ResponseEntity.ok(comicsList);
+    }
+    @GetMapping("/stopped/{isStopped}")
+    public ResponseEntity<List<Comics>> getComicsByStoppedStatus(@RequestParam(defaultValue = "false") boolean isStopped) {
+        List<Comics> comicsList = comicsService.getComicsByStoppedStatus(isStopped);
+        return ResponseEntity.ok(comicsList);
+    }
+    @GetMapping("/genres/genresName")
+    public ResponseEntity<List<Comics>> getComicsByGenres_GenresName(@PathVariable String genresName){
+        List<Comics> comicsList = comicsService.getComicsByGenres_GenresName(genresName);
         return ResponseEntity.ok(comicsList);
     }
 

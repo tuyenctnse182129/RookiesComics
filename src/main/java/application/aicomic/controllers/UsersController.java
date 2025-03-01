@@ -2,8 +2,9 @@ package application.aicomic.controllers;
 
 import application.aicomic.models.Users;
 import application.aicomic.repositories.UsersRepository;
-import application.aicomic.services.JwtService;
 import application.aicomic.services.UsersService;
+import application.aicomic.services.WalletsService;
+import application.aicomic.services.JwtService;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
@@ -12,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -24,13 +23,16 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/users")
 public class UsersController {
+    @Autowired
     private final UsersService usersService;
+    private final WalletsService walletsService;
     private final UsersRepository usersRepository;
     private final JwtService jwtService;
 
     @Autowired
-    public UsersController(UsersService usersService, UsersRepository usersRepository, JwtService jwtService) {
+    public UsersController(UsersService usersService, WalletsService walletsService, UsersRepository usersRepository, JwtService jwtService) {
         this.usersService = usersService;
+        this.walletsService = walletsService;
         this.usersRepository = usersRepository;
         this.jwtService = jwtService;
     }
@@ -38,6 +40,12 @@ public class UsersController {
     @Value("${spring.security.oauth2.client.registration.google.client-id}")
     private String googleClientId;
 
+    public UsersController(UsersService usersService, UsersRepository usersRepository, WalletsService walletsService, JwtService jwtService) {
+        this.usersService = usersService;
+        this.usersRepository = usersRepository;
+        this.walletsService = walletsService;
+        this.jwtService = jwtService;
+    }
 
     @GetMapping
     public List<Users> getAllUsers() {
@@ -69,6 +77,7 @@ public class UsersController {
         return usersService.getCustomerUsers();
     }
 
+
     @PutMapping("/{id}/role")
     public ResponseEntity<?> updateUserRole(@PathVariable String id, @RequestParam byte role) {
         boolean updated = usersService.updateUserRole(id, role);
@@ -86,7 +95,6 @@ public class UsersController {
             if (credential == null || credential.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", "Missing credential"));
             }
-
             GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(
                     new NetHttpTransport(),
                     JacksonFactory.getDefaultInstance())
@@ -100,6 +108,7 @@ public class UsersController {
 
             GoogleIdToken.Payload payload = idToken.getPayload();
             Users user = processUser(payload);
+
 
             // Tạo JWT
             String token = jwtService.generateToken(user.getEmail(), String.valueOf(user.getRole()));
@@ -135,6 +144,7 @@ public class UsersController {
             newUser.setEmail(email);
             newUser.setFirstName(firstName);
             newUser.setLastName(lastName);
+
             newUser.setRole((byte) 5);
             return usersRepository.save(newUser);
         });

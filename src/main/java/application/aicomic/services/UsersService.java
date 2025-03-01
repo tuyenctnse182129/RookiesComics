@@ -1,23 +1,38 @@
 package application.aicomic.services;
 
 import application.aicomic.dataAccess.UserServiceResponseDto;
-import application.aicomic.enums.OrdersEnums;
 import application.aicomic.enums.Role;
-import application.aicomic.models.Orders;
+import application.aicomic.enums.WalletType;
 import application.aicomic.models.Users;
+import application.aicomic.models.Wallets;
 import application.aicomic.repositories.UsersRepository;
+import application.aicomic.repositories.WalletsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import application.aicomic.services.WalletsService;
+import org.springframework.transaction.annotation.Transactional;
+import application.aicomic.enums.OrdersEnums;
+import application.aicomic.models.Orders;
 
 import java.util.*;
 
 @Service
 public class UsersService {
     private final UsersRepository usersRepository;
+    private final WalletsRepository walletsRepository;
     private static final Logger logger = LoggerFactory.getLogger(UsersService.class);
 
-    public UsersService(UsersRepository usersRepository) {
+    @Autowired
+    public UsersService(UsersRepository usersRepository, WalletsRepository walletsRepository) {
+        this.walletsRepository = walletsRepository;
+
         this.usersRepository = usersRepository;
     }
 
@@ -30,8 +45,32 @@ public class UsersService {
     }
 
     public Users saveUser(Users user) {
-        return usersRepository.save(user);
+        Users savedUser = usersRepository.save(user);
+        createWalletsForUser(savedUser);
+        return savedUser;
     }
+
+    private void createWalletsForUser(Users user) {
+        List<Byte> eligibleRoles = List.of((byte) 5, (byte) 6, (byte) 7, (byte) 8);
+        if (eligibleRoles.contains(user.getRole())) {
+            Wallets mainWallet = new Wallets();
+            mainWallet.setUserId(user.getUserId());
+            mainWallet.setType(WalletType.MAIN);
+            mainWallet.setBalance(0);
+            mainWallet.setUpdatedDate(LocalDateTime.now());
+
+            Wallets promoWallet = new Wallets();
+            promoWallet.setUserId(user.getUserId());
+            promoWallet.setType(WalletType.PROMOTION);
+            promoWallet.setBalance(0);
+            promoWallet.setUpdatedDate(LocalDateTime.now());
+
+            walletsRepository.save(mainWallet);
+            walletsRepository.save(promoWallet);
+        }
+    }
+
+
 
     public UserServiceResponseDto getById(String id) {
         Optional<Users> userOptional = usersRepository.findById(id);
@@ -97,5 +136,4 @@ public class UsersService {
 
         return validTransitions.getOrDefault(currentRole, List.of()).contains(newRole);
     }
-
 }

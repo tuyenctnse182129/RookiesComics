@@ -4,9 +4,11 @@ package application.aicomic.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import org.checkerframework.common.aliasing.qual.Unique;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import org.checkerframework.common.aliasing.qual.Unique;
+
 import java.util.List;
 
 @Entity
@@ -18,6 +20,8 @@ public class Users {
     @Column(name = "user_id", length = 50)
     private String userId;
 
+
+    @NotNull
     @Column(name = "first_name", length = 50)
     private String firstName;
 
@@ -29,6 +33,7 @@ public class Users {
 
     @Column(name = "gender", length = 10)
     private String gender;
+
 
     @Unique
     @Column(name = "email", length = 50)
