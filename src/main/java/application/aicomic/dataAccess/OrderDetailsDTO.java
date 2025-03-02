@@ -8,4 +8,5 @@ public class OrderDetailsDTO {
     private String orderId;
     private String chapterId;
     private double price;
+    private Byte status;
 }

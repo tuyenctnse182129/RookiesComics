@@ -13,4 +13,5 @@ public class OrdersDTO {
     private byte type;
     private String comicId;
     private String userId;
+    private double totalPrice;
 }

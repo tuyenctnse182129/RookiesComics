@@ -12,13 +12,14 @@ import lombok.Data;
 @Data
 public class PurchasedCoinsDTO {
     private String purchasedCoinId;
+    private String transactionCode;
+    private String content;
+    private String bankName;
     private BigDecimal amount;
     private BigDecimal numberOfCoin;
     private PurchasedCoinsEnums type;
     private PurchasedCoinsEnums.Status status;
-    private String description;
     private LocalDateTime purchaseTime;
-    private String transactionCode;
     private String userId;
     private Users user;
     private List<Transactions> transactions;

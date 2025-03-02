@@ -6,6 +6,8 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import application.aicomic.enums.WalletType;
+
 
 @Entity
 @Table(name = "Wallets")
@@ -15,6 +17,10 @@ public class Wallets {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "wallet_id", length = 50)
     private String walletId;
+
+
+    @Column(name = "wallet_type")
+    private  WalletType type;
 
     @Column(name = "balance")
     private double balance;

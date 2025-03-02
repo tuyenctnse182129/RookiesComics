@@ -24,6 +24,7 @@ public class ComicsService {
     private static final Logger logger = LoggerFactory.getLogger(ComicsService.class);
 
     public ComicsService(ComicsRepository comicsRepository) {
+
         this.comicsRepository = comicsRepository;
     }
 
@@ -35,9 +36,33 @@ public class ComicsService {
         return comicsRepository.findByComicName(comicName).orElse(null);
     }
 
-    public List<Comics> getComicsByCompletionStatus(boolean isCompleted) {
-        List<Byte> statuses = isCompleted ? List.of((byte) 1) : List.of((byte) 0);
+
+    public List<Comics> getComicsByProcessingStatus(boolean isProcessing) {
+        List<Byte> statuses = isProcessing ? List.of((byte) 1) : List.of((byte) 0);
         return comicsRepository.findByStatusIn(statuses);
+    }
+    public List<Comics> getComicsByApprovedStatus(boolean isApproved) {
+        List<Byte> statuses = isApproved ? List.of((byte) 5) : List.of((byte) 6);
+        return comicsRepository.findByStatusIn(statuses);
+    }
+    public List<Comics> getComicsByRejectedStatus(boolean isRejected) {
+        List<Byte> statuses = isRejected ? List.of((byte) 6) : List.of((byte) 0);
+        return comicsRepository.findByStatusIn(statuses);
+    }
+    public List<Comics> getComicsByOnGoingStatus(boolean isOnGoing) {
+        List<Byte> statuses = isOnGoing ? List.of((byte) 2) : List.of((byte) 0);
+        return comicsRepository.findByStatusIn(statuses);
+    }
+    public List<Comics> getComicsByCompletionStatus(boolean isCompleted) {
+        List<Byte> statuses = isCompleted ? List.of((byte) 3) : List.of((byte) 0);
+        return comicsRepository.findByStatusIn(statuses);
+    }
+    public List<Comics> getComicsByStoppedStatus(boolean isStopped) {
+        List<Byte> statuses = isStopped ? List.of((byte) 4) : List.of((byte) 0);
+        return comicsRepository.findByStatusIn(statuses);
+    }
+    public List<Comics> getComicsByGenres_GenresName(String genresName){
+        return comicsRepository.findByGenres_GenresName(genresName);
     }
 
     public Comics saveComics(Comics comics) {
@@ -68,7 +93,8 @@ public class ComicsService {
         Optional<Comics> comics = comicsRepository.findById(id);
         if (comics.isPresent()) {
             Comics x = comics.get();
-            x.setStatus(ComicsEnums.UPDATE.getValue());
+            x.setStatus(ComicsEnums.PROCESSING.getValue());
+
             return comicsRepository.save(x);
         } else if (comics.isPresent()) {
             Comics x = comics.get();

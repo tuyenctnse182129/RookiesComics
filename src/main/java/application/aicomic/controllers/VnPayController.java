@@ -1,12 +1,7 @@
 package application.aicomic.controllers;
 
 import application.aicomic.config.Config;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -17,9 +12,9 @@ import java.util.*;
 @RestController
 @RequestMapping("/vnpays")
 public class VnPayController {
-    @GetMapping("/pay")
-    public String getPay() throws UnsupportedEncodingException {
 
+    @GetMapping("/payment")
+    public String getPay() throws UnsupportedEncodingException {
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
         String orderType = "other";
@@ -46,7 +41,7 @@ public class VnPayController {
         vnp_Params.put("vnp_OrderType", orderType);
 
         vnp_Params.put("vnp_Locale", "vn");
-        vnp_Params.put("vnp_ReturnUrl", "http://localhost:8080/transaction/return");
+        vnp_Params.put("vnp_ReturnUrl", "http://localhost:8080/purchasedCoins/returning");
         //vnp_Params.put("vnp_ReturnUrl", Config.vnp_ReturnUrl);
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
 

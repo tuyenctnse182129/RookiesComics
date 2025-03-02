@@ -18,6 +18,7 @@ public class OrderDetailsController {
     public List<OrderDetails> getAllOrderDetails() {
         return orderDetailsService.getAllOrderDetails();
     }
+
     @PostMapping
     public OrderDetails addOrderDetail(@RequestBody OrderDetails orderDetails) {
         return orderDetailsService.addOrderDetail(orderDetails);
@@ -31,8 +32,14 @@ public class OrderDetailsController {
     public OrderDetails getOrderDetailById(@PathVariable String id) {
         return orderDetailsService.getOrderDetailById(id);
     }
-//    @DeleteMapping("/{delete}")
-//    public OrderDetails deleteComment(@PathVariable String id) {
-//        return orderDetailsService.deleteComment(id);
-//    }
+    @DeleteMapping("/{deleteId}")
+    public OrderDetails deleteOrderDetailsByID(@PathVariable String id) {
+        return orderDetailsService.deleteOrderDetails(id);
+    }
+
+    @PostMapping("/add-list-order-details")
+    public List<OrderDetails> addOrderDetailsList(@RequestBody List<OrderDetails> orderDetailsList) {
+        return orderDetailsService.addListOfOrderDetails(orderDetailsList);
+    }
+
 }
