@@ -1,12 +1,22 @@
 package application.aicomic.models;
 
-
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import lombok.Data;
-
 import java.time.LocalDate;
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import application.aicomic.enums.Role;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 @Entity
 @Table(name = "Users")
@@ -73,5 +83,13 @@ public class Users {
 
     @ManyToMany(mappedBy = "user")
     private List<Bookshelves> bookshelves;
+    
+    public Role getRoleEnum() {
+        return Role.fromValue(this.role);
+    }
+
+    public List<GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_" + getRoleEnum().name()));
+    }
 }
 

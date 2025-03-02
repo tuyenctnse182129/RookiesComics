@@ -1,16 +1,18 @@
 package application.aicomic.config;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.oidc.web.logout.OidcClientInitiatedLogoutSuccessHandler;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.List;
+import application.aicomic.enums.Role;
 
 @Configuration
 public class SecurityConfig {
@@ -23,9 +25,15 @@ public class SecurityConfig {
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
                 http
-                        .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                        .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
-                        .csrf(csrf -> csrf.disable());
+                                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                                .authorizeHttpRequests(auth -> auth
+                                                .requestMatchers("/chapters/**")
+                                                .hasAnyAuthority(
+                                                                "ROLE_" + Role.CUSTOMER_AUTHOR.name(),
+                                                                "ROLE_" + Role.CUSTOMER_VIP.name(),
+                                                                "ROLE_" + Role.ADMIN.name())
+                                                .anyRequest().permitAll())
+                                .csrf(csrf -> csrf.disable());
 
                 return http.build();
         }
