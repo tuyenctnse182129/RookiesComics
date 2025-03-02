@@ -2,24 +2,35 @@ package application.aicomic.services;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import application.aicomic.enums.ChaptersEnums;
+import application.aicomic.enums.ChaptersType;
 import application.aicomic.enums.Role;
+import application.aicomic.enums.WalletType;
 import application.aicomic.models.Chapters;
+import application.aicomic.models.Comics;
 import application.aicomic.models.Users;
+import application.aicomic.models.Wallets;
 import application.aicomic.repositories.ChaptersRepository;
+import application.aicomic.repositories.ComicsRepository;
 import application.aicomic.repositories.UsersRepository;
+import application.aicomic.repositories.WalletsRepository;
 
 @Service
 public class ChaptersService {
     private final ChaptersRepository chaptersRepository;
+    private final ComicsRepository comicsRepository;
     private final UsersRepository usersRepository;
+    private final WalletsRepository walletsRepository;
 
-    public ChaptersService(ChaptersRepository chaptersRepository, UsersRepository usersRepository) {
+    public ChaptersService(ChaptersRepository chaptersRepository, ComicsRepository comicsRepository, UsersRepository usersRepository, WalletsRepository walletsRepository) {
         this.chaptersRepository = chaptersRepository;
+        this.comicsRepository = comicsRepository;
         this.usersRepository = usersRepository;
+        this.walletsRepository = walletsRepository;
     }
 
     /**
@@ -80,13 +91,13 @@ public class ChaptersService {
     }
 
     /**
-     * Moderator approves or declines a chapter.
+     * Moderator reviews a chapter and updates the creator's PROMOTION wallet balance if approved.
      */
     public Chapters reviewChapter(String chapterId, boolean isApproved, String userId) {
-        Users user = usersRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found."));
+        Users moderator = usersRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("Moderator not found."));
 
-        if (!isModerator(user)) {
+        if (!isModerator(moderator)) {
             throw new SecurityException("Only moderators can review chapters.");
         }
 
@@ -97,7 +108,31 @@ public class ChaptersService {
             throw new IllegalStateException("Only pending chapters can be reviewed.");
         }
 
-        chapter.setStatus(isApproved ? ChaptersEnums.UNLOCKED.getValue() : ChaptersEnums.DELETED.getValue());
+        if (isApproved) {
+            chapter.setStatus(ChaptersEnums.UNLOCKED.getValue());
+
+            Comics comic = comicsRepository.findById(chapter.getComicId())
+                    .orElseThrow(() -> new RuntimeException("Comic not found."));
+
+            Users comicCreator = usersRepository.findById(comic.getUserId())
+                    .orElseThrow(() -> new RuntimeException("Comic creator not found."));
+
+            ChaptersType chapterType = ChaptersType.fromValue(chapter.getType());
+            if (chapterType == ChaptersType.PAID) {
+                Optional<Wallets> promotionWalletOpt = walletsRepository.findByUserAndType(comicCreator,
+                        WalletType.PROMOTION);
+
+                if (promotionWalletOpt.isPresent()) {
+                    Wallets promotionWallet = promotionWalletOpt.get();
+                    promotionWallet.setBalance(promotionWallet.getBalance() + 699); // Reward amount can be adjusted
+                    promotionWallet.setUpdatedDate(LocalDateTime.now());
+
+                    walletsRepository.save(promotionWallet);
+                }
+            }
+        } else {
+            chapter.setStatus(ChaptersEnums.DELETED.getValue());
+        }
 
         return chaptersRepository.save(chapter);
     }
