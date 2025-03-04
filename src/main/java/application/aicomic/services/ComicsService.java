@@ -36,7 +36,6 @@ public class ComicsService {
         return comicsRepository.findByComicName(comicName).orElse(null);
     }
 
-
     public List<Comics> getComicsByProcessingStatus(boolean isProcessing) {
         List<Byte> statuses = isProcessing ? List.of((byte) 1) : List.of((byte) 0);
         return comicsRepository.findByStatusIn(statuses);

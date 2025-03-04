@@ -30,6 +30,10 @@ public class Transactions {
     private byte status = TransactionsEnums.NOT_PAID.getValue();
 
     @NotNull
+    @Column(name = "type")
+    private byte type;
+
+    @NotNull
     @Column(name = "order_id", length = 50)
     private String orderId;
 

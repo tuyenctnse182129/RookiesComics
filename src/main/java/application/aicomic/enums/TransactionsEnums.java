@@ -23,4 +23,29 @@ public enum TransactionsEnums {
         }
         throw new IllegalArgumentException("No TransactionsEnums with value " + value);
     }
+
+    public enum Type {
+        // Type Enums
+        ROLE_UPGRADE((byte) 1),
+        BUYING_STORIES((byte) 2);
+
+        private final byte value;
+
+        Type(byte value) {
+            this.value = value;
+        }
+
+        public byte getValue() {
+            return value;
+        }
+
+        public static Type fromValue(byte value) {
+            for (Type x : Type.values()) {
+                if (x.getValue() == value) {
+                    return x;
+                }
+            }
+            throw new IllegalArgumentException("No TransactionsEnums with value " + value);
+        }
+    }
 }

@@ -13,6 +13,4 @@ public interface PurchasedCoinsRepository extends JpaRepository<PurchasedCoins, 
     List<PurchasedCoins> findByUserId(String userId);
 
     List<PurchasedCoins> findByStatus(byte status);
-
-    List<PurchasedCoins> findByType(byte type);
 }

@@ -66,7 +66,6 @@ public class OrdersService {
     }
 
     public Orders deleteOrders(String id) {
-        //ordersRepository.deleteById(id);
         Optional<Orders> x = ordersRepository.findById(id);
         if (x.isPresent()) {
             Orders order = x.get();

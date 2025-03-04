@@ -32,8 +32,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-27T13:08:37+0700",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 23.0.1 (Oracle Corporation)"
+    date = "2025-03-04T13:59:01+0700",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.14 (Amazon.com Inc.)"
 )
 @Component
 public class MapperImpl implements Mapper {
@@ -111,40 +111,6 @@ public class MapperImpl implements Mapper {
         comments.setCreatedDate( commentsDTO.getCreatedDate() );
         comments.setStatus( commentsDTO.getStatus() );
         comments.setChapter( commentsDTO.getChapter() );
-    }
-
-    @Override
-    public Transactions toTransactions(TransactionsDTO transactionsDTO) {
-        if ( transactionsDTO == null ) {
-            return null;
-        }
-
-        Transactions transactions = new Transactions();
-
-        transactions.setTransactionId( transactionsDTO.getTransactionId() );
-        transactions.setTransactionTime( transactionsDTO.getTransactionTime() );
-        transactions.setAmount( transactionsDTO.getAmount() );
-        transactions.setStatus( transactionsDTO.getStatus() );
-        transactions.setOrderId( transactionsDTO.getOrderId() );
-        transactions.setWalletId( transactionsDTO.getWalletId() );
-        transactions.setPurchasedCoinId( transactionsDTO.getPurchasedCoinId() );
-
-        return transactions;
-    }
-
-    @Override
-    public void updateTransactions(Transactions transactions, TransactionsDTO transactionsDTO) {
-        if ( transactionsDTO == null ) {
-            return;
-        }
-
-        transactions.setTransactionId( transactionsDTO.getTransactionId() );
-        transactions.setTransactionTime( transactionsDTO.getTransactionTime() );
-        transactions.setAmount( transactionsDTO.getAmount() );
-        transactions.setStatus( transactionsDTO.getStatus() );
-        transactions.setOrderId( transactionsDTO.getOrderId() );
-        transactions.setWalletId( transactionsDTO.getWalletId() );
-        transactions.setPurchasedCoinId( transactionsDTO.getPurchasedCoinId() );
     }
 
     @Override
@@ -268,6 +234,52 @@ public class MapperImpl implements Mapper {
     }
 
     @Override
+    public void updateTransactions(Transactions transactions, TransactionsDTO transactionsDTO) {
+        if ( transactionsDTO == null ) {
+            return;
+        }
+
+        transactions.setTransactionId( transactionsDTO.getTransactionId() );
+        transactions.setTransactionTime( transactionsDTO.getTransactionTime() );
+        transactions.setAmount( transactionsDTO.getAmount() );
+        transactions.setStatus( transactionsDTO.getStatus() );
+        transactions.setType( mapType( transactionsDTO.getType() ) );
+        transactions.setOrderId( transactionsDTO.getOrderId() );
+        transactions.setWalletId( transactionsDTO.getWalletId() );
+        transactions.setPurchasedCoinId( transactionsDTO.getPurchasedCoinId() );
+    }
+
+    @Override
+    public PurchasedCoins toPurchasedCoins(PurchasedCoinsDTO purchasedCoinsDTO) {
+        if ( purchasedCoinsDTO == null ) {
+            return null;
+        }
+
+        PurchasedCoins purchasedCoins = new PurchasedCoins();
+
+        purchasedCoins.setPurchasedCoinId( purchasedCoinsDTO.getPurchasedCoinId() );
+        purchasedCoins.setTransactionCode( purchasedCoinsDTO.getTransactionCode() );
+        purchasedCoins.setContent( purchasedCoinsDTO.getContent() );
+        purchasedCoins.setBankName( purchasedCoinsDTO.getBankName() );
+        if ( purchasedCoinsDTO.getAmount() != null ) {
+            purchasedCoins.setAmount( purchasedCoinsDTO.getAmount().doubleValue() );
+        }
+        if ( purchasedCoinsDTO.getNumberOfCoin() != null ) {
+            purchasedCoins.setNumberOfCoin( purchasedCoinsDTO.getNumberOfCoin().doubleValue() );
+        }
+        purchasedCoins.setStatus( purchasedCoinsDTO.getStatus() );
+        purchasedCoins.setPurchaseTime( purchasedCoinsDTO.getPurchaseTime() );
+        purchasedCoins.setUserId( purchasedCoinsDTO.getUserId() );
+        purchasedCoins.setUser( purchasedCoinsDTO.getUser() );
+        List<Transactions> list = purchasedCoinsDTO.getTransactions();
+        if ( list != null ) {
+            purchasedCoins.setTransactions( new ArrayList<Transactions>( list ) );
+        }
+
+        return purchasedCoins;
+    }
+
+    @Override
     public void updatePurchasedCoins(PurchasedCoins purchasedCoins, PurchasedCoinsDTO purchasedCoinsDTO) {
         if ( purchasedCoinsDTO == null ) {
             return;
@@ -283,8 +295,7 @@ public class MapperImpl implements Mapper {
         if ( purchasedCoinsDTO.getNumberOfCoin() != null ) {
             purchasedCoins.setNumberOfCoin( purchasedCoinsDTO.getNumberOfCoin().doubleValue() );
         }
-        purchasedCoins.setType( mapType( purchasedCoinsDTO.getType() ) );
-        purchasedCoins.setStatus( mapStatus( purchasedCoinsDTO.getStatus() ) );
+        purchasedCoins.setStatus( purchasedCoinsDTO.getStatus() );
         purchasedCoins.setPurchaseTime( purchasedCoinsDTO.getPurchaseTime() );
         purchasedCoins.setUserId( purchasedCoinsDTO.getUserId() );
         purchasedCoins.setUser( purchasedCoinsDTO.getUser() );

@@ -17,8 +17,7 @@ public class PurchasedCoinsDTO {
     private String bankName;
     private BigDecimal amount;
     private BigDecimal numberOfCoin;
-    private PurchasedCoinsEnums type;
-    private PurchasedCoinsEnums.Status status;
+    private byte status;
     private LocalDateTime purchaseTime;
     private String userId;
     private Users user;

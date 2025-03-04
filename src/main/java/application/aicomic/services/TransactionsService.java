@@ -38,7 +38,6 @@ public class TransactionsService {
     }
 
     public Transactions deleteTransaction(String id) {
-        //productsRepository.deleteById(id);
         Optional<Transactions> transactions = transactionsRepository.findById(id);
         if (transactions.isPresent()) {
             Transactions x = transactions.get();

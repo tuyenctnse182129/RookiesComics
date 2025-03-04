@@ -1,5 +1,6 @@
 package application.aicomic.mapper;
 
+import application.aicomic.enums.TransactionsEnums;
 import org.mapstruct.MappingTarget;
 
 import application.aicomic.dataAccess.ComicsDTO;
@@ -21,7 +22,6 @@ import application.aicomic.models.Transactions;
 import application.aicomic.models.Wallets;
 import application.aicomic.models.PurchasedCoins;
 import application.aicomic.enums.PurchasedCoinsEnums;
-import application.aicomic.enums.PurchasedCoinsEnums.Status;
 
 @org.mapstruct.Mapper(componentModel = "spring")
 public interface Mapper {
@@ -32,10 +32,6 @@ public interface Mapper {
     Comments toComments(CommentsDTO commentsDTO);
 
     void updateComments(@MappingTarget Comments comments, CommentsDTO commentsDTO);
-
-    Transactions toTransactions(TransactionsDTO transactionsDTO);
-
-    void updateTransactions(@MappingTarget Transactions transactions, TransactionsDTO transactionsDTO);
 
     OrderDetails toOrderDetails(OrderDetailsDTO orderDetailsDTO);
 
@@ -53,26 +49,31 @@ public interface Mapper {
 
     void updateGenres(@MappingTarget Genres genres, GenresDTO genresDTO);
 
-    // Custom method to map Status enum to byte
-    default byte mapStatus(Status status) {
-        return status == null ? 0 : status.getValue();
-    }
-
-    // Custom method to map byte to Status enum
-    default Status mapStatus(byte status) {
-        return Status.fromValue(status);
-    }
-
-    // Custom method to map Coin Type enum to byte
-    default byte mapType(PurchasedCoinsEnums type) {
+    // Custom method to map Type enum to byte
+    default byte mapType(TransactionsEnums.Type type) {
         return type == null ? 0 : type.getValue();
     }
 
-    // Custom method to map byte to Coin Type enum
-    default PurchasedCoinsEnums mapType(byte type) {
-        return PurchasedCoinsEnums.fromValue(type);
+    // Custom method to map byte to Type enum
+    default TransactionsEnums.Type mapType(byte type) {
+        return TransactionsEnums.Type.fromValue(type);
     }
 
-    // Update PurchasedCoins from DTO
+    // Custom method to map Status enum to byte
+    default byte mapStatus(TransactionsEnums type) {
+        return type == null ? 0 : type.getValue();
+    }
+
+    // Custom method to map byte to Status enum
+    default TransactionsEnums mapStatus(byte type) {
+        return TransactionsEnums.fromValue(type);
+    }
+
+    // Update TransactionsEnums from DTO
+    void updateTransactions(@MappingTarget Transactions transactions, TransactionsDTO transactionsDTO);
+
+
+    PurchasedCoins toPurchasedCoins(PurchasedCoinsDTO purchasedCoinsDTO);
+
     void updatePurchasedCoins(@MappingTarget PurchasedCoins purchasedCoins, PurchasedCoinsDTO purchasedCoinsDTO);
 }
