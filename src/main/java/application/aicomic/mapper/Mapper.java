@@ -12,6 +12,8 @@ import application.aicomic.dataAccess.OrdersDTO;
 import application.aicomic.dataAccess.TransactionsDTO;
 import application.aicomic.dataAccess.WalletsDTO;
 import application.aicomic.dataAccess.PurchasedCoinsDTO;
+import application.aicomic.dataAccess.ChaptersDTO;
+import application.aicomic.dataAccess.BookshelvesDTO;
 import application.aicomic.models.Comics;
 import application.aicomic.models.Comments;
 import application.aicomic.models.CurrentChapter;
@@ -21,10 +23,16 @@ import application.aicomic.models.Orders;
 import application.aicomic.models.Transactions;
 import application.aicomic.models.Wallets;
 import application.aicomic.models.PurchasedCoins;
+import application.aicomic.models.Chapters;
+import application.aicomic.models.Bookshelves;
 import application.aicomic.enums.PurchasedCoinsEnums;
 
 @org.mapstruct.Mapper(componentModel = "spring")
 public interface Mapper {
+    Chapters toChapters(ChaptersDTO chaptersDTO);
+
+    void updateChapters(@MappingTarget Chapters chapters, ChaptersDTO chaptersDTO);
+    
     CurrentChapter toCurrentChapter(CurrentChapterDTO currentChapterDTO);
 
     void updateCurrentChapter(@MappingTarget CurrentChapter currentChapters, CurrentChapterDTO currentChapterDTO);
@@ -48,6 +56,10 @@ public interface Mapper {
     Genres toGenres(GenresDTO genresDTO);
 
     void updateGenres(@MappingTarget Genres genres, GenresDTO genresDTO);
+    
+    Bookshelves toBookshelves(BookshelvesDTO bookshelvesDTO);
+
+    void updateBookshelves(@MappingTarget Bookshelves bookshelves, BookshelvesDTO bookshelvesDTO);
 
     // Custom method to map Type enum to byte
     default byte mapType(TransactionsEnums.Type type) {
