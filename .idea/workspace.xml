@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b044c7c-341c-4c6a-9bf4-08bd9deec341" name="Changes" comment="Ready to merge" />
+    <list default="true" id="7b044c7c-341c-4c6a-9bf4-08bd9deec341" name="Changes" comment="Ready to merge">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +17,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -117,7 +121,7 @@
       <workItem from="1740919454461" duration="3205000" />
       <workItem from="1741066784536" duration="4985000" />
       <workItem from="1741589321788" duration="3219000" />
-      <workItem from="1741773183866" duration="1298000" />
+      <workItem from="1741773183866" duration="3016000" />
     </task>
     <task id="LOCAL-00001" summary="Ready to merge">
       <option name="closed" value="true" />
