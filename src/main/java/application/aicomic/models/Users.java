@@ -86,7 +86,7 @@ public class Users {
     @OneToMany(mappedBy = "user")
     private List<CurrentChapter> currentChapters;
 
-    @ManyToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user")
     private List<Bookshelves> bookshelves;
     
     public Role getRoleEnum() {

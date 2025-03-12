@@ -22,13 +22,6 @@ public class BookshelvesController {
     @Autowired
     private BookshelvesService bookshelvesService;
 
-    /**
-     * Creates a new bookshelf for a user.
-     *
-     * @param userId       The ID of the user.
-     * @param newBookshelf The bookshelf details.
-     * @return The created bookshelf.
-     */
     @PostMapping("/create/{userId}")
     public ResponseEntity<?> createBookshelf(@PathVariable String userId, @RequestBody Bookshelves newBookshelf) {
         try {
@@ -39,12 +32,6 @@ public class BookshelvesController {
         }
     }
 
-    /**
-     * Deletes a bookshelf by its ID.
-     *
-     * @param bookshelfId The ID of the bookshelf.
-     * @return Response message.
-     */
     @DeleteMapping("/delete/{bookshelfId}")
     public ResponseEntity<?> deleteBookshelf(@PathVariable String bookshelfId) {
         try {
@@ -55,25 +42,12 @@ public class BookshelvesController {
         }
     }
 
-    /**
-     * Retrieves all bookshelves for a specific user.
-     *
-     * @param userId The user ID.
-     * @return A list of bookshelves.
-     */
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<Bookshelves>> getBookshelvesByUser(@PathVariable String userId) {
         List<Bookshelves> bookshelves = bookshelvesService.getBookshelvesByUser(userId);
         return ResponseEntity.ok(bookshelves);
     }
 
-    /**
-     * Adds a comic to a bookshelf.
-     *
-     * @param bookshelfId The ID of the bookshelf.
-     * @param comicId The ID of the comic.
-     * @return The updated bookshelf.
-     */
     @PostMapping("/{bookshelfId}/addComic/{comicId}")
     public ResponseEntity<?> addComicToBookshelf(@PathVariable String bookshelfId, @PathVariable String comicId) {
         try {
@@ -84,13 +58,6 @@ public class BookshelvesController {
         }
     }
 
-    /**
-     * Removes a comic from a bookshelf.
-     *
-     * @param bookshelfId The ID of the bookshelf.
-     * @param comicId The ID of the comic.
-     * @return The updated bookshelf.
-     */
     @DeleteMapping("/{bookshelfId}/removeComic/{comicId}")
     public ResponseEntity<?> removeComicFromBookshelf(@PathVariable String bookshelfId, @PathVariable String comicId) {
         try {

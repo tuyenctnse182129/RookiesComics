@@ -1,5 +1,7 @@
 package application.aicomic.mapper;
 
+import application.aicomic.dataAccess.BookshelvesDTO;
+import application.aicomic.dataAccess.ChaptersDTO;
 import application.aicomic.dataAccess.ComicsDTO;
 import application.aicomic.dataAccess.CommentsDTO;
 import application.aicomic.dataAccess.CurrentChapterDTO;
@@ -9,6 +11,8 @@ import application.aicomic.dataAccess.OrdersDTO;
 import application.aicomic.dataAccess.PurchasedCoinsDTO;
 import application.aicomic.dataAccess.TransactionsDTO;
 import application.aicomic.dataAccess.WalletsDTO;
+import application.aicomic.models.Bookshelves;
+import application.aicomic.models.Chapters;
 import application.aicomic.models.Comics;
 import application.aicomic.models.Comments;
 import application.aicomic.models.CurrentChapter;
@@ -32,7 +36,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-03-10T16:17:00+0700",
+    date = "2025-03-12T17:59:23+0700",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.6 (Oracle Corporation)"
 )
 @Component
@@ -47,6 +51,38 @@ public class MapperImpl implements Mapper {
         catch ( DatatypeConfigurationException ex ) {
             throw new RuntimeException( ex );
         }
+    }
+
+    @Override
+    public Chapters toChapters(ChaptersDTO chaptersDTO) {
+        if ( chaptersDTO == null ) {
+            return null;
+        }
+
+        Chapters chapters = new Chapters();
+
+        chapters.setChapterId( chaptersDTO.getChapterId() );
+        chapters.setChapterName( chaptersDTO.getChapterName() );
+        chapters.setComicId( chaptersDTO.getComicId() );
+        chapters.setPublishedDate( chaptersDTO.getPublishedDate() );
+        chapters.setDescription( chaptersDTO.getDescription() );
+        chapters.setStatus( chaptersDTO.getStatus() );
+
+        return chapters;
+    }
+
+    @Override
+    public void updateChapters(Chapters chapters, ChaptersDTO chaptersDTO) {
+        if ( chaptersDTO == null ) {
+            return;
+        }
+
+        chapters.setChapterId( chaptersDTO.getChapterId() );
+        chapters.setChapterName( chaptersDTO.getChapterName() );
+        chapters.setComicId( chaptersDTO.getComicId() );
+        chapters.setPublishedDate( chaptersDTO.getPublishedDate() );
+        chapters.setDescription( chaptersDTO.getDescription() );
+        chapters.setStatus( chaptersDTO.getStatus() );
     }
 
     @Override
@@ -231,6 +267,34 @@ public class MapperImpl implements Mapper {
         genres.setGenresName( genresDTO.getGenresName() );
         genres.setGenresDescription( genresDTO.getGenresDescription() );
         genres.setStatus( genresDTO.getStatus() );
+    }
+
+    @Override
+    public Bookshelves toBookshelves(BookshelvesDTO bookshelvesDTO) {
+        if ( bookshelvesDTO == null ) {
+            return null;
+        }
+
+        Bookshelves bookshelves = new Bookshelves();
+
+        bookshelves.setBookshelveId( bookshelvesDTO.getBookshelveId() );
+        bookshelves.setBookshelveName( bookshelvesDTO.getBookshelveName() );
+        bookshelves.setDescription( bookshelvesDTO.getDescription() );
+        bookshelves.setStatus( bookshelvesDTO.getStatus() );
+
+        return bookshelves;
+    }
+
+    @Override
+    public void updateBookshelves(Bookshelves bookshelves, BookshelvesDTO bookshelvesDTO) {
+        if ( bookshelvesDTO == null ) {
+            return;
+        }
+
+        bookshelves.setBookshelveId( bookshelvesDTO.getBookshelveId() );
+        bookshelves.setBookshelveName( bookshelvesDTO.getBookshelveName() );
+        bookshelves.setDescription( bookshelvesDTO.getDescription() );
+        bookshelves.setStatus( bookshelvesDTO.getStatus() );
     }
 
     @Override

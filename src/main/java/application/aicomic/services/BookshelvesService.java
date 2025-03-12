@@ -25,13 +25,6 @@ public class BookshelvesService {
     @Autowired
     private ComicsRepository comicsRepository;
 
-    /**
-     * Creates a new bookshelf for a user, enforcing role-based limits.
-     *
-     * @param userId       The ID of the user creating the bookshelf.
-     * @param newBookshelf The bookshelf details.
-     * @return The created bookshelf.
-     */
     public Bookshelves createBookshelf(String userId, Bookshelves newBookshelf) {
         Users user = usersRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -52,11 +45,6 @@ public class BookshelvesService {
         return bookshelvesRepository.save(newBookshelf);
     }
 
-    /**
-     * Deletes a bookshelf by ID.
-     *
-     * @param bookshelfId The ID of the bookshelf to delete.
-     */
     public void deleteBookshelf(String bookshelfId) {
         if (!bookshelvesRepository.existsById(bookshelfId)) {
             throw new RuntimeException("Bookshelf not found.");
@@ -64,25 +52,12 @@ public class BookshelvesService {
         bookshelvesRepository.deleteById(bookshelfId);
     }
 
-    /**
-     * Retrieves all bookshelves belonging to a specific user.
-     *
-     * @param userId The user ID.
-     * @return A list of bookshelves.
-     */
     public List<Bookshelves> getBookshelvesByUser(String userId) {
         Users user = usersRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         return bookshelvesRepository.findByUser(user);
     }
 
-    /**
-     * Adds a comic to a bookshelf. If no bookshelf exists, automatically creates one named "Follow".
-     *
-     * @param userId The ID of the user.
-     * @param comicId The ID of the comic.
-     * @return The updated bookshelf.
-     */
     public Bookshelves addComicToBookshelf(String userId, String comicId) {
         Users user = usersRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -111,12 +86,6 @@ public class BookshelvesService {
         return bookshelvesRepository.save(bookshelf);
     }
 
-    /**
-     * Creates a default bookshelf named "Follow" for a user.
-     *
-     * @param user The user who needs a bookshelf.
-     * @return The created bookshelf.
-     */
     private Bookshelves createFollowBookshelf(Users user) {
         Bookshelves followBookshelf = new Bookshelves();
         followBookshelf.setBookshelveName("Follow");
@@ -126,13 +95,6 @@ public class BookshelvesService {
         return bookshelvesRepository.save(followBookshelf);
     }
 
-    /**
-     * Removes a comic from a bookshelf.
-     *
-     * @param bookshelfId The ID of the bookshelf.
-     * @param comicId The ID of the comic.
-     * @return The updated bookshelf.
-     */
     public Bookshelves removeComicFromBookshelf(String bookshelfId, String comicId) {
         Bookshelves bookshelf = bookshelvesRepository.findById(bookshelfId)
                 .orElseThrow(() -> new RuntimeException("Bookshelf not found"));
