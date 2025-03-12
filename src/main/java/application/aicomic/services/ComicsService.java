@@ -36,30 +36,10 @@ public class ComicsService {
         return comicsRepository.findByComicName(comicName).orElse(null);
     }
 
-    public List<Comics> getComicsByProcessingStatus(boolean isProcessing) {
-        List<Byte> statuses = isProcessing ? List.of((byte) 1) : List.of((byte) 0);
-        return comicsRepository.findByStatusIn(statuses);
+    public List<Comics> findByStatus(byte status){
+        return comicsRepository.findByStatus(status);
     }
-    public List<Comics> getComicsByApprovedStatus(boolean isApproved) {
-        List<Byte> statuses = isApproved ? List.of((byte) 5) : List.of((byte) 6);
-        return comicsRepository.findByStatusIn(statuses);
-    }
-    public List<Comics> getComicsByRejectedStatus(boolean isRejected) {
-        List<Byte> statuses = isRejected ? List.of((byte) 6) : List.of((byte) 0);
-        return comicsRepository.findByStatusIn(statuses);
-    }
-    public List<Comics> getComicsByOnGoingStatus(boolean isOnGoing) {
-        List<Byte> statuses = isOnGoing ? List.of((byte) 2) : List.of((byte) 0);
-        return comicsRepository.findByStatusIn(statuses);
-    }
-    public List<Comics> getComicsByCompletionStatus(boolean isCompleted) {
-        List<Byte> statuses = isCompleted ? List.of((byte) 3) : List.of((byte) 0);
-        return comicsRepository.findByStatusIn(statuses);
-    }
-    public List<Comics> getComicsByStoppedStatus(boolean isStopped) {
-        List<Byte> statuses = isStopped ? List.of((byte) 4) : List.of((byte) 0);
-        return comicsRepository.findByStatusIn(statuses);
-    }
+
     public List<Comics> getComicsByGenres_GenresName(String genresName){
         return comicsRepository.findByGenres_GenresName(genresName);
     }

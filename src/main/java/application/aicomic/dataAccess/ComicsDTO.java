@@ -15,5 +15,6 @@ public class ComicsDTO {
     private int quantityChap;
     private String description;
     private byte status;
+    private long view;
 
 }

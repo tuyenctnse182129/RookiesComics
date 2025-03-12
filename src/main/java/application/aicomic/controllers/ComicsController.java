@@ -30,41 +30,16 @@ public class ComicsController {
         return comicsService.getAllComics();
     }
 
+    @GetMapping("/{getByStatus}")
+    public List<Comics> findByStatus(byte status){
+        return comicsService.findByStatus(status);
+    }
+
     @GetMapping("/{getName}")
     public Comics getComicsById(@PathVariable String comicName) {
         return comicsService.getComicsByName(comicName);
     }
 
-    @GetMapping("/processing/{isProcessing}")
-    public ResponseEntity<List<Comics>> getComicsByProcessingStatus(@RequestParam(defaultValue = "false") boolean isProcessing) {
-        List<Comics> comicsList = comicsService.getComicsByProcessingStatus(isProcessing);
-        return ResponseEntity.ok(comicsList);
-    }
-    @PutMapping("/approved/{isApproved}")
-    public ResponseEntity<List<Comics>> getComicsByApprovedStatus(@RequestParam(defaultValue = "false") boolean isApproved) {
-        List<Comics> comicsList = comicsService.getComicsByApprovedStatus(isApproved);
-        return ResponseEntity.ok(comicsList);
-    }
-    @PutMapping("/rejected/{isRejected}")
-    public ResponseEntity<List<Comics>> getComicsByRejectedStatus(@RequestParam(defaultValue = "false") boolean isRejected) {
-        List<Comics> comicsList = comicsService.getComicsByRejectedStatus(isRejected);
-        return ResponseEntity.ok(comicsList);
-    }
-    @GetMapping("/ongoing/{isOnGoing}")
-    public ResponseEntity<List<Comics>> getComicsByOnGoingStatus(@RequestParam(defaultValue = "false") boolean isOnGoing) {
-        List<Comics> comicsList = comicsService.getComicsByOnGoingStatus(isOnGoing);
-        return ResponseEntity.ok(comicsList);
-    }
-    @GetMapping("/completed/{isCompleted}")
-    public ResponseEntity<List<Comics>> getComicsByCompletionStatus(@RequestParam(defaultValue = "false") boolean isCompleted) {
-        List<Comics> comicsList = comicsService.getComicsByCompletionStatus(isCompleted);
-        return ResponseEntity.ok(comicsList);
-    }
-    @GetMapping("/stopped/{isStopped}")
-    public ResponseEntity<List<Comics>> getComicsByStoppedStatus(@RequestParam(defaultValue = "false") boolean isStopped) {
-        List<Comics> comicsList = comicsService.getComicsByStoppedStatus(isStopped);
-        return ResponseEntity.ok(comicsList);
-    }
     @GetMapping("/genres/genresName")
     public ResponseEntity<List<Comics>> getComicsByGenres_GenresName(@PathVariable String genresName){
         List<Comics> comicsList = comicsService.getComicsByGenres_GenresName(genresName);
