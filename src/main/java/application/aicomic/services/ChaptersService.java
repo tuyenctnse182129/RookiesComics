@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import application.aicomic.enums.ChaptersEnums;
-import application.aicomic.enums.ChaptersType;
 import application.aicomic.enums.Role;
 import application.aicomic.enums.WalletType;
 import application.aicomic.models.Chapters;
@@ -117,8 +116,8 @@ public class ChaptersService {
             Users comicCreator = usersRepository.findById(comic.getUserId())
                     .orElseThrow(() -> new RuntimeException("Comic creator not found."));
 
-            ChaptersType chapterType = ChaptersType.fromValue(chapter.getType());
-            if (chapterType == ChaptersType.PAID) {
+            ChaptersEnums.Type chapterType = ChaptersEnums.Type.fromValue(chapter.getType());
+            if (chapterType == ChaptersEnums.Type.PAID) {
                 Optional<Wallets> promotionWalletOpt = walletsRepository.findByUserAndType(comicCreator,
                         WalletType.PROMOTION);
 

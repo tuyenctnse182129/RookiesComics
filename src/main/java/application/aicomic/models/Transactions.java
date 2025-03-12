@@ -29,7 +29,6 @@ public class Transactions {
     @Column(name = "status")
     private byte status = TransactionsEnums.NOT_PAID.getValue();
 
-    @NotNull
     @Column(name = "type")
     private byte type;
 

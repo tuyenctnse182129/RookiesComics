@@ -1,7 +1,6 @@
 package application.aicomic.enums;
 
 public enum PurchasedCoinsEnums {
-
     CANCELED((byte) 1),
     NOT_PAID((byte) 2),
     PROCESSING((byte) 3),

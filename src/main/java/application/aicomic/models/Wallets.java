@@ -18,7 +18,6 @@ public class Wallets {
     @Column(name = "wallet_id", length = 50)
     private String walletId;
 
-
     @Column(name = "wallet_type")
     private  WalletType type;
 

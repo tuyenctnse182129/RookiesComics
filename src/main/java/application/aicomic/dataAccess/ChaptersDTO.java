@@ -12,4 +12,5 @@ public class ChaptersDTO {
     private LocalDateTime publishedDate;
     private String description;
     private byte status;
+    private byte type;
 }

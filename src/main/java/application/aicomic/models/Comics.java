@@ -1,5 +1,6 @@
 package application.aicomic.models;
 
+import application.aicomic.enums.CommentsEnums;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -41,18 +42,23 @@ public class Comics {
 
     @NotNull
     @Column(name = "status")
-    private byte status;
+    private byte status = CommentsEnums.AVAILABLE.getValue();
 
     @NotNull
     @Column(name = "view")
     private long view;
 
+    @NotNull
+    @Column(name = "genres_id", length = 50)
+    private String genresId;
+
+    @ManyToOne
+    @JoinColumn(name = "genres_id", referencedColumnName = "genres_id", insertable = false, updatable = false)
+    private Genres genres;
+
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
     private Users user;
-
-    @ManyToMany(mappedBy = "comics")
-    private List<Genres> genres;
 
     @ManyToMany(mappedBy = "comics")
     private List<Bookshelves> bookshelves;

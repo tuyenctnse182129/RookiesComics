@@ -24,4 +24,29 @@ public enum ChaptersEnums {
         }
         throw new IllegalArgumentException("No ChaptersEnums with value " + value);
     }
+
+    // For type
+    public enum Type {
+        FREE((byte) 0),
+        PAID((byte) 1);
+
+        private final byte value;
+
+        Type(byte value) {
+            this.value = value;
+        }
+
+        public byte getValue() {
+            return value;
+        }
+
+        public static Type fromValue(byte value) {
+            for (Type x : Type.values()) {
+                if (x.getValue() == value) {
+                    return x;
+                }
+            }
+            throw new IllegalArgumentException("No ChaptersEnums Type with value " + value);
+        }
+    }
 }

@@ -60,7 +60,7 @@ public class Users {
     private byte role;
 
     @Column(name = "status")
-    private byte status;
+    private byte status = Role.Status.ACTIVE.getValue();
 
     @OneToMany(mappedBy = "user")
     private List<Comics> comics;

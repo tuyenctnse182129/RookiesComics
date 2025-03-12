@@ -2,6 +2,7 @@ package application.aicomic.models;
 
 import java.util.List;
 
+import application.aicomic.enums.BookshelvesEnums;
 import org.hibernate.annotations.GenericGenerator;
 
 import jakarta.persistence.Column;
@@ -35,7 +36,7 @@ public class Bookshelves {
 
     @NotNull
     @Column(name = "status", nullable = false)
-    private byte status;
+    private byte status = BookshelvesEnums.ACTIVE.getValue();
 
     @ManyToMany
     @JoinTable(
@@ -46,6 +47,6 @@ public class Bookshelves {
     private List<Comics> comics;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false) // Each bookshelf belongs to ONE user
-    private Users user; // ✅ Changed from List<Users> to Users (Single User)
+    @JoinColumn(name = "user_id", nullable = false)
+    private Users user;
 }
