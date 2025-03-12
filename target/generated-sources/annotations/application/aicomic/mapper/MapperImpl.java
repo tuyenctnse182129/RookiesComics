@@ -32,8 +32,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-03-04T13:59:01+0700",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.14 (Amazon.com Inc.)"
+    date = "2025-03-10T14:06:18+0700",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.12 (Oracle Corporation)"
 )
 @Component
 public class MapperImpl implements Mapper {
@@ -159,6 +159,7 @@ public class MapperImpl implements Mapper {
         comics.setCoverUrl( comicsDTO.getCoverUrl() );
         comics.setDescription( comicsDTO.getDescription() );
         comics.setStatus( comicsDTO.getStatus() );
+        comics.setView( comicsDTO.getView() );
 
         return comics;
     }
@@ -177,6 +178,7 @@ public class MapperImpl implements Mapper {
         comics.setCoverUrl( comicsDTO.getCoverUrl() );
         comics.setDescription( comicsDTO.getDescription() );
         comics.setStatus( comicsDTO.getStatus() );
+        comics.setView( comicsDTO.getView() );
     }
 
     @Override

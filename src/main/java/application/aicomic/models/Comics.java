@@ -43,6 +43,10 @@ public class Comics {
     @Column(name = "status")
     private byte status;
 
+    @NotNull
+    @Column(name = "view")
+    private long view;
+
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
     private Users user;
