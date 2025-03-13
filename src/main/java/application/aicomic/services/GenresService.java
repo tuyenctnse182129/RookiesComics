@@ -3,6 +3,7 @@ package application.aicomic.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import application.aicomic.dataAccess.GenresDTO;
@@ -13,13 +14,14 @@ import application.aicomic.repositories.GenresRepository;
 
 @Service
 public class GenresService {
+    @Autowired
     private GenresRepository genresRepository;
     private Mapper mapper;
 
-//    public GenresService(GenresRepository genresRepository, Mapper mapper) {
-//        this.genresRepository = genresRepository;
-//        this.mapper = mapper;
-//    }
+    public GenresService(GenresRepository genresRepository, Mapper mapper) {
+        this.genresRepository = genresRepository;
+        this.mapper = mapper;
+    }
 
     // Get all genres
     public List<Genres> getAllGenres() {
