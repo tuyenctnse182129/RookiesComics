@@ -6,6 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="7b044c7c-341c-4c6a-9bf4-08bd9deec341" name="Changes" comment="Add dependency">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/ComicsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/ComicsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/CommentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/CommentsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/CurrentChapterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/CurrentChapterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/GenresController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/GenresController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/OrderDetailsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/OrderDetailsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/OrdersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/OrdersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/PurchasedCoinsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/PurchasedCoinsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/TransactionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/TransactionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/UsersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/WalletsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/WalletsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +27,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -124,6 +136,10 @@
       <workItem from="1741618512524" duration="642000" />
       <workItem from="1741773265949" duration="4445000" />
       <workItem from="1741843446033" duration="861000" />
+      <workItem from="1741589321788" duration="3219000" />
+      <workItem from="1741773183866" duration="3636000" />
+      <workItem from="1741827633240" duration="1936000" />
+      <workItem from="1741843034678" duration="1383000" />
     </task>
     <task id="LOCAL-00001" summary="Ready to merge">
       <option name="closed" value="true" />
@@ -189,12 +205,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Ready to merge" />
-    <MESSAGE value="Merge chi_phong" />
-    <MESSAGE value="Merge from chi_phong" />
-    <MESSAGE value="Merge chi_phong 2" />
-    <MESSAGE value="Merge from trung_nhan" />
-    <MESSAGE value="Merge from all branch" />
-    <MESSAGE value="Add dependency" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add dependency" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ready to merge" />
   </component>
 </project>

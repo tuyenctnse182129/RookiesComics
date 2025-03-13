@@ -15,27 +15,31 @@ import java.util.List;
 public class OrdersController {
     private OrdersService ordersService;
 
+    public OrdersController(OrdersService ordersService) {
+        this.ordersService = ordersService;
+    }
+
     @GetMapping
     public List<Orders> getAllOrders() {
         return ordersService.getAllOrders();
     }
 
-    @PostMapping
+    @GetMapping("/{id}")
     public Orders getOrdersById(@PathVariable String ordersId) {
         return ordersService.getOrdersById(ordersId);
     }
 
-    @PostMapping("/new-order")
+    @PostMapping
     public Orders createOrders(@RequestBody Orders orders) {
         return ordersService.saveOrders(orders);
     }
 
-    @PutMapping("/{updateId}")
+    @PutMapping("/{id}")
     public Orders updateOrders(@PathVariable String id, @RequestBody OrdersDTO ordersDTO) {
         return ordersService.updateOrders(id, ordersDTO);
     }
 
-    @DeleteMapping("/{deleteId}")
+    @DeleteMapping("/{id}")
     public Orders deleteOrders(@PathVariable String id) {
         return ordersService.deleteOrders(id);
     }

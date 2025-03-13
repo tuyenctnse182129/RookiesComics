@@ -27,27 +27,27 @@ public class TransactionsController {
         this.orderService = orderService;
     }
 
-    @GetMapping("/getAll")
+    @GetMapping
     public List<Transactions> getAllTransactions() {
         return transactionsService.getAllTransactions();
     }
 
-    @PostMapping("/post")
+    @PostMapping
     public Transactions addTransaction(@RequestBody Transactions transactions) {
         return transactionsService.addTransaction(transactions);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/{id}")
     public Transactions updateTransaction(@PathVariable String id, @RequestBody TransactionsDTO transactionsDTO) {
         return transactionsService.updateTransaction(id, transactionsDTO);
     }
 
-    @GetMapping("/getById")
+    @GetMapping("/{id}")
     public Transactions getTransactionById(@PathVariable String id) {
         return transactionsService.getTransactionById(id);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/{id}")
     public Transactions deleteTransaction(@PathVariable String id) {
         return transactionsService.deleteTransaction(id);
     }

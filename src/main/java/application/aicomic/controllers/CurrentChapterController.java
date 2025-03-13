@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/currentChapter")
+@RequestMapping("/current-chapter")
 @RestController
 public class CurrentChapterController {
     private CurrentChapterService currentChapterService;
@@ -20,7 +20,7 @@ public class CurrentChapterController {
         return currentChapterService.addCurrentChapter(currentChapter);
     }
 
-    @PutMapping("/{updateId}")
+    @PutMapping("/{id}")
     public CurrentChapter updateCurrentChapter(@PathVariable String id, @RequestBody CurrentChapterDTO currentChapterDTO) {
         return currentChapterService.updateCurrentChapter(id, currentChapterDTO);
     }
@@ -28,7 +28,7 @@ public class CurrentChapterController {
     public CurrentChapter getCurrentChapterById(@PathVariable String id) {
         return currentChapterService.getCurrentChapterById(id);
     }
-    @DeleteMapping("/{deleteId}")
+    @DeleteMapping("/{id}")
     public CurrentChapter deleteCurrentChapter(@PathVariable String id) {
         return currentChapterService.deleteCurrentChapter(id);
     }

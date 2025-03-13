@@ -23,7 +23,7 @@ public class CommentsController {
         return commentsService.addComment(comments);
     }
 
-    @PutMapping("/{updateId}")
+    @PutMapping("/{id}")
     public Comments updateComment(@PathVariable String id, @RequestBody CommentsDTO commentsDTO) {
         return commentsService.updateComment(id, commentsDTO);
     }
@@ -31,7 +31,7 @@ public class CommentsController {
     public Comments getCommentById(@PathVariable String id) {
         return commentsService.getCommentById(id);
     }
-    @DeleteMapping("/{deleteId}")
+    @DeleteMapping("/{id}")
     public Comments deleteComment(@PathVariable String id) {
         return commentsService.deleteComment(id);
     }

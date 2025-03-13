@@ -53,8 +53,8 @@ public class UsersController {
     }
 
     @GetMapping("/{id}")
-    public Users getUserById(@PathVariable String userId) {
-        return usersService.getUserById(userId);
+    public Users getUserById(@PathVariable String id) {
+        return usersService.getUserById(id);
     }
 
     @PostMapping
@@ -62,9 +62,9 @@ public class UsersController {
         return usersService.saveUser(user);
     }
 
-    @DeleteMapping("/{deleteId}")
-    public void deleteUser(@PathVariable String userId) {
-        usersService.deleteUser(userId);
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable String id) {
+        usersService.deleteUser(id);
     }
 
     @GetMapping("/admin-staff")
@@ -88,7 +88,7 @@ public class UsersController {
     }
 
 
-    @PostMapping("/login/google")
+    @PostMapping("/auth/google")
     public ResponseEntity<?> loginWithGoogle(@RequestBody Map<String, String> request) {
         try {
             String credential = request.get("credential");

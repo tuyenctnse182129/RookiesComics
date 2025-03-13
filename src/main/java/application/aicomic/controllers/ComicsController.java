@@ -30,33 +30,33 @@ public class ComicsController {
         return comicsService.getAllComics();
     }
 
-    @GetMapping("/{getByStatus}")
+    @GetMapping("/{status}")
     public List<Comics> findByStatus(byte status){
         return comicsService.findByStatus(status);
     }
 
-    @GetMapping("/{getName}")
+    @GetMapping("/search")
     public Comics getComicsById(@PathVariable String comicName) {
         return comicsService.getComicsByName(comicName);
     }
 
-    @GetMapping("/genres/genresName")
+    @GetMapping("/genres/{genresName}")
     public ResponseEntity<List<Comics>> getComicsByGenres_GenresName(@PathVariable String genresName){
         List<Comics> comicsList = comicsService.getComicsByGenres_GenresName(genresName);
         return ResponseEntity.ok(comicsList);
     }
 
-    @PostMapping("/{create}")
+    @PostMapping
     public Comics createComics(@RequestBody Comics comics) {
         return comicsService.saveComics(comics);
     }
 
-    @PutMapping("/{update}")
+    @PutMapping("/{id}")
     public Comics updateComics(@PathVariable String id, @RequestBody ComicsDTO comicsDTO) {
         return comicsService.updateComics(id, comicsDTO);
     }
 
-    @DeleteMapping("/{delete}")
+    @DeleteMapping("/{id}")
     public Comics deleteComics(@PathVariable String id) {
         return comicsService.deleteComics(id);
     }

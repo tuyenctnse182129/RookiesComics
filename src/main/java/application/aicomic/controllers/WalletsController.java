@@ -33,7 +33,7 @@ public class WalletsController {
         return walletsService.saveWallets(wallets);
     }
 
-    @PutMapping("/updating")
+    @PutMapping("/{id}")
     public Wallets updateWallets(@PathVariable String id, @RequestBody WalletsDTO walletsDTO) {
         return walletsService.updateWallets(id, walletsDTO);
     }
