@@ -37,9 +37,9 @@ public class PurchasedCoinsController {
         return purchasedCoinsService.addPurchasedCoins(purchasedCoins);
     }
 
-    @PutMapping("/{updateId}")
-    public PurchasedCoins updatePurchasedCoins(@PathVariable String updateId, @RequestBody PurchasedCoinsDTO purchasedCoinsDTO) {
-        return purchasedCoinsService.updatePurchasedCoins(updateId, purchasedCoinsDTO);
+    @PutMapping("/{id}")
+    public PurchasedCoins updatePurchasedCoins(@PathVariable String id, @RequestBody PurchasedCoinsDTO purchasedCoinsDTO) {
+        return purchasedCoinsService.updatePurchasedCoins(id, purchasedCoinsDTO);
     }
 
     @GetMapping("/{id}")
@@ -47,9 +47,9 @@ public class PurchasedCoinsController {
         return purchasedCoinsService.getPurchasedCoinsById(id);
     }
 
-    @DeleteMapping("/{deleteId}")
-    public PurchasedCoins deletePurchasedCoins(@PathVariable String deleteId) {
-        return purchasedCoinsService.deletePurchasedCoins(deleteId);
+    @DeleteMapping("/{id}")
+    public PurchasedCoins deletePurchasedCoins(@PathVariable String id) {
+        return purchasedCoinsService.deletePurchasedCoins(id);
     }
 
     @GetMapping("/returning")
