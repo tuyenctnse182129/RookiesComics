@@ -1,11 +1,20 @@
 package application.aicomic.models;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import lombok.Data;
-
 import java.time.LocalDateTime;
 import java.util.List;
+
+import application.aicomic.enums.ChaptersEnums;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 @Entity
 @Table(name = "Chapters")
@@ -25,10 +34,6 @@ public class Chapters {
     private String comicId;
 
     @NotNull
-    @Column(name = "comment_id", length = 50)
-    private String commentId;
-
-    @NotNull
     @Column(name = "published_date")
     private LocalDateTime publishedDate;
 
@@ -36,11 +41,9 @@ public class Chapters {
     @Column(name = "description", length = 250)
     private String description;
 
-    @NotNull
     @Column(name = "status")
     private byte status;
 
-    @NotNull
     @Column(name = "type")
     private byte type;
 
@@ -48,12 +51,11 @@ public class Chapters {
     @JoinColumn(name = "comic_id", referencedColumnName = "comic_id", insertable = false, updatable = false)
     private Comics comic;
 
-    @ManyToOne
-    @JoinColumn(name = "comment_id", referencedColumnName = "comment_id", insertable = false, updatable = false)
-    private Comments comment;
-
     @OneToMany(mappedBy = "chapter")
     private List<Comments> comments;
+
+    @OneToMany(mappedBy = "chapter")
+    private List<ChapterImages> chapterImages;
 
     @OneToMany(mappedBy = "chapter")
     private List<OrderDetails> orderDetails;

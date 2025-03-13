@@ -1,30 +1,42 @@
 package application.aicomic.models;
 
-import jakarta.persistence.*;
+import java.util.List;
+
+import application.aicomic.enums.BookshelvesEnums;
+import org.hibernate.annotations.GenericGenerator;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-
-import java.util.List;
 
 @Entity
 @Table(name = "Bookshelves")
 @Data
 public class Bookshelves {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "bookshelve_id", length = 50)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "bookshelve_id", length = 50, unique = true, nullable = false)
     private String bookshelveId;
 
     @NotNull
-    @Column(name = "bookshelve_name", length = 50)
+    @Column(name = "bookshelve_name", length = 50, nullable = false)
     private String bookshelveName;
 
     @Column(name = "description", length = 250)
     private String description;
 
     @NotNull
-    @Column(name = "status")
-    private byte status;
+    @Column(name = "status", nullable = false)
+    private byte status = BookshelvesEnums.ACTIVE.getValue();
 
     @ManyToMany
     @JoinTable(
@@ -34,11 +46,7 @@ public class Bookshelves {
     )
     private List<Comics> comics;
 
-    @ManyToMany
-    @JoinTable(
-            name = "Bookshelves_Users",
-            joinColumns = @JoinColumn(name = "bookshelve_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    private List<Users> user;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private Users user;
 }

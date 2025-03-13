@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import net.minidev.json.annotate.JsonIgnore;
 
+@Entity
 @Table(name = "ChapterImages")
 @Data
 public class ChapterImages {
@@ -20,8 +21,7 @@ public class ChapterImages {
     @Column(name = "chapter_id", length = 50)
     private String chapterId;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "chapter_id", referencedColumnName = "chapter_id", insertable = false, updatable = false)
-    private Chapters chapters;
+    private Chapters chapter;
 }

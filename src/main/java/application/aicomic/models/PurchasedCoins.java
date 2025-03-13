@@ -35,7 +35,6 @@ public class PurchasedCoins {
     @Column(name = "number_of_coin")
     private double numberOfCoin;
 
-    @NotNull
     @Column(name = "status")
     private byte status;
 
