@@ -44,7 +44,6 @@ public class Users {
     @Column(name = "gender", length = 10)
     private String gender;
 
-
     @Unique
     @Column(name = "email", length = 50)
     private String email;

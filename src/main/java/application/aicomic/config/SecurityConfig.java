@@ -25,18 +25,21 @@ public class SecurityConfig {
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
                 http
-                                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                                .authorizeHttpRequests(auth -> auth
-                                                .requestMatchers("/chapters/**")
-                                                .hasAnyAuthority(
-                                                                "ROLE_" + Role.CUSTOMER_AUTHOR.name(),
-                                                                "ROLE_" + Role.CUSTOMER_VIP.name(),
-                                                                "ROLE_" + Role.ADMIN.name())
-                                                .anyRequest().permitAll())
-                                .csrf(csrf -> csrf.disable());
+                        .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                        .authorizeHttpRequests(auth -> auth
+                                .requestMatchers("/chapters/**").hasAnyAuthority(
+                                        "ROLE_" + Role.CUSTOMER_AUTHOR.name(),
+                                        "ROLE_" + Role.CUSTOMER_VIP.name(),
+                                        "ROLE_" + Role.ADMIN.name()
+                                )
+                                .requestMatchers("/momo/**").permitAll() // Bỏ xác thực cho API MoMo
+                                .anyRequest().permitAll()
+                        )
+                        .csrf(csrf -> csrf.disable());
 
                 return http.build();
         }
+
 
         @Bean
         public CorsConfigurationSource corsConfigurationSource() {
