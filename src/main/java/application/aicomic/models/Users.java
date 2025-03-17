@@ -65,7 +65,6 @@ public class Users {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
-    @JsonIgnore
     private List<Comics> comics;
 
     @JsonIgnore
