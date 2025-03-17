@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7b044c7c-341c-4c6a-9bf4-08bd9deec341" name="Changes" comment="Momo payment">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/UsersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/UsersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/UsersService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/AiComicApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/AiComicApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/config/Config.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/GenresController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/GenresController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/PurchasedCoinsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/PurchasedCoinsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/UsersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/UsersController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/VnPayController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/mapper/MapperImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/mapper/MapperImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/Users.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/Users.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/GenresService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/GenresService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/PurchasedCoinsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/PurchasedCoinsService.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;tuyenctnse182129&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/tuyenctnse182129/RookiesComics.git&quot;,
+    &quot;accountId&quot;: &quot;41dd0b56-7644-4714-8b75-7b07a32f0bf7&quot;
+  }
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2tIQ2EEDZDe65g4gp9ucKhX5WZj" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Unnamed.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "develop",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Spring_boot/HavenSkin",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.Unnamed">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="application.aicomic.AiComicApplication" />
+      <module name="AIComic" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AiComicApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="AIComic" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="application.aicomic.AiComicApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7b044c7c-341c-4c6a-9bf4-08bd9deec341" name="Changes" comment="" />
+      <created>1740036901402</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1740036901402</updated>
+      <workItem from="1740036902387" duration="734000" />
+      <workItem from="1740041179747" duration="686000" />
+      <workItem from="1740109177070" duration="3768000" />
+      <workItem from="1740191320635" duration="3054000" />
+      <workItem from="1740199876665" duration="16000" />
+      <workItem from="1740208668765" duration="5000" />
+      <workItem from="1740227893229" duration="5395000" />
+      <workItem from="1740297071930" duration="14708000" />
+      <workItem from="1740363467120" duration="2543000" />
+      <workItem from="1740375297790" duration="5689000" />
+      <workItem from="1740452019226" duration="2431000" />
+      <workItem from="1740575665460" duration="1341000" />
+      <workItem from="1740634647577" duration="6608000" />
+      <workItem from="1740643557591" duration="42000" />
+      <workItem from="1740675745038" duration="2355000" />
+      <workItem from="1740919454461" duration="3205000" />
+      <workItem from="1741066784536" duration="4985000" />
+      <workItem from="1741597169163" duration="1109000" />
+      <workItem from="1741600689366" duration="27000" />
+      <workItem from="1741618512524" duration="642000" />
+      <workItem from="1741773265949" duration="4445000" />
+      <workItem from="1741843446033" duration="861000" />
+      <workItem from="1741589321788" duration="3219000" />
+      <workItem from="1741773183866" duration="3636000" />
+      <workItem from="1741827633240" duration="1936000" />
+      <workItem from="1741843034678" duration="1383000" />
+      <workItem from="1742104561448" duration="4853000" />
+      <workItem from="1742118899404" duration="376000" />
+      <workItem from="1742126114148" duration="2791000" />
+      <workItem from="1742176704713" duration="478000" />
+    </task>
+    <task id="LOCAL-00001" summary="Ready to merge">
+      <option name="closed" value="true" />
+      <created>1740822039974</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1740822039974</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Ready to merge">
+      <option name="closed" value="true" />
+      <created>1741776931812</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1741776931812</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Merge chi_phong">
+      <option name="closed" value="true" />
+      <created>1741777130913</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1741777130913</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Merge from chi_phong">
+      <option name="closed" value="true" />
+      <created>1741777665394</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1741777665394</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Merge from trung_nhan">
+      <option name="closed" value="true" />
+      <created>1741778349964</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1741778349964</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Merge from all branch">
+      <option name="closed" value="true" />
+      <created>1741780132960</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1741780132960</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add dependency">
+      <option name="closed" value="true" />
+      <created>1741780574790</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1741780574790</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fix restFul API">
+      <option name="closed" value="true" />
+      <created>1741845441184</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1741845441184</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Add FirebaseConfig">
+      <option name="closed" value="true" />
+      <created>1741849175280</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1741849175280</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Momo payment">
+      <option name="closed" value="true" />
+      <created>1742109267611</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1742109267611</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Ready to merge" />
+    <MESSAGE value="Ready for merge" />
+    <MESSAGE value="Fix restFul API" />
+    <MESSAGE value="Add FirebaseConfig" />
+    <MESSAGE value="Momo payment" />
+    <option name="LAST_COMMIT_MESSAGE" value="Momo payment" />
+  </component>
+</project>
