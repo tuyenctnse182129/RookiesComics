@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import application.aicomic.enums.ChaptersEnums;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -47,19 +48,24 @@ public class Chapters {
     @Column(name = "type")
     private byte type;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "comic_id", referencedColumnName = "comic_id", insertable = false, updatable = false)
     private Comics comic;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "chapter")
     private List<Comments> comments;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "chapter")
     private List<ChapterImages> chapterImages;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "chapter")
     private List<OrderDetails> orderDetails;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "chapter")
     private List<CurrentChapter> currentChapters;
 }

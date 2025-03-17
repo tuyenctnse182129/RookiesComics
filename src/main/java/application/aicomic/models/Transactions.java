@@ -1,6 +1,7 @@
 package application.aicomic.models;
 
 import application.aicomic.enums.TransactionsEnums;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -44,6 +45,7 @@ public class Transactions {
     @Column(name = "wallet_id", length = 50)
     private String walletId;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "wallet_id", referencedColumnName = "wallet_id", insertable = false, updatable = false)
     private Wallets wallets;
@@ -52,6 +54,7 @@ public class Transactions {
     @Column(name = "purchased_coin_id", length = 50)
     private String purchasedCoinId;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "purchased_coin_id", referencedColumnName = "purchased_coin_id", insertable = false, updatable = false)
     private PurchasedCoins purchasedCoins;
