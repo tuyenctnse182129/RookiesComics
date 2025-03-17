@@ -4,28 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b044c7c-341c-4c6a-9bf4-08bd9deec341" name="Changes" comment="Add FirebaseConfig">
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/config/LoggingFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/config/MomoConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/config/MomoParameter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/MomoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/dataAccess/CreateMomoRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/dataAccess/CreateMomoResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/dataAccess/MomoIPNResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/repositories/MomoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/MomoService.java" afterDir="false" />
+    <list default="true" id="7b044c7c-341c-4c6a-9bf4-08bd9deec341" name="Changes" comment="Momo payment">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/AiComicApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/AiComicApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/config/Config.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/config/FirebaseConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/config/FirebaseConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/PurchasedCoinsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/PurchasedCoinsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/VnPayController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Users.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/PurchasedCoinsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/PurchasedCoinsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/application/aicomic/mapper/MapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/application/aicomic/mapper/MapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/UsersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/UsersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/UsersService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/AiComicApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/AiComicApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/config/Config.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/GenresController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/GenresController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/PurchasedCoinsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/PurchasedCoinsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/UsersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/UsersController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/VnPayController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/mapper/MapperImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/mapper/MapperImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/Users.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/Users.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/GenresService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/GenresService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/PurchasedCoinsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/PurchasedCoinsService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +144,10 @@
       <workItem from="1741773183866" duration="3636000" />
       <workItem from="1741827633240" duration="1936000" />
       <workItem from="1741843034678" duration="1383000" />
-      <workItem from="1742104561448" duration="4612000" />
+      <workItem from="1742104561448" duration="4853000" />
+      <workItem from="1742118899404" duration="376000" />
+      <workItem from="1742126114148" duration="2791000" />
+      <workItem from="1742176704713" duration="478000" />
     </task>
     <task id="LOCAL-00001" summary="Ready to merge">
       <option name="closed" value="true" />
@@ -224,7 +221,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741849175280</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Momo payment">
+      <option name="closed" value="true" />
+      <created>1742109267611</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1742109267611</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,6 +240,7 @@
     <MESSAGE value="Ready for merge" />
     <MESSAGE value="Fix restFul API" />
     <MESSAGE value="Add FirebaseConfig" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add FirebaseConfig" />
+    <MESSAGE value="Momo payment" />
+    <option name="LAST_COMMIT_MESSAGE" value="Momo payment" />
   </component>
 </project>

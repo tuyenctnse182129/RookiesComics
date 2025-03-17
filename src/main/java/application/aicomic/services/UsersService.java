@@ -44,6 +44,11 @@ public class UsersService {
         return usersRepository.findById(userId).orElse(null);
     }
 
+    public Users getByEmail(String email) {
+        return usersRepository.findByEmail(email).orElse(null);
+    }
+
+
     public Users saveUser(Users user) {
         Users savedUser = usersRepository.save(user);
         createWalletsForUser(savedUser);
@@ -70,16 +75,6 @@ public class UsersService {
         }
     }
 
-
-
-    public UserServiceResponseDto getById(String id) {
-        Optional<Users> userOptional = usersRepository.findById(id);
-        if (userOptional.isPresent()) {
-            Users user = userOptional.get();
-            return new UserServiceResponseDto(true, "User found.", Collections.singletonList(user));
-        }
-        return new UserServiceResponseDto(false, "No user found for the given user ID.", Collections.emptyList());
-    }
 
     public UserServiceResponseDto deleteUser(String id) {
         try {
