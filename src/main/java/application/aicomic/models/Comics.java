@@ -1,6 +1,7 @@
 package application.aicomic.models;
 
 import application.aicomic.enums.CommentsEnums;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -21,9 +22,6 @@ public class Comics {
     @Column(name = "comic_name", length = 50)
     private String comicName;
 
-    @NotNull
-    @Column(name = "user_id", length = 50)
-    private String userId;
 
     @NotNull
     @Column(name = "created_date")
@@ -48,16 +46,14 @@ public class Comics {
     @Column(name = "view")
     private long view;
 
-    @NotNull
-    @Column(name = "genres_id", length = 50)
-    private String genresId;
 
     @ManyToOne
-    @JoinColumn(name = "genres_id", referencedColumnName = "genres_id", insertable = false, updatable = false)
+    @JoinColumn(name = "genres_id", referencedColumnName = "genres_id")
+    @JsonManagedReference
     private Genres genres;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private Users user;
 
     @ManyToMany(mappedBy = "comics")
@@ -68,4 +64,9 @@ public class Comics {
 
     @OneToMany(mappedBy = "comic")
     private List<Chapters> chapters;
+
+    public String getUserId() {
+        return user != null ? user.getUserId() : null;
+    }
+
 }

@@ -1,6 +1,7 @@
 package application.aicomic.models;
 
 import application.aicomic.enums.OrdersEnums;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -48,6 +49,7 @@ public class Orders {
 
     @OneToOne
     @JoinColumn(name = "comic_id", referencedColumnName = "comic_id")
+    @JsonIgnore
     private Comics comics;
 
     @NotNull

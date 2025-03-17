@@ -3,6 +3,7 @@ package application.aicomic.models;
 import java.util.List;
 
 import application.aicomic.enums.BookshelvesEnums;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import jakarta.persistence.Column;
@@ -44,6 +45,7 @@ public class Bookshelves {
             joinColumns = @JoinColumn(name = "bookshelve_id"),
             inverseJoinColumns = @JoinColumn(name = "comic_id")
     )
+    @JsonIgnore
     private List<Comics> comics;
 
     @ManyToOne

@@ -4,6 +4,7 @@ import java.util.List;
 
 import application.aicomic.enums.CommentsEnums;
 import application.aicomic.enums.GenresEnums;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -28,5 +29,6 @@ public class Genres {
     private byte status = GenresEnums.AVAILABLE.getValue();
 
     @OneToMany(mappedBy = "genres")
+    @JsonIgnore
     private List<Comics> comics;
 }

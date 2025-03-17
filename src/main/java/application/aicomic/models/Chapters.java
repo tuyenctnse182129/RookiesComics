@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import application.aicomic.enums.ChaptersEnums;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -49,6 +50,7 @@ public class Chapters {
 
     @ManyToOne
     @JoinColumn(name = "comic_id", referencedColumnName = "comic_id", insertable = false, updatable = false)
+    @JsonIgnore
     private Comics comic;
 
     @OneToMany(mappedBy = "chapter")

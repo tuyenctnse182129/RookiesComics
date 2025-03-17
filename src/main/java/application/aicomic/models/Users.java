@@ -2,6 +2,8 @@ package application.aicomic.models;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.checkerframework.common.aliasing.qual.Unique;
 
 import java.util.List;
@@ -63,6 +65,7 @@ public class Users {
     private byte status = Role.Status.ACTIVE.getValue();
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Comics> comics;
 
     @OneToMany(mappedBy = "user")
