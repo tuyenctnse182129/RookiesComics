@@ -48,20 +48,25 @@ public class Chapters {
     @Column(name = "type")
     private byte type;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "comic_id", referencedColumnName = "comic_id", insertable = false, updatable = false)
     @JsonIgnore
     private Comics comic;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "chapter")
     private List<Comments> comments;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "chapter")
     private List<ChapterImages> chapterImages;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "chapter")
     private List<OrderDetails> orderDetails;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "chapter")
     private List<CurrentChapter> currentChapters;
 }

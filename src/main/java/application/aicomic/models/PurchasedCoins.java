@@ -1,5 +1,6 @@
 package application.aicomic.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -45,10 +46,12 @@ public class PurchasedCoins {
     @Column(name = "user_id", length = 50)
     private String userId;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
     private Users user;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "purchasedCoins")
     private List<Transactions> transactions;
 }

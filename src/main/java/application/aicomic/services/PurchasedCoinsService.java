@@ -68,42 +68,19 @@ public class PurchasedCoinsService {
         return null;
     }
 
-    public void savePurchasedCoinToDB(String userId,String numberOfCoin, String transactionCode, String amount, String bankName, String payDate, boolean isSuccess) {
-        try {
-            System.out.println("🔹 Đang lưu giao dịch...");
-            System.out.println("Mã giao dịch: " + transactionCode);
-            System.out.println("Số tiền: " + amount);
-            System.out.println("Ngân hàng: " + bankName);
-            System.out.println("Ngày thanh toán: " + payDate);
-            System.out.println("Trạng thái: " + (isSuccess ? "PAID" : "NOT_PAID"));
+    public PurchasedCoins createPurchasedCoins(String transactionCode, String content, String bankName,
+                                               double amount, double numberOfCoin, PurchasedCoinsEnums status,
+                                               String userId) {
+        PurchasedCoins purchasedCoins = new PurchasedCoins();
+        purchasedCoins.setTransactionCode(transactionCode);
+        purchasedCoins.setContent(content);
+        purchasedCoins.setBankName(bankName);
+        purchasedCoins.setAmount(amount);
+        purchasedCoins.setNumberOfCoin(numberOfCoin);
+        purchasedCoins.setStatus(status.getValue());
+        purchasedCoins.setPurchaseTime(LocalDateTime.now());
+        purchasedCoins.setUserId(userId);
 
-
-            PurchasedCoins purchasedCoins = new PurchasedCoins();
-            System.out.println("userId: " + purchasedCoins.getUserId());
-            purchasedCoins.setUserId(userId); // Gán userId từ request
-            purchasedCoins.setNumberOfCoin(Double.parseDouble(numberOfCoin));
-            purchasedCoins.setTransactionCode(transactionCode);
-            purchasedCoins.setAmount(Double.parseDouble(amount)/100);
-            purchasedCoins.setBankName(bankName);
-            purchasedCoins.setPurchaseTime(LocalDateTime.parse(payDate, DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
-            purchasedCoins.setStatus(isSuccess ? PurchasedCoinsEnums.PAID.getValue() : PurchasedCoinsEnums.NOT_PAID.getValue());
-
-            purchasedCoinsRepository.save(purchasedCoins);
-
-            if (isSuccess) {
-                double coin = Double.parseDouble(numberOfCoin);
-                boolean updated = walletsService.updateBalance(userId, coin);
-                if (!updated) {
-                    System.out.println("Cập nhật trạng thái đơn hàng thất bại");
-                    return;
-                }
-            }
-
-            System.out.println("✅ Giao dịch đã lưu thành công!");
-        } catch (Exception e) {
-            System.out.println("❌ Lỗi khi lưu giao dịch:");
-            e.printStackTrace();
-        }
+        return purchasedCoinsRepository.save(purchasedCoins);
     }
-
 }

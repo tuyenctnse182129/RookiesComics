@@ -39,6 +39,7 @@ public class Bookshelves {
     @Column(name = "status", nullable = false)
     private byte status = BookshelvesEnums.ACTIVE.getValue();
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "Bookshelves_Comics",
@@ -48,6 +49,7 @@ public class Bookshelves {
     @JsonIgnore
     private List<Comics> comics;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private Users user;

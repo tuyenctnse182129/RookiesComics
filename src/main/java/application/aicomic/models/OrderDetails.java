@@ -1,6 +1,7 @@
 package application.aicomic.models;
 
 import application.aicomic.enums.OrderDetailsEnums;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -18,6 +19,7 @@ public class OrderDetails {
     @Column(name = "order_id", length = 50)
     private String orderId;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "order_id", insertable = false, updatable = false)
     private Orders orders;
@@ -26,6 +28,7 @@ public class OrderDetails {
     @Column(name = "chapter_id", length = 50)
     private String chapterId;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "chapter_id", referencedColumnName = "chapter_id", insertable = false, updatable = false)
     private Chapters chapter;

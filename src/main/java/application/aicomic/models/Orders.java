@@ -37,16 +37,20 @@ public class Orders {
     @Column(name = "wallet_id", length = 50)
     private String walletId;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "wallet_id", referencedColumnName = "wallet_id", insertable = false, updatable = false)
     private Wallets wallets;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "orders")
     private List<OrderDetails> orderDetails;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "orders")
     private List<Transactions> transactions;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "comic_id", referencedColumnName = "comic_id")
     @JsonIgnore
@@ -56,6 +60,7 @@ public class Orders {
     @Column(name = "user_id", length = 50)
     private String userId;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
     private Users user;

@@ -28,6 +28,7 @@ public class Genres {
     @Column(name = "status")
     private byte status = GenresEnums.AVAILABLE.getValue();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "genres")
     @JsonIgnore
     private List<Comics> comics;

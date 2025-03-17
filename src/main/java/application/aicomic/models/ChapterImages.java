@@ -21,6 +21,7 @@ public class ChapterImages {
     @Column(name = "chapter_id", length = 50)
     private String chapterId;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "chapter_id", referencedColumnName = "chapter_id", insertable = false, updatable = false)
     private Chapters chapter;

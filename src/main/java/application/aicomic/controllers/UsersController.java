@@ -57,6 +57,11 @@ public class UsersController {
         return usersService.getUserById(id);
     }
 
+    @GetMapping("/{email}")
+    public Users getUserByEmail(@PathVariable String email) {
+        return usersService.getByEmail(email);
+    }
+
     @PostMapping
     public Users createUser(@RequestBody Users user) {
         return usersService.saveUser(user);
