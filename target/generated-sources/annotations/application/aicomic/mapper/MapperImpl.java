@@ -36,8 +36,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-03-16T13:59:57+0700",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.6 (Oracle Corporation)"
+    date = "2025-03-17T16:26:09+0700",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.12 (Oracle Corporation)"
 )
 @Component
 public class MapperImpl implements Mapper {
@@ -191,7 +191,6 @@ public class MapperImpl implements Mapper {
 
         comics.setComicId( comicsDTO.getComicId() );
         comics.setComicName( comicsDTO.getComicName() );
-        comics.setUserId( comicsDTO.getUserId() );
         comics.setCreatedDate( xmlGregorianCalendarToLocalDateTime( localDateToXmlGregorianCalendar( comicsDTO.getCreatedDate() ) ) );
         comics.setQuantityChap( comicsDTO.getQuantityChap() );
         comics.setCoverUrl( comicsDTO.getCoverUrl() );
@@ -210,7 +209,6 @@ public class MapperImpl implements Mapper {
 
         comics.setComicId( comicsDTO.getComicId() );
         comics.setComicName( comicsDTO.getComicName() );
-        comics.setUserId( comicsDTO.getUserId() );
         comics.setCreatedDate( xmlGregorianCalendarToLocalDateTime( localDateToXmlGregorianCalendar( comicsDTO.getCreatedDate() ) ) );
         comics.setQuantityChap( comicsDTO.getQuantityChap() );
         comics.setCoverUrl( comicsDTO.getCoverUrl() );

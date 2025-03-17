@@ -30,6 +30,5 @@ public class Genres {
 
     @JsonIgnore
     @OneToMany(mappedBy = "genres")
-    @JsonIgnore
     private List<Comics> comics;
 }

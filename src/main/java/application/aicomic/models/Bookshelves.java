@@ -46,7 +46,6 @@ public class Bookshelves {
             joinColumns = @JoinColumn(name = "bookshelve_id"),
             inverseJoinColumns = @JoinColumn(name = "comic_id")
     )
-    @JsonIgnore
     private List<Comics> comics;
 
     @JsonIgnore

@@ -53,7 +53,6 @@ public class Orders {
     @JsonIgnore
     @OneToOne
     @JoinColumn(name = "comic_id", referencedColumnName = "comic_id")
-    @JsonIgnore
     private Comics comics;
 
     @NotNull
