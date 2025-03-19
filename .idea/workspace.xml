@@ -4,45 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b044c7c-341c-4c6a-9bf4-08bd9deec341" name="Changes" comment="Fix database">
+    <list default="true" id="7b94f3aa-51bc-4475-bbeb-7e1b32c69999" name="Changes" comment="Add updateUser 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Bookshelves.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Bookshelves.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/ChapterImages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/ChapterImages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Chapters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Chapters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Comics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Comics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Comments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Comments.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/CurrentChapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/CurrentChapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Genres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Genres.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/OrderDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/OrderDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Orders.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Orders.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/PurchasedCoins.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/PurchasedCoins.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Transactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Transactions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Users.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Wallets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Wallets.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Enum" />
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Rebase.Settings">
-    <option name="NEW_BASE" value="develop" />
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -57,13 +27,10 @@
     &quot;accountId&quot;: &quot;41dd0b56-7644-4714-8b75-7b07a32f0bf7&quot;
   }
 }</component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 0
+  &quot;associatedIndex&quot;: 4
 }</component>
-  <component name="ProjectId" id="2tIQ2EEDZDe65g4gp9ucKhX5WZj" />
+  <component name="ProjectId" id="2uXHIpGA0fGtwUbE4NeqDEzvHuT" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -71,44 +38,15 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ngoc__tuyen&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Spring_boot/HavenSkin&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Application.Unnamed">
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="application.aicomic.AiComicApplication" />
-      <module name="AIComic" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AiComicApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="AIComic" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="application.aicomic.AiComicApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -119,135 +57,31 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="7b044c7c-341c-4c6a-9bf4-08bd9deec341" name="Changes" comment="" />
-      <created>1740036901402</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1740036901402</updated>
-      <workItem from="1740036902387" duration="734000" />
-      <workItem from="1740041179747" duration="686000" />
-      <workItem from="1740109177070" duration="3768000" />
-      <workItem from="1740191320635" duration="3054000" />
-      <workItem from="1740199876665" duration="16000" />
-      <workItem from="1740208668765" duration="5000" />
-      <workItem from="1740227893229" duration="5395000" />
-      <workItem from="1740297071930" duration="14708000" />
-      <workItem from="1740363467120" duration="2543000" />
-      <workItem from="1740375297790" duration="5689000" />
-      <workItem from="1740452019226" duration="2431000" />
-      <workItem from="1740575665460" duration="1341000" />
-      <workItem from="1740634647577" duration="6608000" />
-      <workItem from="1740643557591" duration="42000" />
-      <workItem from="1740675745038" duration="2355000" />
-      <workItem from="1740919454461" duration="3205000" />
-      <workItem from="1741066784536" duration="4985000" />
-      <workItem from="1741597169163" duration="1109000" />
-      <workItem from="1741600689366" duration="27000" />
-      <workItem from="1741618512524" duration="642000" />
-      <workItem from="1741773265949" duration="4445000" />
-      <workItem from="1741843446033" duration="861000" />
-      <workItem from="1741589321788" duration="3219000" />
-      <workItem from="1741773183866" duration="3636000" />
-      <workItem from="1741827633240" duration="1936000" />
-      <workItem from="1741843034678" duration="1383000" />
-      <workItem from="1742104561448" duration="4612000" />
-      <workItem from="1742201092080" duration="434000" />
-    </task>
-    <task id="LOCAL-00001" summary="Ready to merge">
+    <task id="LOCAL-00001" summary="Add updateUser 2">
       <option name="closed" value="true" />
-      <created>1740822039974</created>
+      <created>1742369813795</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1740822039974</updated>
+      <updated>1742369813795</updated>
     </task>
-    <task id="LOCAL-00002" summary="Ready to merge">
-      <option name="closed" value="true" />
-      <created>1741776931812</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1741776931812</updated>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7b94f3aa-51bc-4475-bbeb-7e1b32c69999" name="Changes" comment="Add updateUser 2" />
+      <created>1742387922845</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1742387922845</updated>
+      <workItem from="1742387924976" duration="18000" />
+      <workItem from="1742388817986" duration="22000" />
     </task>
-    <task id="LOCAL-00003" summary="Merge chi_phong">
-      <option name="closed" value="true" />
-      <created>1741777130913</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1741777130913</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Merge from chi_phong">
-      <option name="closed" value="true" />
-      <created>1741777665394</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1741777665394</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Merge from trung_nhan">
-      <option name="closed" value="true" />
-      <created>1741778349964</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1741778349964</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Merge from all branch">
-      <option name="closed" value="true" />
-      <created>1741780132960</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1741780132960</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Add dependency">
-      <option name="closed" value="true" />
-      <created>1741780574790</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1741780574790</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Fix restFul API">
-      <option name="closed" value="true" />
-      <created>1741845441184</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1741845441184</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Add FirebaseConfig">
-      <option name="closed" value="true" />
-      <created>1741849175280</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1741849175280</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Ready to merge" />
-    <MESSAGE value="Ready for merge" />
-    <MESSAGE value="Fix restFul API" />
-    <MESSAGE value="Add FirebaseConfig" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add FirebaseConfig" />
+    <MESSAGE value="Add updateUser 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add updateUser 2" />
   </component>
 </project>
