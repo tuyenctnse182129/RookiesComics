@@ -15,6 +15,7 @@ public enum TransactionsEnums {
     public byte getValue() {
         return value;
     }
+
     public static TransactionsEnums fromValue(byte value) {
         for (TransactionsEnums x : TransactionsEnums.values()) {
             if (x.getValue() == value) {
@@ -27,7 +28,8 @@ public enum TransactionsEnums {
     public enum Type {
         // Type Enums
         ROLE_UPGRADE((byte) 1),
-        BUYING_STORIES((byte) 2);
+        BUYING_STORIES((byte) 2),
+        PAY_FEE((byte) 3);
 
         private final byte value;
 
@@ -45,7 +47,7 @@ public enum TransactionsEnums {
                     return x;
                 }
             }
-            throw new IllegalArgumentException("No TransactionsEnums with value " + value);
+            throw new IllegalArgumentException("No TransactionsEnums.Type with value " + value);
         }
     }
 }

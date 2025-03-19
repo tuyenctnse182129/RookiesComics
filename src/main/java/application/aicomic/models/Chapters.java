@@ -3,7 +3,6 @@ package application.aicomic.models;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import application.aicomic.enums.ChaptersEnums;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -46,6 +45,9 @@ public class Chapters {
 
     @Column(name = "type")
     private byte type;
+
+    @Column(name = "mod_comment", length = 50)
+    private String modComment;
 
     @ManyToOne
     @JoinColumn(name = "comic_id", referencedColumnName = "comic_id", insertable = false, updatable = false)
