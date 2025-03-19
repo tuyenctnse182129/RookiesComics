@@ -1,30 +1,10 @@
 package application.aicomic.mapper;
 
+import application.aicomic.dataAccess.*;
 import application.aicomic.enums.TransactionsEnums;
+import application.aicomic.models.*;
 import org.mapstruct.MappingTarget;
 
-import application.aicomic.dataAccess.ComicsDTO;
-import application.aicomic.dataAccess.CommentsDTO;
-import application.aicomic.dataAccess.CurrentChapterDTO;
-import application.aicomic.dataAccess.GenresDTO;
-import application.aicomic.dataAccess.OrderDetailsDTO;
-import application.aicomic.dataAccess.OrdersDTO;
-import application.aicomic.dataAccess.TransactionsDTO;
-import application.aicomic.dataAccess.WalletsDTO;
-import application.aicomic.dataAccess.PurchasedCoinsDTO;
-import application.aicomic.dataAccess.ChaptersDTO;
-import application.aicomic.dataAccess.BookshelvesDTO;
-import application.aicomic.models.Comics;
-import application.aicomic.models.Comments;
-import application.aicomic.models.CurrentChapter;
-import application.aicomic.models.Genres;
-import application.aicomic.models.OrderDetails;
-import application.aicomic.models.Orders;
-import application.aicomic.models.Transactions;
-import application.aicomic.models.Wallets;
-import application.aicomic.models.PurchasedCoins;
-import application.aicomic.models.Chapters;
-import application.aicomic.models.Bookshelves;
 import application.aicomic.enums.PurchasedCoinsEnums;
 
 @org.mapstruct.Mapper(componentModel = "spring")
@@ -40,6 +20,10 @@ public interface Mapper {
     Comments toComments(CommentsDTO commentsDTO);
 
     void updateComments(@MappingTarget Comments comments, CommentsDTO commentsDTO);
+
+    Users toUsers(UsersDTO usersDTO);
+
+    void updateUsers(@MappingTarget Users users, UsersDTO usersDTO);
 
     OrderDetails toOrderDetails(OrderDetailsDTO orderDetailsDTO);
 

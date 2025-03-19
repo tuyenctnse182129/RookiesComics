@@ -1,6 +1,9 @@
 package application.aicomic.controllers;
 
+import application.aicomic.dataAccess.UsersDTO;
+import application.aicomic.dataAccess.WalletsDTO;
 import application.aicomic.models.Users;
+import application.aicomic.models.Wallets;
 import application.aicomic.repositories.UsersRepository;
 import application.aicomic.services.UsersService;
 import application.aicomic.services.WalletsService;
@@ -65,6 +68,11 @@ public class UsersController {
     @PostMapping
     public Users createUser(@RequestBody Users user) {
         return usersService.saveUser(user);
+    }
+
+    @PutMapping("/{id}")
+    public Users updateUsers(@PathVariable String id, @RequestBody UsersDTO usersDTO) {
+        return usersService.updateUsers(id, usersDTO);
     }
 
     @DeleteMapping("/{id}")
