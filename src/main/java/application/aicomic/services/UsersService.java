@@ -1,8 +1,11 @@
 package application.aicomic.services;
 
 import application.aicomic.dataAccess.UserServiceResponseDto;
+import application.aicomic.dataAccess.UsersDTO;
+import application.aicomic.dataAccess.WalletsDTO;
 import application.aicomic.enums.Role;
 import application.aicomic.enums.WalletType;
+import application.aicomic.mapper.Mapper;
 import application.aicomic.models.Users;
 import application.aicomic.models.Wallets;
 import application.aicomic.repositories.UsersRepository;
@@ -27,6 +30,7 @@ import java.util.*;
 public class UsersService {
     private final UsersRepository usersRepository;
     private final WalletsRepository walletsRepository;
+    private Mapper mapper;
     private static final Logger logger = LoggerFactory.getLogger(UsersService.class);
 
     @Autowired
@@ -48,11 +52,16 @@ public class UsersService {
         return usersRepository.findByEmail(email).orElse(null);
     }
 
-
     public Users saveUser(Users user) {
         Users savedUser = usersRepository.save(user);
         createWalletsForUser(savedUser);
         return savedUser;
+    }
+
+    public Users updateUsers(String id, UsersDTO usersDTO) {
+        Users users = usersRepository.findById(id).orElseThrow(() -> new RuntimeException("Users not found"));
+        mapper.updateUsers(users, usersDTO);
+        return usersRepository.save(users);
     }
 
     private void createWalletsForUser(Users user) {
