@@ -1,6 +1,7 @@
 
 package application.aicomic.services;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -85,5 +86,13 @@ public class ComicsService {
             return comicsRepository.save(x);
         }
         return null;
+    }
+    public List<Comics> getTopComicsWeek(){
+        LocalDateTime oneWeekAgo = LocalDateTime.now().minusDays(7);
+        return comicsRepository.findTop8ByCreatedDateAfterOrderByViewDesc(oneWeekAgo);
+    }
+    public List<Comics> getTopComicsMonth(){
+        LocalDateTime oneMonthAgo = LocalDateTime.now().minusDays(30);
+        return comicsRepository.findTop8ByCreatedDateAfterOrderByViewDesc(oneMonthAgo);
     }
 }

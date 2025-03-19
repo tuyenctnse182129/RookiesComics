@@ -60,4 +60,14 @@ public class ComicsController {
     public Comics deleteComics(@PathVariable String id) {
         return comicsService.deleteComics(id);
     }
+
+    @GetMapping("/top-week")
+    public List<Comics> getTopWeekComics() {
+        return comicsService.getTopComicsWeek();
+    }
+
+    @GetMapping("/top-month")
+    public List<Comics> getTopMonthComics() {
+        return comicsService.getTopComicsMonth();
+    }
 }
