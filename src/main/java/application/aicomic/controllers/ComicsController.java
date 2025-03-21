@@ -36,8 +36,12 @@ public class ComicsController {
     }
 
     @GetMapping("/{name}")
-    public Comics getComicsById(@PathVariable String comicName) {
+    public Comics getComicsByName(@PathVariable String comicName) {
         return comicsService.getComicsByName(comicName);
+    }
+    @GetMapping("/{id}")
+    public Comics getComicsById(@PathVariable String comicId) {
+        return comicsService.getComicsByID(comicId);
     }
 
     @GetMapping("/genres/{genresName}")

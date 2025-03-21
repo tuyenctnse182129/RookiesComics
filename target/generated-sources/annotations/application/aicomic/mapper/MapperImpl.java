@@ -10,6 +10,7 @@ import application.aicomic.dataAccess.OrderDetailsDTO;
 import application.aicomic.dataAccess.OrdersDTO;
 import application.aicomic.dataAccess.PurchasedCoinsDTO;
 import application.aicomic.dataAccess.TransactionsDTO;
+import application.aicomic.dataAccess.UsersDTO;
 import application.aicomic.dataAccess.WalletsDTO;
 import application.aicomic.models.Bookshelves;
 import application.aicomic.models.Chapters;
@@ -21,6 +22,7 @@ import application.aicomic.models.OrderDetails;
 import application.aicomic.models.Orders;
 import application.aicomic.models.PurchasedCoins;
 import application.aicomic.models.Transactions;
+import application.aicomic.models.Users;
 import application.aicomic.models.Wallets;
 import java.time.Duration;
 import java.time.LocalDate;
@@ -36,7 +38,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-03-19T18:12:40+0700",
+    date = "2025-03-21T22:55:09+0700",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.12 (Oracle Corporation)"
 )
 @Component
@@ -149,6 +151,46 @@ public class MapperImpl implements Mapper {
         comments.setCreatedDate( commentsDTO.getCreatedDate() );
         comments.setStatus( commentsDTO.getStatus() );
         comments.setChapter( commentsDTO.getChapter() );
+    }
+
+    @Override
+    public Users toUsers(UsersDTO usersDTO) {
+        if ( usersDTO == null ) {
+            return null;
+        }
+
+        Users users = new Users();
+
+        users.setUserId( usersDTO.getUserId() );
+        users.setFirstName( usersDTO.getFirstName() );
+        users.setLastName( usersDTO.getLastName() );
+        users.setBirthDate( usersDTO.getBirthDate() );
+        users.setGender( usersDTO.getGender() );
+        users.setEmail( usersDTO.getEmail() );
+        users.setPhoneNumber( usersDTO.getPhoneNumber() );
+        users.setAvatarUrl( usersDTO.getAvatarUrl() );
+        users.setRole( usersDTO.getRole() );
+        users.setStatus( usersDTO.getStatus() );
+
+        return users;
+    }
+
+    @Override
+    public void updateUsers(Users users, UsersDTO usersDTO) {
+        if ( usersDTO == null ) {
+            return;
+        }
+
+        users.setUserId( usersDTO.getUserId() );
+        users.setFirstName( usersDTO.getFirstName() );
+        users.setLastName( usersDTO.getLastName() );
+        users.setBirthDate( usersDTO.getBirthDate() );
+        users.setGender( usersDTO.getGender() );
+        users.setEmail( usersDTO.getEmail() );
+        users.setPhoneNumber( usersDTO.getPhoneNumber() );
+        users.setAvatarUrl( usersDTO.getAvatarUrl() );
+        users.setRole( usersDTO.getRole() );
+        users.setStatus( usersDTO.getStatus() );
     }
 
     @Override

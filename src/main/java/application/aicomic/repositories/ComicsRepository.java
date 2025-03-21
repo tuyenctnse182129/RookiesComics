@@ -12,6 +12,7 @@ import java.util.Optional;
 public interface ComicsRepository extends JpaRepository<Comics, String> {
 
     Optional<Comics> findByComicName(String comicName);
+    Optional<Comics> findByComicID(String comicId);
     List<Comics> findByStatus(byte status);
     List<Comics> findByGenres_GenresName(String genresName);
     List<Comics> findTop8ByCreatedDateAfterOrderByViewDesc(LocalDateTime startDate);
