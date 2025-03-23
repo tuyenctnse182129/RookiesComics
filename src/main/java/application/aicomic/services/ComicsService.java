@@ -1,6 +1,7 @@
 
 package application.aicomic.services;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +35,10 @@ public class ComicsService {
 
     public Comics getComicsByName(String comicName) {
         return comicsRepository.findByComicName(comicName).orElse(null);
+    }
+
+    public Comics getComicsById(String comicId) {
+        return comicsRepository.findByComicId(comicId).orElse(null);
     }
 
     public List<Comics> findByStatus(byte status){
@@ -85,5 +90,13 @@ public class ComicsService {
             return comicsRepository.save(x);
         }
         return null;
+    }
+    public List<Comics> getTopComicsWeek(){
+        LocalDateTime oneWeekAgo = LocalDateTime.now().minusDays(7);
+        return comicsRepository.findTop8ByCreatedDateAfterOrderByViewDesc(oneWeekAgo);
+    }
+    public List<Comics> getTopComicsMonth(){
+        LocalDateTime oneMonthAgo = LocalDateTime.now().minusDays(30);
+        return comicsRepository.findTop8ByCreatedDateAfterOrderByViewDesc(oneMonthAgo);
     }
 }

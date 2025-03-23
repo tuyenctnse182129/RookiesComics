@@ -1,42 +1,28 @@
 package application.aicomic.services;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.time.ZoneId;
+import java.util.*;
+import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import application.aicomic.dataAccess.MonthlyRevenueDTO;
 import application.aicomic.dataAccess.OrdersDTO;
 import application.aicomic.dataAccess.OrdersServiceResponseDTO;
 import application.aicomic.enums.OrderDetailsEnums;
 import application.aicomic.enums.OrdersEnums;
+
 import application.aicomic.enums.TransactionsEnums;
 import application.aicomic.enums.WalletType;
-import application.aicomic.models.Chapters;
-import application.aicomic.models.Comics;
-import application.aicomic.models.OrderDetails;
-import application.aicomic.models.Orders;
-import application.aicomic.models.Transactions;
-import application.aicomic.models.Users;
-import application.aicomic.models.Wallets;
-import application.aicomic.repositories.ChaptersRepository;
-import application.aicomic.repositories.ComicsRepository;
-import application.aicomic.repositories.OrderDetailsRepository;
-import application.aicomic.repositories.OrdersRepository;
-import application.aicomic.repositories.TransactionsRepository;
-import application.aicomic.repositories.UsersRepository;
-import application.aicomic.repositories.WalletsRepository;
+import application.aicomic.models.*;
+import application.aicomic.repositories.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import application.aicomic.mapper.Mapper;
 
 @Service
 public class OrdersService {
-    private static final Logger logger = LoggerFactory.getLogger(OrdersService.class);
-
     @Autowired
     private OrdersRepository ordersRepository;
 
@@ -44,6 +30,7 @@ public class OrdersService {
     private OrderDetailsRepository orderDetailsRepository;
 
     @Autowired
+    private Mapper mapper;
     private UsersRepository usersRepository;
 
     @Autowired
@@ -57,6 +44,8 @@ public class OrdersService {
 
     @Autowired
     private TransactionsRepository transactionsRepository;
+
+    private static final Logger logger = LoggerFactory.getLogger(OrdersService.class);
 
     public OrdersService(OrdersRepository ordersRepository) {
         this.ordersRepository = ordersRepository;
@@ -89,6 +78,7 @@ public class OrdersService {
 
     public Orders updateOrders(String id, OrdersDTO ordersDTO) {
         Orders orders = ordersRepository.findById(id).orElseThrow(() -> new RuntimeException("Orders not found"));
+        mapper.updateOrders(orders, ordersDTO);
         return ordersRepository.save(orders);
     }
 
@@ -109,9 +99,10 @@ public class OrdersService {
             OrdersEnums currentStatus = OrdersEnums.fromOrderStatus(order.getStatus());
             OrdersEnums newStatus = OrdersEnums.fromOrderStatus(newStatusByte);
 
+            // Kiểm tra trạng thái hợp lệ
             // Validate status transition
             if (!isValidStatusTransition(currentStatus, newStatus)) {
-                return false;
+                return false; // Tránh cập nhật trạng thái sai logic
             }
 
             // Lock OrderDetails when status changes from UNORDERED
@@ -185,16 +176,18 @@ public class OrdersService {
         transactionsRepository.save(transaction); // Save transaction
     }
 
+    // Hàm khóa OrderDetails
     private void lockOrderDetails(String orderId) {
         List<OrderDetails> orderDetailsList = orderDetailsRepository.findByOrderId(orderId);
         for (OrderDetails detail : orderDetailsList) {
-            detail.setStatus(OrderDetailsEnums.INACTIVE.getValue());
+            detail.setStatus(OrderDetailsEnums.INACTIVE.getValue()); // Hoặc có thể tạo thêm trạng thái riêng
         }
         orderDetailsRepository.saveAll(orderDetailsList);
     }
 
     private boolean isValidStatusTransition(OrdersEnums currentStatus, OrdersEnums newStatus) {
         Map<OrdersEnums, List<OrdersEnums>> validTransitions = new HashMap<>();
+
         validTransitions.put(OrdersEnums.UNORDERED, List.of(OrdersEnums.PENDING, OrdersEnums.CANCELLED));
         validTransitions.put(OrdersEnums.PENDING, List.of(OrdersEnums.COMPLETED, OrdersEnums.CANCELLED));
         validTransitions.put(OrdersEnums.COMPLETED, List.of());
@@ -202,4 +195,5 @@ public class OrdersService {
 
         return validTransitions.getOrDefault(currentStatus, List.of()).contains(newStatus);
     }
+
 }

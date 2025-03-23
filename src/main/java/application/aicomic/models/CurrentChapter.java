@@ -1,6 +1,7 @@
 package application.aicomic.models;
 
 import application.aicomic.enums.CurrentChapterEnums;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class CurrentChapter {
     @Column(name = "comic_id", length = 50)
     private String comicId;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "comic_id", referencedColumnName = "comic_id", insertable = false, updatable = false)
     private Comics comics;
@@ -30,6 +32,7 @@ public class CurrentChapter {
     @Column(name = "chapter_id", length = 50)
     private String chapterId;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "chapter_id", referencedColumnName = "chapter_id", insertable = false, updatable = false)
     private Chapters chapter;
@@ -38,6 +41,7 @@ public class CurrentChapter {
     @Column(name = "user_id", length = 50)
     private String userId;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
     private Users user;

@@ -1,18 +1,14 @@
 package application.aicomic.models;
 
-import java.time.LocalDateTime;
-
 import application.aicomic.enums.TransactionsEnums;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import org.checkerframework.common.aliasing.qual.Unique;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Transactions")
@@ -49,13 +45,16 @@ public class Transactions {
     @Column(name = "wallet_id", length = 50)
     private String walletId;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "wallet_id", referencedColumnName = "wallet_id", insertable = false, updatable = false)
     private Wallets wallets;
 
+    @NotNull
     @Column(name = "purchased_coin_id", length = 50)
     private String purchasedCoinId;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "purchased_coin_id", referencedColumnName = "purchased_coin_id", insertable = false, updatable = false)
     private PurchasedCoins purchasedCoins;

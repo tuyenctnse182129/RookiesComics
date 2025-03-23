@@ -3,6 +3,8 @@ package application.aicomic.models;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import application.aicomic.enums.ChaptersEnums;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,12 +34,15 @@ public class Chapters {
     @Column(name = "comic_id", length = 50)
     private String comicId;
 
+    @Column(name = "mod_comment", length = 1000)
+    private String modComment;
+
     @NotNull
     @Column(name = "published_date")
     private LocalDateTime publishedDate;
 
     @NotNull
-    @Column(name = "description", length = 250)
+    @Column(name = "description", length = 10000)
     private String description;
 
     @Column(name = "status")
@@ -46,22 +51,23 @@ public class Chapters {
     @Column(name = "type")
     private byte type;
 
-    @Column(name = "mod_comment", length = 50)
-    private String modComment;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "comic_id", referencedColumnName = "comic_id", insertable = false, updatable = false)
     private Comics comic;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "chapter")
     private List<Comments> comments;
 
     @OneToMany(mappedBy = "chapter")
     private List<ChapterImages> chapterImages;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "chapter")
     private List<OrderDetails> orderDetails;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "chapter")
     private List<CurrentChapter> currentChapters;
 }

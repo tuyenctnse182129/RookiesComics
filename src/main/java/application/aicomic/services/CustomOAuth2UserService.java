@@ -8,12 +8,17 @@ import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserServ
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
+import java.util.List;
+
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     private final UsersRepository usersRepository;
+    private static final List<String> ALLOWED_CLIENT_IDS = List.of(
+            "492020139313-vno2adv1k6svg85qgj0bisb32q5v5rg1.apps.googleusercontent.com", // Android
+            "492020139313-sjvetclndtvnqqose7en21v75o5iv7e3.apps.googleusercontent.com"  // Web
+    );
 
-    // Constructor để inject UsersRepository
     public CustomOAuth2UserService(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
     }
@@ -28,6 +33,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         // Lấy thông tin từ Google
         String email = oAuth2User.getAttribute("email");
+        String googleId = oAuth2User.getAttribute("sub"); // Google User ID
         if (email == null) {
             throw new RuntimeException("Email not found in OAuth2 response");
         }
@@ -44,5 +50,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         return oAuth2User;
     }
+
 }
+
 

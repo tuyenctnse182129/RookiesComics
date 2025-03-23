@@ -9,6 +9,7 @@ public class ChaptersDTO {
     private String chapterId;
     private String chapterName;
     private String comicId;
+    private String modComment;
     private LocalDateTime publishedDate;
     private String description;
     private byte status;

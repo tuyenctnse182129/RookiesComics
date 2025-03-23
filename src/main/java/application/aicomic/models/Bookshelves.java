@@ -3,6 +3,7 @@ package application.aicomic.models;
 import java.util.List;
 
 import application.aicomic.enums.BookshelvesEnums;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import jakarta.persistence.Column;
@@ -31,13 +32,14 @@ public class Bookshelves {
     @Column(name = "bookshelve_name", length = 50, nullable = false)
     private String bookshelveName;
 
-    @Column(name = "description", length = 250)
+    @Column(name = "description", length = 10000)
     private String description;
 
     @NotNull
     @Column(name = "status", nullable = false)
     private byte status = BookshelvesEnums.ACTIVE.getValue();
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "Bookshelves_Comics",
@@ -46,6 +48,7 @@ public class Bookshelves {
     )
     private List<Comics> comics;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private Users user;

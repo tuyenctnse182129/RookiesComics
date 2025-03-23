@@ -4,22 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b044c7c-341c-4c6a-9bf4-08bd9deec341" name="Changes" comment="Momo payment">
+    <list default="true" id="7b94f3aa-51bc-4475-bbeb-7e1b32c69999" name="Changes" comment="Login google for mobile">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/UsersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/UsersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/UsersService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/AiComicApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/AiComicApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/config/Config.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/config/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/GenresController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/GenresController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/PurchasedCoinsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/PurchasedCoinsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/UsersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/UsersController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/VnPayController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/mapper/MapperImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/mapper/MapperImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/Users.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/Users.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/GenresService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/GenresService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/PurchasedCoinsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/PurchasedCoinsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/dataAccess/ChaptersDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/dataAccess/ChaptersDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/enums/TransactionsEnums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/enums/TransactionsEnums.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Chapters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Chapters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/ChaptersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/ChaptersService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/OrdersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/OrdersService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/ChaptersDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/ChaptersDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/enums/TransactionsEnums$Type.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/enums/TransactionsEnums$Type.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/Chapters.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/Chapters.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/ChaptersService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/ChaptersService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/OrdersService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/OrdersService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +25,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -50,49 +44,46 @@
     &quot;accountId&quot;: &quot;41dd0b56-7644-4714-8b75-7b07a32f0bf7&quot;
   }
 }</component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 0
+  &quot;associatedIndex&quot;: 4
 }</component>
-  <component name="ProjectId" id="2tIQ2EEDZDe65g4gp9ucKhX5WZj" />
+  <component name="ProjectId" id="2uXHIpGA0fGtwUbE4NeqDEzvHuT" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Unnamed.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "develop",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Spring_boot/HavenSkin",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AiComicApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ngoc__tuyen&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Spring_boot/AIComic/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.27126437&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Application.Unnamed">
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="application.aicomic.AiComicApplication" />
-      <module name="AIComic" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Spring_boot\AIComic\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Spring_boot\AIComic\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager">
     <configuration name="AiComicApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="AIComic" />
@@ -112,135 +103,76 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="7b044c7c-341c-4c6a-9bf4-08bd9deec341" name="Changes" comment="" />
-      <created>1740036901402</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1740036901402</updated>
-      <workItem from="1740036902387" duration="734000" />
-      <workItem from="1740041179747" duration="686000" />
-      <workItem from="1740109177070" duration="3768000" />
-      <workItem from="1740191320635" duration="3054000" />
-      <workItem from="1740199876665" duration="16000" />
-      <workItem from="1740208668765" duration="5000" />
-      <workItem from="1740227893229" duration="5395000" />
-      <workItem from="1740297071930" duration="14708000" />
-      <workItem from="1740363467120" duration="2543000" />
-      <workItem from="1740375297790" duration="5689000" />
-      <workItem from="1740452019226" duration="2431000" />
-      <workItem from="1740575665460" duration="1341000" />
-      <workItem from="1740634647577" duration="6608000" />
-      <workItem from="1740643557591" duration="42000" />
-      <workItem from="1740675745038" duration="2355000" />
-      <workItem from="1740919454461" duration="3205000" />
-      <workItem from="1741066784536" duration="4985000" />
-      <workItem from="1741597169163" duration="1109000" />
-      <workItem from="1741600689366" duration="27000" />
-      <workItem from="1741618512524" duration="642000" />
-      <workItem from="1741773265949" duration="4445000" />
-      <workItem from="1741843446033" duration="861000" />
-      <workItem from="1741589321788" duration="3219000" />
-      <workItem from="1741773183866" duration="3636000" />
-      <workItem from="1741827633240" duration="1936000" />
-      <workItem from="1741843034678" duration="1383000" />
-      <workItem from="1742104561448" duration="4853000" />
-      <workItem from="1742118899404" duration="376000" />
-      <workItem from="1742126114148" duration="2791000" />
-      <workItem from="1742176704713" duration="478000" />
-    </task>
-    <task id="LOCAL-00001" summary="Ready to merge">
+    <task id="LOCAL-00001" summary="Add updateUser 2">
       <option name="closed" value="true" />
-      <created>1740822039974</created>
+      <created>1742369813795</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1740822039974</updated>
+      <updated>1742369813795</updated>
     </task>
-    <task id="LOCAL-00002" summary="Ready to merge">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7b94f3aa-51bc-4475-bbeb-7e1b32c69999" name="Changes" comment="Add updateUser 2" />
+      <created>1742387922845</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1742387922845</updated>
+      <workItem from="1742387924976" duration="18000" />
+      <workItem from="1742388817986" duration="22000" />
+      <workItem from="1742449654979" duration="662000" />
+      <workItem from="1742451276768" duration="2127000" />
+      <workItem from="1742464522445" duration="778000" />
+      <workItem from="1742466030439" duration="1574000" />
+      <workItem from="1742534749670" duration="3795000" />
+      <workItem from="1742541093169" duration="1575000" />
+      <workItem from="1742559278726" duration="3257000" />
+      <workItem from="1742616911101" duration="5837000" />
+      <workItem from="1742623600524" duration="2830000" />
+      <workItem from="1742629987566" duration="528000" />
+      <workItem from="1742631097530" duration="4634000" />
+      <workItem from="1742645816560" duration="4370000" />
+      <workItem from="1742651504129" duration="1206000" />
+      <workItem from="1742708170290" duration="549000" />
+      <workItem from="1742709668681" duration="686000" />
+    </task>
+    <task id="LOCAL-00002" summary="Ready to merger">
       <option name="closed" value="true" />
-      <created>1741776931812</created>
+      <created>1742389146130</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1741776931812</updated>
+      <updated>1742389146130</updated>
     </task>
-    <task id="LOCAL-00003" summary="Merge chi_phong">
+    <task id="LOCAL-00003" summary="Login google for mobile">
       <option name="closed" value="true" />
-      <created>1741777130913</created>
+      <created>1742708438245</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1741777130913</updated>
+      <updated>1742708438245</updated>
     </task>
-    <task id="LOCAL-00004" summary="Merge from chi_phong">
-      <option name="closed" value="true" />
-      <created>1741777665394</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1741777665394</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Merge from trung_nhan">
-      <option name="closed" value="true" />
-      <created>1741778349964</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1741778349964</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Merge from all branch">
-      <option name="closed" value="true" />
-      <created>1741780132960</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1741780132960</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Add dependency">
-      <option name="closed" value="true" />
-      <created>1741780574790</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1741780574790</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Fix restFul API">
-      <option name="closed" value="true" />
-      <created>1741845441184</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1741845441184</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Add FirebaseConfig">
-      <option name="closed" value="true" />
-      <created>1741849175280</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1741849175280</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Momo payment">
-      <option name="closed" value="true" />
-      <created>1742109267611</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1742109267611</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Ready to merge" />
-    <MESSAGE value="Ready for merge" />
-    <MESSAGE value="Fix restFul API" />
-    <MESSAGE value="Add FirebaseConfig" />
-    <MESSAGE value="Momo payment" />
-    <option name="LAST_COMMIT_MESSAGE" value="Momo payment" />
+    <MESSAGE value="Add updateUser 2" />
+    <MESSAGE value="Before merge" />
+    <MESSAGE value="Ready to merger" />
+    <MESSAGE value="Login google for mobile" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login google for mobile" />
   </component>
 </project>

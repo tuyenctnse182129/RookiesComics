@@ -35,9 +35,14 @@ public class ComicsController {
         return comicsService.findByStatus(status);
     }
 
-    @GetMapping("/search")
-    public Comics getComicsById(@PathVariable String comicName) {
+    @GetMapping("/{name}")
+    public Comics getComicsByName(@PathVariable String comicName) {
         return comicsService.getComicsByName(comicName);
+    }
+
+    @GetMapping("/{id}")
+    public Comics getComicsById(@PathVariable String comicId) {
+        return comicsService.getComicsById(comicId);
     }
 
     @GetMapping("/genres/{genresName}")
@@ -59,5 +64,15 @@ public class ComicsController {
     @DeleteMapping("/{id}")
     public Comics deleteComics(@PathVariable String id) {
         return comicsService.deleteComics(id);
+    }
+
+    @GetMapping("/top-week")
+    public List<Comics> getTopWeekComics() {
+        return comicsService.getTopComicsWeek();
+    }
+
+    @GetMapping("/top-month")
+    public List<Comics> getTopMonthComics() {
+        return comicsService.getTopComicsMonth();
     }
 }
