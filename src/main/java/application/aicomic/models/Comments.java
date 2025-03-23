@@ -17,7 +17,7 @@ public class Comments {
     @Column(name = "comment_id", length = 50)
     private String commentId;
 
-    @Column(name = "content", length = 250)
+    @Column(name = "content", length = 10000)
     private String content;
 
     @NotNull

@@ -39,7 +39,7 @@ public class Chapters {
     private LocalDateTime publishedDate;
 
     @NotNull
-    @Column(name = "description", length = 250)
+    @Column(name = "description", length = 10000)
     private String description;
 
     @Column(name = "status")
@@ -57,7 +57,6 @@ public class Chapters {
     @OneToMany(mappedBy = "chapter")
     private List<Comments> comments;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "chapter")
     private List<ChapterImages> chapterImages;
 

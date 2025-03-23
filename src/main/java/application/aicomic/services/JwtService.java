@@ -30,7 +30,7 @@ public class JwtService {
                 .setSubject(email)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // 1 giờ
-                .signWith(getSigningKey())
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256) // Fix: Thêm thuật toán
                 .compact();
     }
 
@@ -44,10 +44,11 @@ public class JwtService {
     }
 
     private Claims extractAllClaims(String token) {
-        JwtParser parser = Jwts.parser().build();
-
-        Jws<Claims> claimsJws = parser.parseClaimsJws(token);
-        return claimsJws.getBody();
+        return Jwts.parser() // Thay vì parserBuilder()
+                .setSigningKey(getSigningKey()) // Fix: Thêm khóa xác thực
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
     }
 
     public boolean isTokenValid(String token, String email) {
@@ -59,4 +60,3 @@ public class JwtService {
         return extractClaim(token, Claims::getExpiration).before(new Date());
     }
 }
-

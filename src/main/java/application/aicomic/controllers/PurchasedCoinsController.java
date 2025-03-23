@@ -2,6 +2,7 @@ package application.aicomic.controllers;
 
 import java.util.List;
 
+import application.aicomic.dataAccess.MonthlyRevenueDTO;
 import application.aicomic.repositories.PurchasedCoinsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -48,5 +49,9 @@ public class PurchasedCoinsController {
         return purchasedCoinsService.deletePurchasedCoins(id);
     }
 
+    @GetMapping("/revenue/monthly")
+    public List<MonthlyRevenueDTO> getMonthlyRevenue() {
+        return purchasedCoinsService.getMonthlyRevenue();
+    }
 }
 

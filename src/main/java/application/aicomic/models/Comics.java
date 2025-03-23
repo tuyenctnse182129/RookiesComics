@@ -35,10 +35,10 @@ public class Comics {
     private int quantityChap;
 
     @NotNull
-    @Column(name = "cover_url", length = 250)
+    @Column(name = "cover_url", length = 1000)
     private String coverUrl;
 
-    @Column(name = "description", length = 250)
+    @Column(name = "description", length = 10000)
     private String description;
 
     @NotNull
