@@ -37,12 +37,9 @@ public class ComicsService {
         return comicsRepository.findByComicName(comicName).orElse(null);
     }
     public Comics getComicsByID(String comicId) {
-        return comicsRepository.findByComicID(comicId).orElse(null);
-    }
-
-    public Comics getComicsById(String comicId) {
         return comicsRepository.findByComicId(comicId).orElse(null);
     }
+
 
     public List<Comics> findByStatus(byte status){
         return comicsRepository.findByStatus(status);

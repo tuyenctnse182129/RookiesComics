@@ -38,10 +38,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-
-    date = "2025-03-21T22:55:09+0700",
+    date = "2025-03-23T17:56:46+0700",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.12 (Oracle Corporation)"
-
 )
 @Component
 public class MapperImpl implements Mapper {
@@ -68,6 +66,7 @@ public class MapperImpl implements Mapper {
         chapters.setChapterId( chaptersDTO.getChapterId() );
         chapters.setChapterName( chaptersDTO.getChapterName() );
         chapters.setComicId( chaptersDTO.getComicId() );
+        chapters.setModComment( chaptersDTO.getModComment() );
         chapters.setPublishedDate( chaptersDTO.getPublishedDate() );
         chapters.setDescription( chaptersDTO.getDescription() );
         chapters.setStatus( chaptersDTO.getStatus() );
@@ -85,6 +84,7 @@ public class MapperImpl implements Mapper {
         chapters.setChapterId( chaptersDTO.getChapterId() );
         chapters.setChapterName( chaptersDTO.getChapterName() );
         chapters.setComicId( chaptersDTO.getComicId() );
+        chapters.setModComment( chaptersDTO.getModComment() );
         chapters.setPublishedDate( chaptersDTO.getPublishedDate() );
         chapters.setDescription( chaptersDTO.getDescription() );
         chapters.setStatus( chaptersDTO.getStatus() );

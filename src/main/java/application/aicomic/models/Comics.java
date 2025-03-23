@@ -65,7 +65,7 @@ public class Comics {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "chapter_id", referencedColumnName = "chapter_id", insertable = false, updatable = false)
     private Chapters chapters;
 
     @JsonIgnore

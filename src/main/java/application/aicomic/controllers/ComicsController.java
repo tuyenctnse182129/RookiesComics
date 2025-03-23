@@ -44,10 +44,6 @@ public class ComicsController {
         return comicsService.getComicsByID(comicId);
     }
 
-    @GetMapping("/{id}")
-    public Comics getComicsById(@PathVariable String comicId) {
-        return comicsService.getComicsById(comicId);
-    }
 
     @GetMapping("/genres/{genresName}")
     public ResponseEntity<List<Comics>> getComicsByGenres_GenresName(@PathVariable String genresName){
