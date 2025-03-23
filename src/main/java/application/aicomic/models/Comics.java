@@ -64,6 +64,11 @@ public class Comics {
     private Users user;
 
     @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+    private Chapters chapters;
+
+    @JsonIgnore
     @ManyToMany(mappedBy = "comics")
     private List<Bookshelves> bookshelves;
 
@@ -71,7 +76,4 @@ public class Comics {
     @OneToOne(mappedBy = "comics")
     private Orders orders;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "comic")
-    private List<Chapters> chapters;
 }
