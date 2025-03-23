@@ -27,7 +27,8 @@ public enum TransactionsEnums {
     public enum Type {
         // Type Enums
         ROLE_UPGRADE((byte) 1),
-        BUYING_STORIES((byte) 2);
+        BUYING_STORIES((byte) 2),
+        PAY_FEE((byte) 3);
 
         private final byte value;
 

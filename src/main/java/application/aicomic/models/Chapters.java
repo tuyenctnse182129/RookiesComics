@@ -34,6 +34,9 @@ public class Chapters {
     @Column(name = "comic_id", length = 50)
     private String comicId;
 
+    @Column(name = "mod_comment", length = 1000)
+    private String modComment;
+
     @NotNull
     @Column(name = "published_date")
     private LocalDateTime publishedDate;

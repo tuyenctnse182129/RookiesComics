@@ -4,110 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b94f3aa-51bc-4475-bbeb-7e1b32c69999" name="Changes" comment="Ready to merger">
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/config/OAuth2ClientConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/dataAccess/MonthlyRevenueDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/FirebaseInitializer.java" afterDir="false" />
+    <list default="true" id="7b94f3aa-51bc-4475-bbeb-7e1b32c69999" name="Changes" comment="Login google for mobile">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/config/FirebaseConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/config/FirebaseConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/ComicsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/ComicsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/PurchasedCoinsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/PurchasedCoinsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/UsersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Bookshelves.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Bookshelves.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/ChapterImages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/ChapterImages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/dataAccess/ChaptersDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/dataAccess/ChaptersDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/enums/TransactionsEnums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/enums/TransactionsEnums.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Chapters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Chapters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Comics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Comics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Comments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Comments.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Genres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Genres.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/PurchasedCoins.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/PurchasedCoins.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Users.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/repositories/ComicsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/repositories/ComicsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/repositories/OrdersRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/repositories/OrdersRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/repositories/PurchasedCoinsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/repositories/PurchasedCoinsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/ComicsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/ComicsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/CustomOAuth2UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/CustomOAuth2UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/ChaptersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/ChaptersService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/OrdersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/OrdersService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/PurchasedCoinsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/PurchasedCoinsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/config/FirebaseConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/config/FirebaseConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/config/MomoConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/config/MomoConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/config/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/ComicsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/ComicsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/PurchasedCoinsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/PurchasedCoinsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/UsersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/UsersController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/BookshelvesDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/BookshelvesDTO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/ChaptersDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/ChaptersDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/ComicsDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/ComicsDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/ComicsServiceResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/ComicsServiceResponseDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/CommentsDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/CommentsDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/CreateMomoRequest$CreateMomoRequestBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/CreateMomoRequest$CreateMomoRequestBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/CreateMomoRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/CreateMomoRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/CreateMomoResponse$CreateMomoResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/CreateMomoResponse$CreateMomoResponseBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/CreateMomoResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/CreateMomoResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/CurrentChapterDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/CurrentChapterDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/GenresDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/GenresDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/MomoIPNResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/MomoIPNResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/OrderDetailsDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/OrderDetailsDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/OrdersDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/OrdersDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/OrdersServiceResponseDTO$OrdersServiceResponseDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/OrdersServiceResponseDTO$OrdersServiceResponseDTOBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/OrdersServiceResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/OrdersServiceResponseDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/PurchasedCoinsDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/PurchasedCoinsDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/TransactionsDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/TransactionsDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/UserServiceResponseDto$UserServiceResponseDtoBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/UserServiceResponseDto$UserServiceResponseDtoBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/UserServiceResponseDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/UserServiceResponseDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/UsersDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/UsersDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/WalletsDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/WalletsDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/enums/BookshelvesEnums.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/enums/BookshelvesEnums.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/enums/ChaptersEnums$Type.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/enums/ChaptersEnums$Type.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/enums/ChaptersEnums.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/enums/ChaptersEnums.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/enums/ComicsEnums.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/enums/ComicsEnums.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/enums/CommentsEnums.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/enums/CommentsEnums.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/enums/CurrentChapterEnums.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/enums/CurrentChapterEnums.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/enums/GenresEnums.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/enums/GenresEnums.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/enums/OrderDetailsEnums.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/enums/OrderDetailsEnums.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/enums/OrdersEnums.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/enums/OrdersEnums.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/enums/PurchasedCoinsEnums.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/enums/PurchasedCoinsEnums.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/enums/Role$Status.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/enums/Role$Status.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/enums/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/enums/Role.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/enums/TransactionsEnums$Type.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/enums/TransactionsEnums$Type.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/enums/TransactionsEnums.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/enums/TransactionsEnums.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/enums/WalletType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/enums/WalletType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/mapper/Mapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/mapper/Mapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/mapper/MapperImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/mapper/MapperImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/Bookshelves.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/Bookshelves.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/ChapterImages.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/ChapterImages.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/Chapters.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/Chapters.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/Comics.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/Comics.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/Comments.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/Comments.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/CurrentChapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/CurrentChapter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/Genres.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/Genres.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/OrderDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/OrderDetails.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/Orders.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/Orders.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/PurchasedCoins.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/PurchasedCoins.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/Transactions.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/Transactions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/Users.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/Users.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/Wallets.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/Wallets.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/repositories/ComicsRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/repositories/ComicsRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/BookshelvesService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/BookshelvesService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/ChaptersService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/ChaptersService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/ComicsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/ComicsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/CommentsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/CommentsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/CurrentChapterService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/CurrentChapterService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/CustomOAuth2UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/CustomOAuth2UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/GenresService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/GenresService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/JwtService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/JwtService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/MomoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/MomoService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/OrderDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/OrderDetailsService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/OrdersService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/OrdersService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/PurchasedCoinsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/PurchasedCoinsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/TransactionsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/TransactionsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/UsersService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/UsersService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/WalletsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/WalletsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/application/aicomic/mapper/MapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/application/aicomic/mapper/MapperImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,7 +132,8 @@
       <workItem from="1742631097530" duration="4634000" />
       <workItem from="1742645816560" duration="4370000" />
       <workItem from="1742651504129" duration="1206000" />
-      <workItem from="1742708170290" duration="214000" />
+      <workItem from="1742708170290" duration="549000" />
+      <workItem from="1742709668681" duration="686000" />
     </task>
     <task id="LOCAL-00002" summary="Ready to merger">
       <option name="closed" value="true" />
@@ -234,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742389146130</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Login google for mobile">
+      <option name="closed" value="true" />
+      <created>1742708438245</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1742708438245</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,6 +172,7 @@
     <MESSAGE value="Add updateUser 2" />
     <MESSAGE value="Before merge" />
     <MESSAGE value="Ready to merger" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ready to merger" />
+    <MESSAGE value="Login google for mobile" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login google for mobile" />
   </component>
 </project>

@@ -92,7 +92,7 @@ public class ChaptersService {
     /**
      * Moderator reviews a chapter and updates the creator's PROMOTION wallet balance if approved.
      */
-    public Chapters reviewChapter(String chapterId, boolean isApproved, String userId) {
+    public Chapters reviewChapter(String chapterId, boolean isApproved, String userId, String modComment) {
         Users moderator = usersRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Moderator not found."));
 
@@ -131,6 +131,11 @@ public class ChaptersService {
             }
         } else {
             chapter.setStatus(ChaptersEnums.DELETED.getValue());
+            if (modComment != null && !modComment.isBlank()) {
+                chapter.setModComment(modComment);
+            } else {
+                chapter.setModComment("Declined without comment.");
+            }
         }
 
         return chaptersRepository.save(chapter);
