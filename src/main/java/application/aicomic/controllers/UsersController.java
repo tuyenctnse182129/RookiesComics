@@ -165,7 +165,7 @@ public class UsersController {
             Users user = usersRepository.findByEmail(email).orElseThrow();
 
             // Tạo JWT
-            String token = jwtService.generateToken(user.getEmail(), String.valueOf(user.getRole()));
+            String token = jwtService.generateToken(user.getEmail(), String.valueOf(user.getRole()), user.getEmail());
 
             String redirectUrl = switch (user.getRole()) {
                 case 1, 2 -> "/admin";
@@ -212,12 +212,13 @@ public class UsersController {
             });
 
             // Tạo JWT token
-            String token = jwtService.generateToken(user.getEmail(), String.valueOf(user.getRole()));
+            String token = jwtService.generateToken(user.getEmail(), String.valueOf(user.getRole()), user.getUserId());
 
             return ResponseEntity.ok(Map.of(
                     "token", token,
                     "email", user.getEmail(),
-                    "role", user.getRole()
+                    "role", user.getRole(),
+                    "userId", user.getUserId()
             ));
 
         } catch (Exception e) {

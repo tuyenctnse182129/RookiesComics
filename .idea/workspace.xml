@@ -4,18 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b94f3aa-51bc-4475-bbeb-7e1b32c69999" name="Changes" comment="Login google for mobile">
+    <list default="true" id="7b94f3aa-51bc-4475-bbeb-7e1b32c69999" name="Changes" comment="Merge all branch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/dataAccess/ChaptersDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/dataAccess/ChaptersDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/enums/TransactionsEnums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/enums/TransactionsEnums.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Chapters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Chapters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/ChaptersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/ChaptersService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/OrdersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/OrdersService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/ChaptersDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/dataAccess/ChaptersDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/enums/TransactionsEnums$Type.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/enums/TransactionsEnums$Type.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/Chapters.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/Chapters.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/ChaptersService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/ChaptersService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/OrdersService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/OrdersService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/UsersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/UsersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/UsersController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/JwtService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/JwtService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +127,8 @@
       <workItem from="1742645816560" duration="4370000" />
       <workItem from="1742651504129" duration="1206000" />
       <workItem from="1742708170290" duration="549000" />
-      <workItem from="1742709668681" duration="686000" />
+      <workItem from="1742709668681" duration="1508000" />
+      <workItem from="1742714357271" duration="1554000" />
     </task>
     <task id="LOCAL-00002" summary="Ready to merger">
       <option name="closed" value="true" />
@@ -151,7 +146,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742708438245</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Merge all branch">
+      <option name="closed" value="true" />
+      <created>1742710399600</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1742710399600</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +176,7 @@
     <MESSAGE value="Before merge" />
     <MESSAGE value="Ready to merger" />
     <MESSAGE value="Login google for mobile" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login google for mobile" />
+    <MESSAGE value="Merge all branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge all branch" />
   </component>
 </project>
