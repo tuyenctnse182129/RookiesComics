@@ -34,12 +34,15 @@ public class Chapters {
     @Column(name = "comic_id", length = 50)
     private String comicId;
 
+    @Column(name = "mod_comment", length = 1000)
+    private String modComment;
+
     @NotNull
     @Column(name = "published_date")
     private LocalDateTime publishedDate;
 
     @NotNull
-    @Column(name = "description", length = 250)
+    @Column(name = "description", length = 10000)
     private String description;
 
     @Column(name = "status")
@@ -57,7 +60,6 @@ public class Chapters {
     @OneToMany(mappedBy = "chapter")
     private List<Comments> comments;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "chapter")
     private List<ChapterImages> chapterImages;
 

@@ -16,7 +16,7 @@ public class FirebaseConfig {
     public FirebaseApp firebaseApp() throws IOException {
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(
-                        new ClassPathResource("rookiescomics-firebase-adminsdk-fbsvc-c681c2c375.json").getInputStream()))
+                        new ClassPathResource("rookiescomics-firebase-adminsdk-fbsvc-817f901139.json").getInputStream()))
                 .setStorageBucket("rookiescomics.firebasestorage.app")
                 .build();
 

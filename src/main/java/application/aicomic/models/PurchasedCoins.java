@@ -22,7 +22,7 @@ public class PurchasedCoins {
     @Column(name = "transaction_code", length = 50)
     private String transactionCode;
 
-    @Column(name = "content", length = 255)
+    @Column(name = "content", length = 10000)
     private String content;
 
     @Column(name = "bank_name", length = 50)

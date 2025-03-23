@@ -53,7 +53,7 @@ public class Users {
     @Column(name = "phone_number", length = 10)
     private String phoneNumber;
 
-    @Column(name = "avatar_url", length = 255)
+    @Column(name = "avatar_url", length = 1000)
     private String avatarUrl;
 
     @NotNull

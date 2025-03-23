@@ -21,7 +21,7 @@ public class Genres {
     @Column(name = "genres_name", length = 50)
     private String genresName;
 
-    @Column(name = "genres_description", length = 250)
+    @Column(name = "genres_description", length = 10000)
     private String genresDescription;
 
     @NotNull

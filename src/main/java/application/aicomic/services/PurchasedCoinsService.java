@@ -1,9 +1,12 @@
 package application.aicomic.services;
 
+import application.aicomic.dataAccess.MonthlyRevenueDTO;
 import application.aicomic.dataAccess.PurchasedCoinsDTO;
+import application.aicomic.enums.OrdersEnums;
 import application.aicomic.enums.PurchasedCoinsEnums;
 import application.aicomic.enums.WalletType;
 import application.aicomic.mapper.Mapper;
+import application.aicomic.models.Orders;
 import application.aicomic.models.PurchasedCoins;
 import application.aicomic.models.Wallets;
 import application.aicomic.repositories.PurchasedCoinsRepository;
@@ -12,9 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PurchasedCoinsService {
@@ -82,5 +90,35 @@ public class PurchasedCoinsService {
         purchasedCoins.setUserId(userId);
 
         return purchasedCoinsRepository.save(purchasedCoins);
+    }
+
+    public List<MonthlyRevenueDTO> getMonthlyRevenue() {
+        List<PurchasedCoins> paidPurchasedCoins = purchasedCoinsRepository.findByStatus(PurchasedCoinsEnums.PAID.getValue());
+
+        // Lấy múi giờ hệ thống
+        ZoneId zoneId = ZoneId.systemDefault();
+
+        // Nhóm theo tháng và tính tổng doanh thu mua xu
+        Map<String, Double> revenueMap = paidPurchasedCoins.stream()
+                .collect(Collectors.groupingBy(
+                        purchasedCoins -> {
+                            LocalDateTime purchaseTime = purchasedCoins.getPurchaseTime();
+                            ZonedDateTime zonedDateTime = purchaseTime.atZone(zoneId);
+                            return zonedDateTime.getYear() + "-" + zonedDateTime.getMonthValue();
+                        },
+                        Collectors.summingDouble(PurchasedCoins::getAmount)
+                ));
+
+        // Chuyển Map thành danh sách DTO
+        return revenueMap.entrySet().stream()
+                .map(entry -> {
+                    String[] parts = entry.getKey().split("-");
+                    int year = Integer.parseInt(parts[0]);
+                    int month = Integer.parseInt(parts[1]);
+                    return new MonthlyRevenueDTO(month, year, entry.getValue());
+                })
+                .sorted(Comparator.comparing(MonthlyRevenueDTO::getYear)
+                        .thenComparing(MonthlyRevenueDTO::getMonth))
+                .collect(Collectors.toList());
     }
 }

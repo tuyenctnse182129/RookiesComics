@@ -32,7 +32,7 @@ public class Bookshelves {
     @Column(name = "bookshelve_name", length = 50, nullable = false)
     private String bookshelveName;
 
-    @Column(name = "description", length = 250)
+    @Column(name = "description", length = 10000)
     private String description;
 
     @NotNull
