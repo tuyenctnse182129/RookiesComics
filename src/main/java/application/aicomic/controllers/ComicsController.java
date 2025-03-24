@@ -30,20 +30,11 @@ public class ComicsController {
         return comicsService.getAllComics();
     }
 
-    @GetMapping("/{status}")
-    public List<Comics> findByStatus(byte status){
-        return comicsService.findByStatus(status);
-    }
 
-    @GetMapping("/{name}")
-    public Comics getComicsByName(@PathVariable String comicName) {
-        return comicsService.getComicsByName(comicName);
-    }
-    @GetMapping("/{id}")
+    @GetMapping("/{comicId}")
     public Comics getComicsById(@PathVariable String comicId) {
         return comicsService.getComicsByID(comicId);
     }
-
 
     @GetMapping("/genres/{genresName}")
     public ResponseEntity<List<Comics>> getComicsByGenres_GenresName(@PathVariable String genresName){
