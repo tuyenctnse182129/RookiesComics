@@ -20,7 +20,7 @@ public class Wallets {
     private String walletId;
 
     @Column(name = "wallet_type")
-    private  WalletType type;
+    private WalletType type;
 
     @Column(name = "balance")
     private double balance;

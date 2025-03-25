@@ -127,7 +127,6 @@ public class UsersController {
             if (credential == null || credential.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", "Missing credential"));
             }
-
             GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(
                     new NetHttpTransport(),
                     JacksonFactory.getDefaultInstance())
@@ -140,32 +139,11 @@ public class UsersController {
             }
 
             GoogleIdToken.Payload payload = idToken.getPayload();
+            Users user = processUser(payload);
 
-            // Sử dụng CustomOAuth2UserService để tạo user nếu chưa tồn tại
-            OAuth2UserRequest userRequest = new OAuth2UserRequest(
-                    ClientRegistration.withRegistrationId("google")
-                            .clientId(webClientId)
-                            .clientSecret(googleClientSecret)
-                            .authorizationUri("https://accounts.google.com/o/oauth2/v2/auth")
-                            .tokenUri("https://oauth2.googleapis.com/token")
-                            .userInfoUri("https://www.googleapis.com/oauth2/v3/userinfo")
-                            .userNameAttributeName("email")
-                            .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_POST)
-                            .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-                            .redirectUri("{baseUrl}/login/oauth2/code/{registrationId}")
-                            .scope("email", "profile")
-                            .build(),
-                    new OAuth2AccessToken(OAuth2AccessToken.TokenType.BEARER, credential, null, null)
-            );
-
-            OAuth2User oAuth2User = customOAuth2UserService.loadUser(userRequest);
-
-            // Lấy thông tin user
-            String email = oAuth2User.getAttribute("email");
-            Users user = usersRepository.findByEmail(email).orElseThrow();
 
             // Tạo JWT
-            String token = jwtService.generateToken(user.getEmail(), String.valueOf(user.getRole()), user.getEmail());
+            String token = jwtService.generateToken(user.getEmail(), String.valueOf(user.getRole()), user.getUserId());
 
             String redirectUrl = switch (user.getRole()) {
                 case 1, 2 -> "/admin";
@@ -185,6 +163,23 @@ public class UsersController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "Authentication failed: " + e.getMessage()));
         }
+    }
+
+    private Users processUser(GoogleIdToken.Payload payload) {
+        String email = payload.getEmail();
+        String firstName = (String) payload.get("given_name");
+        String lastName = (String) payload.get("family_name");
+
+        Optional<Users> userOptional = usersRepository.findByEmail(email);
+        return userOptional.orElseGet(() -> {
+            Users newUser = new Users();
+            newUser.setEmail(email);
+            newUser.setFirstName(firstName);
+            newUser.setLastName(lastName);
+
+            newUser.setRole((byte) 5);
+            return usersRepository.save(newUser);
+        });
     }
 
     @PostMapping("/auth/google/android")

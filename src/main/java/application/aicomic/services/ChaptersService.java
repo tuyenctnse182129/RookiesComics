@@ -2,17 +2,15 @@ package application.aicomic.services;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import application.aicomic.enums.ChaptersEnums;
-import application.aicomic.enums.Role;
 import application.aicomic.enums.WalletType;
+import application.aicomic.models.ChapterImages;
 import application.aicomic.models.Chapters;
 import application.aicomic.models.Comics;
 import application.aicomic.models.Users;
-import application.aicomic.models.Wallets;
 import application.aicomic.repositories.ChaptersRepository;
 import application.aicomic.repositories.ComicsRepository;
 import application.aicomic.repositories.UsersRepository;
@@ -50,36 +48,41 @@ public class ChaptersService {
     /**
      * Add a new chapter. It will be set to PENDING and needs MODERATOR approval.
      */
-    public Chapters addChapter(Chapters chapter, String userId) {
-        Users user = usersRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found."));
-
-        if (!isAuthorizedToManageChapters(user)) {
-            throw new SecurityException("Unauthorized to create a chapter.");
-        }
-
+    public Chapters addChapter(Chapters chapter) {
         chapter.setStatus(ChaptersEnums.PENDING.getValue());
         chapter.setPublishedDate(LocalDateTime.now());
 
-        return chaptersRepository.save(chapter);
+        // Extract the images temporarily
+        List<ChapterImages> originalImages = chapter.getChapterImages();
+        chapter.setChapterImages(null); // avoid premature cascade issues
+
+        // Save chapter to generate chapterId
+        Chapters savedChapter = chaptersRepository.save(chapter);
+
+        // Reattach and fix each image if not null
+        if (originalImages != null && !originalImages.isEmpty()) {
+            for (ChapterImages image : originalImages) {
+                if (image.getImageURL() != null && !image.getImageURL().isBlank()) {
+                    image.setChapterId(savedChapter.getChapterId());
+                }
+            }
+            savedChapter.setChapterImages(originalImages);
+            savedChapter = chaptersRepository.save(savedChapter); // save again with images attached
+        }
+
+        return savedChapter;
     }
+
 
     /**
      * Update a chapter only if its status is PENDING.
      */
-    public Chapters updateChapter(String chapterId, Chapters updatedChapter, String userId) {
-        Users user = usersRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found."));
-
-        if (!isAuthorizedToManageChapters(user)) {
-            throw new SecurityException("Unauthorized to update a chapter.");
-        }
-
+    public Chapters updateChapter(String chapterId, Chapters updatedChapter) {
         Chapters existingChapter = chaptersRepository.findById(chapterId)
                 .orElseThrow(() -> new RuntimeException("Chapter not found."));
 
         if (existingChapter.getStatus() != ChaptersEnums.PENDING.getValue()) {
-            throw new IllegalStateException("You can only update a chapter when its status is PENDING.");
+            throw new IllegalStateException("Only PENDING chapters can be updated.");
         }
 
         existingChapter.setChapterName(updatedChapter.getChapterName());
@@ -92,14 +95,7 @@ public class ChaptersService {
     /**
      * Moderator reviews a chapter and updates the creator's PROMOTION wallet balance if approved.
      */
-    public Chapters reviewChapter(String chapterId, boolean isApproved, String userId, String modComment) {
-        Users moderator = usersRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("Moderator not found."));
-
-        if (!isModerator(moderator)) {
-            throw new SecurityException("Only moderators can review chapters.");
-        }
-
+    public Chapters reviewChapter(String chapterId, boolean isApproved, String modComment) {
         Chapters chapter = chaptersRepository.findById(chapterId)
                 .orElseThrow(() -> new RuntimeException("Chapter not found."));
 
@@ -108,34 +104,34 @@ public class ChaptersService {
         }
 
         if (isApproved) {
-            chapter.setStatus(ChaptersEnums.UNLOCKED.getValue());
-
-            Comics comic = comicsRepository.findById(chapter.getComicId())
-                    .orElseThrow(() -> new RuntimeException("Comic not found."));
-
-            Users comicCreator = usersRepository.findById(comic.getUserId())
-                    .orElseThrow(() -> new RuntimeException("Comic creator not found."));
-
             ChaptersEnums.Type chapterType = ChaptersEnums.Type.fromValue(chapter.getType());
+
             if (chapterType == ChaptersEnums.Type.PAID) {
-                Optional<Wallets> promotionWalletOpt = walletsRepository.findByUserAndType(comicCreator,
-                        WalletType.PROMOTION);
+                chapter.setStatus(ChaptersEnums.LOCKED.getValue());
 
-                if (promotionWalletOpt.isPresent()) {
-                    Wallets promotionWallet = promotionWalletOpt.get();
-                    promotionWallet.setBalance(promotionWallet.getBalance() + 699); // Reward amount can be adjusted
-                    promotionWallet.setUpdatedDate(LocalDateTime.now());
+                Comics comic = comicsRepository.findById(chapter.getComicId())
+                        .orElseThrow(() -> new RuntimeException("Comic not found."));
 
-                    walletsRepository.save(promotionWallet);
-                }
+                Users comicCreator = usersRepository.findById(comic.getUserId())
+                        .orElseThrow(() -> new RuntimeException("Comic creator not found."));
+
+                walletsRepository.findByUserAndType(comicCreator, WalletType.PROMOTION)
+                        .ifPresent(wallet -> {
+                            wallet.setBalance(wallet.getBalance() + 699);
+                            wallet.setUpdatedDate(LocalDateTime.now());
+                            walletsRepository.save(wallet);
+                        });
+
+            } else if (chapterType == ChaptersEnums.Type.FREE) {
+                chapter.setStatus(ChaptersEnums.UNLOCKED.getValue());
             }
         } else {
             chapter.setStatus(ChaptersEnums.DELETED.getValue());
-            if (modComment != null && !modComment.isBlank()) {
-                chapter.setModComment(modComment);
-            } else {
-                chapter.setModComment("Declined without comment.");
-            }
+            chapter.setModComment(
+                    (modComment != null && !modComment.isBlank())
+                            ? modComment
+                            : "Declined without comment."
+            );
         }
 
         return chaptersRepository.save(chapter);
@@ -144,14 +140,7 @@ public class ChaptersService {
     /**
      * Delete a chapter.
      */
-    public void deleteChapter(String chapterId, String userId) {
-        Users user = usersRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found."));
-
-        if (!isAuthorizedToManageChapters(user)) {
-            throw new SecurityException("Unauthorized to delete this chapter.");
-        }
-
+    public void deleteChapter(String chapterId) {
         if (!chaptersRepository.existsById(chapterId)) {
             throw new RuntimeException("Chapter not found.");
         }
@@ -159,19 +148,5 @@ public class ChaptersService {
         chaptersRepository.deleteById(chapterId);
     }
 
-    /**
-     * Check if a user is authorized to manage chapters.
-     */
-    private boolean isAuthorizedToManageChapters(Users user) {
-        Role userRole = Role.fromValue(user.getRole()); 
-        return userRole == Role.CUSTOMER_AUTHOR || userRole == Role.CUSTOMER_VIP || userRole == Role.ADMIN;
-    }
 
-    /**
-     * Check if the user is a moderator.
-     */
-    private boolean isModerator(Users user) {
-        Role userRole = Role.fromValue(user.getRole()); 
-        return userRole == Role.MODERATOR;
-    }
 }

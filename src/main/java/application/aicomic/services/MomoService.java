@@ -23,29 +23,31 @@ public class MomoService {
     private final MomoConfig momoConfig;
     private final MomoRepository momoRepository;
     private final PurchasedCoinsService purchasedCoinsService;
+    private final WalletsService walletsService;
 
     @Autowired
-    public MomoService(MomoConfig momoConfig, MomoRepository momoRepository, PurchasedCoinsService purchasedCoinsService) {
+    public MomoService(MomoConfig momoConfig, MomoRepository momoRepository, PurchasedCoinsService purchasedCoinsService, WalletsService walletsService) {
         this.momoConfig = momoConfig;
         this.momoRepository = momoRepository;
         this.purchasedCoinsService = purchasedCoinsService;
+        this.walletsService = walletsService;
     }
 
-    public CreateMomoResponse createQR(String price, String coin, String userId) {
+    public CreateMomoResponse createQR(String price, String coin, String userId, String returnUrl, String ipnUrl) {
         log.info("Tạo QR cho đơn hàng với giá: {}", price);
 
         String orderId = UUID.randomUUID().toString();
         String orderInfo = "Thanh toán đơn hàng với số coin: " + coin;
         String requestId = UUID.randomUUID().toString();
-        String extraData = "Không có khuyến mãi";
+        String extraData = coin; // Truyền coin vào extraData
         long amount = Long.parseLong(price);
         long numberOfCoin = Long.parseLong(coin);
 
         // Tạo chữ ký bảo mật
         String rawSignature = String.format(
                 "accessKey=%s&amount=%s&extraData=%s&ipnUrl=%s&orderId=%s&orderInfo=%s&partnerCode=%s&redirectUrl=%s&requestId=%s&requestType=%s",
-                momoConfig.getAccessKey(), amount, extraData, momoConfig.getIpnUrl(), orderId, orderInfo,
-                momoConfig.getPartnerCode(), momoConfig.getReturnUrl(), requestId, momoConfig.getRequestType());
+                momoConfig.getAccessKey(), amount, extraData, ipnUrl, orderId, orderInfo,
+                momoConfig.getPartnerCode(), returnUrl, requestId, momoConfig.getRequestType());
 
         String prettySignature;
         try {
@@ -63,12 +65,12 @@ public class MomoService {
         CreateMomoRequest request = CreateMomoRequest.builder()
                 .partnerCode(momoConfig.getPartnerCode())
                 .requestType(momoConfig.getRequestType())
-                .ipnUrl(momoConfig.getIpnUrl())
-                .redirectUrl(momoConfig.getReturnUrl())
+                .ipnUrl(ipnUrl)
+                .redirectUrl(returnUrl)
                 .orderId(orderId)
                 .orderInfo(orderInfo)
                 .requestId(requestId)
-                .extraData(extraData)
+                .extraData(extraData) // Chứa số coin
                 .amount(amount)
                 .signature(prettySignature)
                 .lang("vi")
@@ -76,7 +78,7 @@ public class MomoService {
 
         CreateMomoResponse response = momoRepository.createMomoQR(request);
 
-        // Lưu giao dịch vào database với trạng thái "NOT_PAID" (đang chờ thanh toán)
+        // Lưu thông tin giao dịch vào DB
         purchasedCoinsService.createPurchasedCoins(orderId, orderInfo, momoConfig.getPartnerCode(),
                 amount, numberOfCoin, PurchasedCoinsEnums.NOT_PAID, userId);
 
@@ -94,26 +96,65 @@ public class MomoService {
         String statusCode = String.valueOf(ipnResponse.getResultCode());
         PurchasedCoinsEnums status = statusCode.equals("0") ? PurchasedCoinsEnums.PAID : PurchasedCoinsEnums.CANCELED;
 
-        // Lấy userId từ IPN response
-        String userId = ipnResponse.getUserId();
-        if (userId == null || userId.isBlank()) {
-            log.error("UserId không có trong IPN Response");
+        // Lấy thông tin từ DB theo orderId
+        PurchasedCoins purchasedCoins = purchasedCoinsService.findByOrderId(ipnResponse.getOrderId());
+        if (purchasedCoins == null) {
+            log.error("Không tìm thấy giao dịch với orderId: {}", ipnResponse.getOrderId());
             return false;
         }
 
-        purchasedCoinsService.createPurchasedCoins(
-                ipnResponse.getOrderId(),
-                "Thanh toán đơn hàng",
-                momoConfig.getPartnerCode(),
-                ipnResponse.getAmount(),
-                ipnResponse.getAmount(),
-                status,
-                userId
-        );
+        long numberOfCoin = (long) purchasedCoins.getNumberOfCoin();
+        String userId = purchasedCoins.getUserId();
 
+        purchasedCoinsService.updateStatus(ipnResponse.getOrderId(), status);
+
+        if (status == PurchasedCoinsEnums.PAID) {
+            walletsService.updateBalance(userId, numberOfCoin);
+        }
+
+        log.info("Cập nhật số dư cho user {} với số coin {}", userId, numberOfCoin);
         return true;
     }
 
+
+
+//    public boolean handleMomoIPN(MomoIPNResponse ipnResponse) {
+//        log.info("Nhận IPN từ MoMo: {}", ipnResponse);
+//
+//        if (ipnResponse == null || ipnResponse.getOrderId() == null) {
+//            log.error("IPN không hợp lệ, thiếu orderId");
+//            return false;
+//        }
+//
+//        String statusCode = String.valueOf(ipnResponse.getResultCode());
+//        PurchasedCoinsEnums status = statusCode.equals("0") ? PurchasedCoinsEnums.PAID : PurchasedCoinsEnums.CANCELED;
+//
+//        // Lấy userId từ IPN response
+//        String userId = ipnResponse.getUserId();
+//        if (userId == null || userId.isBlank()) {
+//            log.error("UserId không có trong IPN Response");
+//            return false;
+//        }
+//
+//        purchasedCoinsService.createPurchasedCoins(
+//                ipnResponse.getOrderId(),
+//                "Thanh toán đơn hàng",
+//                momoConfig.getPartnerCode(),
+//                ipnResponse.getAmount(),
+//                ipnResponse.getAmount(),
+//                status,
+//                userId
+//        );
+//        log.info("Đã tạo PurchasedCoins cho user {} với số tiền {}", userId, ipnResponse.getAmount());
+//
+//        if (status == PurchasedCoinsEnums.PAID) {
+//            walletsService.updateBalance(userId, ipnResponse.getAmount());
+//        }
+//        log.info("Cập nhật số dư cho user {} với số tiền {}", userId, ipnResponse.getAmount());
+//
+//
+//        return true;
+//    }
 
     private String signHmacSHA256(String data, String key) throws Exception {
         Mac hmacSHA256 = Mac.getInstance("HmacSHA256");

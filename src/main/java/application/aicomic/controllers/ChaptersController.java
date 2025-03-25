@@ -1,8 +1,8 @@
 package application.aicomic.controllers;
 
-import java.security.Principal;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import application.aicomic.models.Chapters;
@@ -49,10 +50,9 @@ public class ChaptersController {
      * Creates a new chapter.
      */
     @PostMapping
-    public ResponseEntity<?> createChapter(@RequestBody Chapters chapter, Principal principal) {
+    public ResponseEntity<?> createChapter(@RequestBody Chapters chapter) {
         try {
-            String userId = principal.getName();
-            return ResponseEntity.ok(chaptersService.addChapter(chapter, userId));
+            return ResponseEntity.ok(chaptersService.addChapter(chapter));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -62,10 +62,9 @@ public class ChaptersController {
      * Updates an existing chapter.
      */
     @PutMapping("/{chapterId}")
-    public ResponseEntity<?> updateChapter(@PathVariable String chapterId, @RequestBody Chapters chapter, Principal principal) {
+    public ResponseEntity<?> updateChapter(@PathVariable String chapterId, @RequestBody Chapters chapter) {
         try {
-            String userId = principal.getName();
-            return ResponseEntity.ok(chaptersService.updateChapter(chapterId, chapter, userId));
+            return ResponseEntity.ok(chaptersService.updateChapter(chapterId, chapter));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -75,13 +74,29 @@ public class ChaptersController {
      * Deletes a chapter by ID.
      */
     @DeleteMapping("/{chapterId}")
-    public ResponseEntity<?> deleteChapter(@PathVariable String chapterId, Principal principal) {
+    public ResponseEntity<?> deleteChapter(@PathVariable String chapterId) {
         try {
-            String userId = principal.getName();
-            chaptersService.deleteChapter(chapterId, userId);
+            chaptersService.deleteChapter(chapterId);
             return ResponseEntity.ok("Chapter deleted successfully.");
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @PostMapping("/review")
+    public ResponseEntity<?> reviewChapter(
+            @RequestParam String chapterId,
+            @RequestParam boolean isApproved,
+            @RequestParam(required = false) String modComment) {
+        try {
+            Chapters updatedChapter = chaptersService.reviewChapter(chapterId, isApproved, modComment);
+            return ResponseEntity.ok(updatedChapter); // Return the updated chapter data
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage()); // Handle Chapter not found
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while processing the request.");
+        }
+    }
+
+
 }

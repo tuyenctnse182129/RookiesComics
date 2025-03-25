@@ -76,6 +76,19 @@ public class PurchasedCoinsService {
         return null;
     }
 
+    public PurchasedCoins findByOrderId(String orderId) {
+        return purchasedCoinsRepository.findByTransactionCode(orderId)
+                .orElseThrow(() -> new RuntimeException("PurchasedCoins not found with orderId: " + orderId));
+    }
+
+    public PurchasedCoins updateStatus(String orderId, PurchasedCoinsEnums status) {
+        PurchasedCoins purchasedCoins = purchasedCoinsRepository.findByTransactionCode(orderId)
+                .orElseThrow(() -> new RuntimeException("PurchasedCoins not found with orderId: " + orderId));
+
+        purchasedCoins.setStatus(status.getValue());
+        return purchasedCoinsRepository.save(purchasedCoins);
+    }
+
     public PurchasedCoins createPurchasedCoins(String transactionCode, String content, String bankName,
                                                double amount, double numberOfCoin, PurchasedCoinsEnums status,
                                                String userId) {
