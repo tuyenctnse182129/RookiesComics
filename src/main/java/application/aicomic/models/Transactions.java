@@ -33,7 +33,6 @@ public class Transactions {
     @Column(name = "type")
     private byte type;
 
-    @NotNull
     @Column(name = "order_id", length = 50)
     private String orderId;
 
@@ -50,7 +49,6 @@ public class Transactions {
     @JoinColumn(name = "wallet_id", referencedColumnName = "wallet_id", insertable = false, updatable = false)
     private Wallets wallets;
 
-    @NotNull
     @Column(name = "purchased_coin_id", length = 50)
     private String purchasedCoinId;
 

@@ -91,4 +91,28 @@ public class WalletsService {
             return false;
         }
     }
+
+    @Transactional
+    public boolean updateWalletBalance(Wallets wallet, double amount) {
+        if (wallet.getBalance() < amount) {
+            log.error("❌ Không đủ số dư trong ví của user {}", wallet.getUserId());
+            return false;
+        }
+        wallet.setBalance(wallet.getBalance() - amount);
+        wallet.setUpdatedDate(LocalDateTime.now());
+        walletsRepository.save(wallet);
+        return true;
+    }
+
+    @Transactional
+    public Wallets getAvailableWallet(String userId, double requiredAmount) {
+        // Ưu tiên lấy WalletType.MAIN trước
+        Wallets mainWallet = walletsRepository.findByUserIdAndType(userId, WalletType.MAIN).orElse(null);
+        if (mainWallet != null && mainWallet.getBalance() >= requiredAmount) return mainWallet;
+
+        // Nếu MAIN không đủ, thử tiếp WalletType.PROMOTION
+        Wallets promoWallet = walletsRepository.findByUserIdAndType(userId, WalletType.PROMOTION).orElse(null);
+        return (promoWallet != null && promoWallet.getBalance() >= requiredAmount) ? promoWallet : null;
+    }
+
 }

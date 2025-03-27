@@ -1,5 +1,6 @@
 package application.aicomic.controllers;
 
+import application.aicomic.dataAccess.UpdateRoleRequest;
 import application.aicomic.dataAccess.UsersDTO;
 import application.aicomic.dataAccess.WalletsDTO;
 import application.aicomic.models.Users;
@@ -28,10 +29,7 @@ import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/users")
@@ -105,15 +103,20 @@ public class UsersController {
         return usersService.getCustomerUsers();
     }
 
+    @PostMapping("/update-role")
+    public ResponseEntity<Map<String, Object>> updateUserRole(@RequestBody UpdateRoleRequest request) {
+        String walletId = usersService.updateUserRole(request.getUserId(), request.getNewRoleByte());
 
-    @PutMapping("/{id}/role")
-    public ResponseEntity<?> updateUserRole(@PathVariable String id, @RequestParam byte role) {
-        boolean updated = usersService.updateUserRole(id, role);
-        if (updated) {
-            return ResponseEntity.ok("Cập nhật vai trò thành công");
-        }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Không thể cập nhật vai trò khách hàng");
+        Map<String, Object> response = new HashMap<>();
+        boolean isUpdated = walletId != null;
+
+        response.put("success", isUpdated);
+        response.put("message", isUpdated ? "Cập nhật vai trò thành công" : "Cập nhật vai trò thất bại");
+        if (isUpdated) response.put("walletId", walletId); // ✅ Trả về walletId
+
+        return isUpdated ? ResponseEntity.ok(response) : ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
+
 
     @GetMapping("/logout")
     public String logout() {

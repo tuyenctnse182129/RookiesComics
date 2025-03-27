@@ -1,11 +1,15 @@
 package application.aicomic.controllers;
 
+import application.aicomic.dataAccess.TransactionRequest;
 import application.aicomic.dataAccess.TransactionsDTO;
+import application.aicomic.enums.TransactionsEnums;
 import application.aicomic.models.Transactions;
 import application.aicomic.repositories.TransactionsRepository;
 import application.aicomic.services.OrdersService;
 import application.aicomic.services.TransactionsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -51,4 +55,5 @@ public class TransactionsController {
     public Transactions deleteTransaction(@PathVariable String id) {
         return transactionsService.deleteTransaction(id);
     }
+
 }

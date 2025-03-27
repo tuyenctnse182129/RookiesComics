@@ -25,18 +25,18 @@ public class ComicsController {
         this.comicsRepository = comicsRepository;
     }
 
-    @GetMapping
+    @GetMapping(produces = "application/json; charset=UTF-8")
     public List<Comics> getAllComics() {
         return comicsService.getAllComics();
     }
 
 
-    @GetMapping("/{comicId}")
+    @GetMapping(value = "/{comicId}", produces = "application/json; charset=UTF-8")
     public Comics getComicsById(@PathVariable String comicId) {
         return comicsService.getComicsByID(comicId);
     }
 
-    @GetMapping("/genres/{genresName}")
+    @GetMapping(value = "/genres/{genresName}", produces = "application/json; charset=UTF-8")
     public ResponseEntity<List<Comics>> getComicsByGenres_GenresName(@PathVariable String genresName){
         List<Comics> comicsList = comicsService.getComicsByGenres_GenresName(genresName);
         return ResponseEntity.ok(comicsList);
@@ -57,12 +57,12 @@ public class ComicsController {
         return comicsService.deleteComics(id);
     }
 
-    @GetMapping("/top-week")
+    @GetMapping(value = "/top-week", produces = "application/json; charset=UTF-8")
     public List<Comics> getTopWeekComics() {
         return comicsService.getTopComicsWeek();
     }
 
-    @GetMapping("/top-month")
+    @GetMapping(value = "/top-month", produces = "application/json; charset=UTF-8")
     public List<Comics> getTopMonthComics() {
         return comicsService.getTopComicsMonth();
     }

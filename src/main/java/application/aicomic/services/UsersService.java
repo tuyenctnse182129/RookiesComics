@@ -4,12 +4,16 @@ import application.aicomic.dataAccess.UserServiceResponseDto;
 import application.aicomic.dataAccess.UsersDTO;
 import application.aicomic.dataAccess.WalletsDTO;
 import application.aicomic.enums.Role;
+import application.aicomic.enums.TransactionsEnums;
 import application.aicomic.enums.WalletType;
 import application.aicomic.mapper.Mapper;
+import application.aicomic.models.Transactions;
 import application.aicomic.models.Users;
 import application.aicomic.models.Wallets;
+import application.aicomic.repositories.TransactionsRepository;
 import application.aicomic.repositories.UsersRepository;
 import application.aicomic.repositories.WalletsRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +30,25 @@ import application.aicomic.models.Orders;
 
 import java.util.*;
 
+@Slf4j
 @Service
 public class UsersService {
     private final UsersRepository usersRepository;
     private final WalletsRepository walletsRepository;
     private Mapper mapper;
+    private WalletsService walletsService;
+    private TransactionsService transactionsService;
+    private TransactionsRepository transactionsRepository;
     private static final Logger logger = LoggerFactory.getLogger(UsersService.class);
 
     @Autowired
-    public UsersService(UsersRepository usersRepository, WalletsRepository walletsRepository) {
+    public UsersService(UsersRepository usersRepository, WalletsRepository walletsRepository, Mapper mapper, WalletsService walletsService, TransactionsService transactionsService, TransactionsRepository transactionsRepository) {
         this.walletsRepository = walletsRepository;
-
         this.usersRepository = usersRepository;
+        this.mapper = mapper;
+        this.walletsService = walletsService;
+        this.transactionsService = transactionsService;
+        this.transactionsRepository = transactionsRepository;
     }
 
     public List<Users> getAllUsers() {
@@ -84,7 +95,6 @@ public class UsersService {
         }
     }
 
-
     public UserServiceResponseDto deleteUser(String id) {
         try {
             Optional<Users> userOptional = usersRepository.findById(id);
@@ -111,33 +121,49 @@ public class UsersService {
         return usersRepository.findByRoleIn(List.of((byte) 5, (byte) 6,(byte) 7, (byte) 8));
     }
 
-    public boolean updateUserRole(String userId, byte newRoleByte) {
-        Optional<Users> userOpt = usersRepository.findById(userId);
-        if (userOpt.isPresent()) {
-            Users user = userOpt.get();
-            Role currentRole = Role.fromValue(user.getRole());
-            Role newRole = Role.fromValue(newRoleByte);
+    @Transactional
+    public String updateUserRole(String userId, byte newRoleByte) {
+        Users user = usersRepository.findById(userId).orElse(null);
+        if (user == null) return null;
 
-            // Kiểm tra trạng thái hợp lệ
-            if (!isValidRoleTransition(currentRole, newRole)) {
-                return false; // Tránh cập nhật trạng thái sai logic
-            }
+        Role currentRole = Role.fromValue(user.getRole());
+        Role newRole = Role.fromValue(newRoleByte);
+        if (!isValidRoleTransition(currentRole, newRole)) return null;
 
-            user.setRole(newRole.getValue());
-            usersRepository.save(user);
-            return true;
-        }
-        return false;
+        double amount = getRoleUpgradeCost(newRole);
+        if (amount == 0) return null;
+
+        Wallets wallet = walletsService.getAvailableWallet(userId, amount);
+        if (wallet == null) return null;
+
+        // Cập nhật số dư ví
+        boolean walletUpdated = walletsService.updateWalletBalance(wallet, amount);
+        if (!walletUpdated) return null;
+
+        // Cập nhật role user
+        user.setRole(newRole.getValue());
+        usersRepository.save(user);
+
+        return wallet.getWalletId(); // ✅ Trả về walletId đã dùng
     }
 
+
     private boolean isValidRoleTransition(Role currentRole, Role newRole) {
-        Map<Role, List<Role>> validTransitions = new HashMap<>();
-
-        validTransitions.put(Role.CUSTOMER_NORMAL, List.of(Role.CUSTOMER_READER, Role.CUSTOMER_AUTHOR, Role.CUSTOMER_VIP));
-        validTransitions.put(Role.CUSTOMER_READER, List.of(Role.CUSTOMER_AUTHOR, Role.CUSTOMER_VIP));
-        validTransitions.put(Role.CUSTOMER_AUTHOR, List.of(Role.CUSTOMER_VIP));
-        validTransitions.put(Role.CUSTOMER_VIP, List.of());
-
+        Map<Role, List<Role>> validTransitions = Map.of(
+                Role.CUSTOMER_NORMAL, List.of(Role.CUSTOMER_READER, Role.CUSTOMER_AUTHOR, Role.CUSTOMER_VIP),
+                Role.CUSTOMER_READER, List.of(Role.CUSTOMER_AUTHOR, Role.CUSTOMER_VIP),
+                Role.CUSTOMER_AUTHOR, List.of(Role.CUSTOMER_VIP),
+                Role.CUSTOMER_VIP, List.of()
+        );
         return validTransitions.getOrDefault(currentRole, List.of()).contains(newRole);
+    }
+
+    private double getRoleUpgradeCost(Role newRole) {
+        return switch (newRole) {
+            case CUSTOMER_READER -> 30000;
+            case CUSTOMER_AUTHOR -> 45000;
+            case CUSTOMER_VIP -> 60000;
+            default -> 0;
+        };
     }
 }
