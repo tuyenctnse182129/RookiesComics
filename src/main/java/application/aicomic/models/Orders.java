@@ -49,10 +49,6 @@ public class Orders {
     @OneToMany(mappedBy = "orders")
     private List<Transactions> transactions;
 
-    @JsonIgnore
-    @OneToOne
-    @JoinColumn(name = "comic_id", referencedColumnName = "comic_id")
-    private Comics comics;
 
     @NotNull
     @Column(name = "user_id", length = 50)

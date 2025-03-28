@@ -76,8 +76,4 @@ public class Comics {
     @ManyToMany(mappedBy = "comics")
     private List<Bookshelves> bookshelves;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "comics")
-    private Orders orders;
-
 }

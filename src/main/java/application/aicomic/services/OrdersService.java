@@ -26,26 +26,20 @@ import org.springframework.transaction.annotation.Transactional;
 public class OrdersService {
     @Autowired
     private OrdersRepository ordersRepository;
-
     @Autowired
     private OrderDetailsRepository orderDetailsRepository;
-
     @Autowired
     private Mapper mapper;
+    @Autowired
     private UsersRepository usersRepository;
-
     @Autowired
     private ChaptersRepository chaptersRepository;
-
     @Autowired
     private ComicsRepository comicsRepository;
-
     @Autowired
     private WalletsRepository walletsRepository;
-
     @Autowired
     private WalletsService walletsService;
-
     @Autowired
     private TransactionsRepository transactionsRepository;
 
@@ -63,8 +57,26 @@ public class OrdersService {
         return ordersRepository.findById(ordersId).orElse(null);
     }
 
+    public Orders getOrdersByUserIdAndStatus(String userId, byte status) {
+        return ordersRepository.findByUserIdAndStatus(userId, status).orElse(null);
+    }
+
     public Orders saveOrders(Orders orders) {
-        return ordersRepository.save(orders);
+        // Kiểm tra xem có đơn hàng nào của user với status = UNORDERED hay chưa
+        Optional<Orders> existingOrder = ordersRepository.findByUserIdAndStatus(orders.getUserId(), OrdersEnums.UNORDERED.getOrder_status());
+
+        if (existingOrder.isPresent()) {
+            // Nếu đã có order UNORDERED, chỉ thêm OrderDetails vào order hiện tại
+            Orders order = existingOrder.get();
+            for (OrderDetails detail : orders.getOrderDetails()) {
+                detail.setOrderId(order.getOrderId()); // Gán orderId vào OrderDetails
+                orderDetailsRepository.save(detail);
+            }
+            return order;
+        } else {
+            // Nếu chưa có, tạo order mới
+            return ordersRepository.save(orders);
+        }
     }
 
     public OrdersServiceResponseDTO getById(String id) {

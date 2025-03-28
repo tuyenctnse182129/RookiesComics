@@ -48,6 +48,16 @@ public class OrdersController {
         return ordersService.deleteOrders(id);
     }
 
+    @PostMapping("/find-by-user-and-status")
+    public ResponseEntity<?> getOrdersByUserIdAndStatus(@RequestBody UpdateOrderStatusRequest request) {
+        Orders order = ordersService.getOrdersByUserIdAndStatus(request.getOrderId(), request.getNewStatusByte());
+        if (order != null) {
+            return ResponseEntity.ok(order);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Không tìm thấy đơn hàng");
+        }
+    }
+
     @PostMapping("/update-status")
     public ResponseEntity<Map<String, Object>> updateOrderStatus(@RequestBody UpdateOrderStatusRequest request) {
         Map<String, String> result = ordersService.updateOrderStatus(request.getOrderId(), request.getNewStatusByte());
