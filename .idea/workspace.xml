@@ -4,26 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b94f3aa-51bc-4475-bbeb-7e1b32c69999" name="Changes" comment="Fix momo payment and update wallet">
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/dataAccess/TransactionRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/dataAccess/UpdateRoleRequest.java" afterDir="false" />
+    <list default="true" id="7b94f3aa-51bc-4475-bbeb-7e1b32c69999" name="Changes" comment="Fix database and function">
+      <change afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/dataAccess/UpdateOrderStatusRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/ChaptersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/ChaptersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/ComicsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/ComicsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/TransactionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/TransactionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/OrdersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/OrdersController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/controllers/UsersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Transactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Transactions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/TransactionsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/TransactionsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/UsersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/UsersService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/WalletsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/WalletsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/TransactionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/TransactionsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/UsersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/UsersController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/Transactions.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/Transactions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/TransactionsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/TransactionsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/UsersService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/UsersService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/services/WalletsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/services/WalletsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Comics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Comics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Orders.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/models/Orders.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/aicomic/services/OrdersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/aicomic/services/OrdersService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/ComicsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/controllers/ComicsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application/aicomic/models/Comics.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application/aicomic/models/Comics.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +153,10 @@
       <workItem from="1742991887175" duration="5009000" />
       <workItem from="1743054722626" duration="9000" />
       <workItem from="1743058195667" duration="6004000" />
-      <workItem from="1743084455325" duration="6372000" />
+      <workItem from="1743084455325" duration="6864000" />
+      <workItem from="1743127798253" duration="4349000" />
+      <workItem from="1743138229126" duration="1564000" />
+      <workItem from="1743141623810" duration="8875000" />
     </task>
     <task id="LOCAL-00002" summary="Ready to merger">
       <option name="closed" value="true" />
@@ -196,7 +190,23 @@
       <option name="project" value="LOCAL" />
       <updated>1742879497715</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fix database and function">
+      <option name="closed" value="true" />
+      <created>1743091082742</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1743091082742</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Fix database and function">
+      <option name="closed" value="true" />
+      <created>1743091121406</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1743091121406</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,6 +230,7 @@
     <MESSAGE value="Login google for mobile" />
     <MESSAGE value="Merge all branch" />
     <MESSAGE value="Fix momo payment and update wallet" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix momo payment and update wallet" />
+    <MESSAGE value="Fix database and function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix database and function" />
   </component>
 </project>

@@ -2,6 +2,7 @@ package application.aicomic.models;
 
 import application.aicomic.enums.CommentsEnums;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -58,7 +59,10 @@ public class Comics {
     @JoinColumn(name = "genres_id", referencedColumnName = "genres_id", insertable = false, updatable = false)
     private Genres genres;
 
-    @JsonIgnore
+    @JsonIgnoreProperties({
+            "comics", "comments", "wallets", "orders",
+            "purchasedComics", "purchasedCoins", "currentChapters", "bookshelves"
+    })
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
     private Users user;

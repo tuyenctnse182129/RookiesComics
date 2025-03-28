@@ -117,7 +117,6 @@ public class UsersController {
         return isUpdated ? ResponseEntity.ok(response) : ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
-
     @GetMapping("/logout")
     public String logout() {
         return "You have been logged out successfully!";
@@ -146,7 +145,14 @@ public class UsersController {
 
 
             // Tạo JWT
-            String token = jwtService.generateToken(user.getEmail(), String.valueOf(user.getRole()), user.getUserId());
+            String token = jwtService.generateToken(
+                    user.getEmail(),
+                    String.valueOf(user.getRole()),
+                    user.getUserId(),
+                    user.getFirstName(),    // First name
+                    user.getLastName(),     // Last name
+                    user.getAvatarUrl()     // Avatar URL
+            );
 
             String redirectUrl = switch (user.getRole()) {
                 case 1, 2 -> "/admin";
@@ -210,7 +216,14 @@ public class UsersController {
             });
 
             // Tạo JWT token
-            String token = jwtService.generateToken(user.getEmail(), String.valueOf(user.getRole()), user.getUserId());
+            String token = jwtService.generateToken(
+                    user.getEmail(),
+                    String.valueOf(user.getRole()),
+                    user.getUserId(),
+                    user.getFirstName(),    // First name
+                    user.getLastName(),     // Last name
+                    user.getAvatarUrl()     // Avatar URL
+            );
 
             return ResponseEntity.ok(Map.of(
                     "token", token,

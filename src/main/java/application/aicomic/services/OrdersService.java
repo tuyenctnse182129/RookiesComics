@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import application.aicomic.mapper.Mapper;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OrdersService {
@@ -41,6 +42,9 @@ public class OrdersService {
 
     @Autowired
     private WalletsRepository walletsRepository;
+
+    @Autowired
+    private WalletsService walletsService;
 
     @Autowired
     private TransactionsRepository transactionsRepository;
@@ -92,35 +96,47 @@ public class OrdersService {
         return null;
     }
 
-    public boolean updateOrderStatus(String orderId, byte newStatusByte) {
+    @Transactional
+    public Map<String, String> updateOrderStatus(String orderId, byte newStatusByte) {
         Optional<Orders> orderOpt = ordersRepository.findById(orderId);
-        if (orderOpt.isPresent()) {
-            Orders order = orderOpt.get();
-            OrdersEnums currentStatus = OrdersEnums.fromOrderStatus(order.getStatus());
-            OrdersEnums newStatus = OrdersEnums.fromOrderStatus(newStatusByte);
+        if (orderOpt.isEmpty()) return null;
 
-            // Kiểm tra trạng thái hợp lệ
-            // Validate status transition
-            if (!isValidStatusTransition(currentStatus, newStatus)) {
-                return false; // Tránh cập nhật trạng thái sai logic
-            }
+        Orders order = orderOpt.get();
+        OrdersEnums currentStatus = OrdersEnums.fromOrderStatus(order.getStatus());
+        OrdersEnums newStatus = OrdersEnums.fromOrderStatus(newStatusByte);
 
-            // Lock OrderDetails when status changes from UNORDERED
-            if (currentStatus == OrdersEnums.UNORDERED && newStatus != OrdersEnums.UNORDERED) {
-                lockOrderDetails(order.getOrderId());
-            }
+        // Kiểm tra trạng thái hợp lệ
+        if (!isValidStatusTransition(currentStatus, newStatus)) return null;
 
-            // If status is COMPLETED, distribute payments and create transactions
-            if (newStatus == OrdersEnums.COMPLETED) {
-                distributePayments(orderId);
-            }
+        double orderAmount = order.getTotalPrice();
+        String userId = order.getUserId();
 
-            order.setStatus(newStatus.getOrder_status());
-            ordersRepository.save(order);
-            return true;
+        // Nếu trạng thái mới là COMPLETED, trừ tiền từ ví
+        Wallets wallet = null;
+        if (newStatus == OrdersEnums.COMPLETED) {
+            wallet = walletsService.getAvailableWallet(userId, orderAmount);
+            if (wallet == null) return null;
+
+            boolean walletUpdated = walletsService.updateWalletBalance(wallet, orderAmount);
+            if (!walletUpdated) return null;
         }
-        return false;
+
+        // Lock OrderDetails khi trạng thái thay đổi từ UNORDERED
+        if (currentStatus == OrdersEnums.UNORDERED && newStatus != OrdersEnums.UNORDERED) {
+            lockOrderDetails(order.getOrderId());
+        }
+
+        order.setStatus(newStatus.getOrder_status());
+        ordersRepository.save(order);
+
+        Map<String, String> result = new HashMap<>();
+        result.put("orderId", orderId);
+        if (wallet != null) {
+            result.put("walletId", wallet.getWalletId());
+        }
+        return result;
     }
+
 
     private void distributePayments(String orderId) {
         List<OrderDetails> orderDetailsList = orderDetailsRepository.findByOrderId(orderId);
@@ -188,7 +204,7 @@ public class OrdersService {
     private boolean isValidStatusTransition(OrdersEnums currentStatus, OrdersEnums newStatus) {
         Map<OrdersEnums, List<OrdersEnums>> validTransitions = new HashMap<>();
 
-        validTransitions.put(OrdersEnums.UNORDERED, List.of(OrdersEnums.PENDING, OrdersEnums.CANCELLED));
+        validTransitions.put(OrdersEnums.UNORDERED, List.of(OrdersEnums.PENDING, OrdersEnums.CANCELLED, OrdersEnums.COMPLETED));
         validTransitions.put(OrdersEnums.PENDING, List.of(OrdersEnums.COMPLETED, OrdersEnums.CANCELLED));
         validTransitions.put(OrdersEnums.COMPLETED, List.of());
         validTransitions.put(OrdersEnums.CANCELLED, List.of());

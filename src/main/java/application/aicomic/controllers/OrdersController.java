@@ -1,5 +1,6 @@
 package application.aicomic.controllers;
 
+import application.aicomic.dataAccess.UpdateOrderStatusRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -7,7 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import application.aicomic.services.OrdersService;
 import application.aicomic.dataAccess.OrdersDTO;
 import application.aicomic.models.Orders;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/orders")
@@ -44,12 +48,22 @@ public class OrdersController {
         return ordersService.deleteOrders(id);
     }
 
-    @PutMapping("/{id}/status")
-    public ResponseEntity<?> updateOrderStatus(@PathVariable String id, @RequestParam byte status) {
-        boolean updated = ordersService.updateOrderStatus(id, status);
-        if (updated) {
-            return ResponseEntity.ok("Cập nhật trạng thái thành công");
+    @PostMapping("/update-status")
+    public ResponseEntity<Map<String, Object>> updateOrderStatus(@RequestBody UpdateOrderStatusRequest request) {
+        Map<String, String> result = ordersService.updateOrderStatus(request.getOrderId(), request.getNewStatusByte());
+
+        Map<String, Object> response = new HashMap<>();
+        boolean isUpdated = result != null && result.containsKey("orderId");
+
+        response.put("success", isUpdated);
+        response.put("message", isUpdated ? "Cập nhật trạng thái đơn hàng thành công" : "Không thể cập nhật trạng thái đơn hàng");
+        if (isUpdated) {
+            response.put("orderId", result.get("orderId"));
+            if (result.containsKey("walletId")) {
+                response.put("walletId", result.get("walletId"));
+            }
         }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Không thể cập nhật trạng thái đơn hàng");
+
+        return isUpdated ? ResponseEntity.ok(response) : ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 }

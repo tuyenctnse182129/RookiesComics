@@ -33,7 +33,6 @@ public class Orders {
     @Column(name = "total_price")
     private double totalPrice;
 
-    @NotNull
     @Column(name = "wallet_id", length = 50)
     private String walletId;
 

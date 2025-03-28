@@ -21,10 +21,13 @@ public class JwtService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public String generateToken(String email, String role, String userId) {
+    public String generateToken(String email, String role, String userId, String givenName, String familyName, String picture) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("role", role);
         claims.put("userId", userId);
+        claims.put("given_name", givenName);
+        claims.put("family_name", familyName);
+        claims.put("picture", picture);
 
         return Jwts.builder()
                 .setClaims(claims)
