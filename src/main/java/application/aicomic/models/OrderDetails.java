@@ -15,7 +15,6 @@ public class OrderDetails {
     @Column(name = "order_detail_id", length = 50)
     private String orderDetailId;
 
-    @NotNull
     @Column(name = "order_id", length = 50)
     private String orderId;
 

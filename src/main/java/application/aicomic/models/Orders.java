@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -41,14 +42,13 @@ public class Orders {
     @JoinColumn(name = "wallet_id", referencedColumnName = "wallet_id", insertable = false, updatable = false)
     private Wallets wallets;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "orders")
-    private List<OrderDetails> orderDetails;
+
+    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderDetails> orderDetails = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "orders")
     private List<Transactions> transactions;
-
 
     @NotNull
     @Column(name = "user_id", length = 50)

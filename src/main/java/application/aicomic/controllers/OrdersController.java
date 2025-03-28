@@ -1,6 +1,8 @@
 package application.aicomic.controllers;
 
 import application.aicomic.dataAccess.UpdateOrderStatusRequest;
+import application.aicomic.repositories.OrdersRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +20,11 @@ import java.util.Map;
 @RestController
 public class OrdersController {
     private OrdersService ordersService;
+    private OrdersRepository ordersRepository;
 
-    public OrdersController(OrdersService ordersService) {
+    public OrdersController(OrdersService ordersService, OrdersRepository ordersRepository) {
         this.ordersService = ordersService;
+        this.ordersRepository = ordersRepository;
     }
 
     @GetMapping
@@ -33,9 +37,17 @@ public class OrdersController {
         return ordersService.getOrdersById(ordersId);
     }
 
+
     @PostMapping
-    public Orders createOrders(@RequestBody Orders orders) {
-        return ordersService.saveOrders(orders);
+    public ResponseEntity<?> addOrder(@RequestBody Orders orders) {
+        System.out.println("Received Orders: " + orders);
+
+        if (orders.getOrderDetails() == null || orders.getOrderDetails().isEmpty()) {
+            return ResponseEntity.badRequest().body("orderDetails is null or empty!");
+        }
+
+        Orders savedOrder = ordersService.saveOrders(orders);
+        return ResponseEntity.ok(savedOrder);
     }
 
     @PutMapping("/{id}")

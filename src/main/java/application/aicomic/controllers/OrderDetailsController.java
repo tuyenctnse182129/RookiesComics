@@ -6,13 +6,16 @@ import application.aicomic.enums.OrdersEnums;
 import application.aicomic.models.Comments;
 import application.aicomic.models.OrderDetails;
 import application.aicomic.models.Orders;
+import application.aicomic.repositories.OrderDetailsRepository;
 import application.aicomic.repositories.OrdersRepository;
 import application.aicomic.services.OrderDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RequestMapping("/orders/orderDetail")
@@ -22,6 +25,8 @@ public class OrderDetailsController {
     private OrderDetailsService orderDetailsService;
     @Autowired
     private OrdersRepository ordersRepository;
+    @Autowired
+    private OrderDetailsRepository orderDetailsRepository;
 
     @GetMapping
     public List<OrderDetails> getAllOrderDetails() {
@@ -30,16 +35,17 @@ public class OrderDetailsController {
 
     @PostMapping
     public ResponseEntity<?> addOrderDetail(@RequestBody OrderDetails orderDetails) {
-        // Tìm đơn hàng UNORDERED của user
-        Optional<Orders> existingOrder = ordersRepository.findByUserIdAndStatus(orderDetails.getOrders().getUserId(), OrdersEnums.UNORDERED.getOrder_status());
+        Optional<Orders> existingOrder = ordersRepository.findById(orderDetails.getOrderId());
 
-        if (existingOrder.isPresent()) {
-            // Gán orderId vào OrderDetails và lưu
-            orderDetails.setOrderId(existingOrder.get().getOrderId());
-            return ResponseEntity.ok(orderDetailsService.addOrderDetail(orderDetails));
-        } else {
-            return ResponseEntity.badRequest().body("User chưa có đơn hàng UNORDERED.");
+        if (existingOrder.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("error", "Order không tồn tại."));
         }
+
+        orderDetails.setOrders(existingOrder.get()); // Gán giá trị cho orders
+        orderDetailsRepository.save(orderDetails);
+
+        return ResponseEntity.ok(orderDetails);
     }
 
     @PutMapping("/{id}")

@@ -61,21 +61,49 @@ public class OrdersService {
         return ordersRepository.findByUserIdAndStatus(userId, status).orElse(null);
     }
 
+    @Transactional
     public Orders saveOrders(Orders orders) {
-        // Kiểm tra xem có đơn hàng nào của user với status = UNORDERED hay chưa
-        Optional<Orders> existingOrder = ordersRepository.findByUserIdAndStatus(orders.getUserId(), OrdersEnums.UNORDERED.getOrder_status());
+        Optional<Orders> existingOrder = ordersRepository.findByUserIdAndStatus(
+                orders.getUserId(), OrdersEnums.UNORDERED.getOrder_status()
+        );
 
         if (existingOrder.isPresent()) {
-            // Nếu đã có order UNORDERED, chỉ thêm OrderDetails vào order hiện tại
             Orders order = existingOrder.get();
-            for (OrderDetails detail : orders.getOrderDetails()) {
-                detail.setOrderId(order.getOrderId()); // Gán orderId vào OrderDetails
-                orderDetailsRepository.save(detail);
+
+            double totalPrice = orderDetailsRepository
+                    .findByOrderId(order.getOrderId())
+                    .stream()
+                    .mapToDouble(OrderDetails::getPrice)
+                    .sum(); // 🔥 Tính lại tổng giá trị
+
+            if (orders.getOrderDetails() != null) {
+                for (OrderDetails detail : orders.getOrderDetails()) {
+                    detail.setOrders(order);
+                    detail.setOrderId(order.getOrderId());
+                    orderDetailsRepository.save(detail);
+                    totalPrice += detail.getPrice();
+                }
             }
-            return order;
+
+            order.setTotalPrice(totalPrice);
+            return ordersRepository.save(order);
         } else {
-            // Nếu chưa có, tạo order mới
-            return ordersRepository.save(orders);
+            Orders newOrder = ordersRepository.save(orders);
+            ordersRepository.flush();
+
+            double totalPrice = 0.0;
+
+            if (orders.getOrderDetails() != null) {
+                for (OrderDetails detail : orders.getOrderDetails()) {
+                    detail.setOrders(newOrder);
+                    detail.setOrderId(newOrder.getOrderId());
+                    orderDetailsRepository.save(detail);
+                    totalPrice += detail.getPrice();
+                }
+            }
+
+            newOrder.setTotalPrice(totalPrice);
+            return ordersRepository.save(newOrder);
         }
     }
 
