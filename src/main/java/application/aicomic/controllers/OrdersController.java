@@ -37,7 +37,6 @@ public class OrdersController {
         return ordersService.getOrdersById(ordersId);
     }
 
-
     @PostMapping
     public ResponseEntity<?> addOrder(@RequestBody Orders orders) {
         System.out.println("Received Orders: " + orders);
@@ -62,7 +61,7 @@ public class OrdersController {
 
     @PostMapping("/find-by-user-and-status")
     public ResponseEntity<?> getOrdersByUserIdAndStatus(@RequestBody UpdateOrderStatusRequest request) {
-        Orders order = ordersService.getOrdersByUserIdAndStatus(request.getOrderId(), request.getNewStatusByte());
+        Orders order = ordersService.getOrdersByUserIdAndStatus(request.getUserId(), request.getNewStatusByte());
         if (order != null) {
             return ResponseEntity.ok(order);
         } else {
@@ -70,9 +69,28 @@ public class OrdersController {
         }
     }
 
+//    @PostMapping("/update-status")
+//    public ResponseEntity<Map<String, Object>> updateOrderStatus(@RequestBody UpdateOrderStatusRequest request) {
+//        Map<String, String> result = ordersService.updateOrderStatus(request.getOrderId(), request.getNewStatusByte());
+//
+//        Map<String, Object> response = new HashMap<>();
+//        boolean isUpdated = result != null && result.containsKey("orderId");
+//
+//        response.put("success", isUpdated);
+//        response.put("message", isUpdated ? "Cập nhật trạng thái đơn hàng thành công" : "Không thể cập nhật trạng thái đơn hàng");
+//        if (isUpdated) {
+//            response.put("orderId", result.get("orderId"));
+//            if (result.containsKey("walletId")) {
+//                response.put("walletId", result.get("walletId"));
+//            }
+//        }
+//
+//        return isUpdated ? ResponseEntity.ok(response) : ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+//    }
+
     @PostMapping("/update-status")
     public ResponseEntity<Map<String, Object>> updateOrderStatus(@RequestBody UpdateOrderStatusRequest request) {
-        Map<String, String> result = ordersService.updateOrderStatus(request.getOrderId(), request.getNewStatusByte());
+        Map<String, String> result = ordersService.updateOrderStatus(request.getUserId(), request.getNewStatusByte());
 
         Map<String, Object> response = new HashMap<>();
         boolean isUpdated = result != null && result.containsKey("orderId");
@@ -88,4 +106,5 @@ public class OrdersController {
 
         return isUpdated ? ResponseEntity.ok(response) : ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
+
 }

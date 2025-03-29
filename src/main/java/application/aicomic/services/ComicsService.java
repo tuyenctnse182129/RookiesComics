@@ -99,4 +99,10 @@ public class ComicsService {
         LocalDateTime oneMonthAgo = LocalDateTime.now().minusDays(30);
         return comicsRepository.findTop8ByCreatedDateAfterOrderByViewDesc(oneMonthAgo);
     }
+
+    public List<Comics> searchComicsByName(String comicName) {
+        // loại bỏ khoảng trắng thừa, chuẩn hóa lowercase
+        String processed = comicName.trim().replaceAll("\\s+", " ");
+        return comicsRepository.findByComicNameContainingIgnoreCase(processed);
+    }
 }

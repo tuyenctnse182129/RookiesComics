@@ -19,5 +19,6 @@ public interface ComicsRepository extends JpaRepository<Comics, String> {
     List<Comics> findByStatus(byte status);
     List<Comics> findByGenres_GenresName(String genresName);
     List<Comics> findTop8ByCreatedDateAfterOrderByViewDesc(LocalDateTime startDate);
+    List<Comics> findByComicNameContainingIgnoreCase(String comicName);
 
 }

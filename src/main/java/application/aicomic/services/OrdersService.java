@@ -74,7 +74,7 @@ public class OrdersService {
                     .findByOrderId(order.getOrderId())
                     .stream()
                     .mapToDouble(OrderDetails::getPrice)
-                    .sum(); // 🔥 Tính lại tổng giá trị
+                    .sum();
 
             if (orders.getOrderDetails() != null) {
                 for (OrderDetails detail : orders.getOrderDetails()) {
@@ -136,9 +136,51 @@ public class OrdersService {
         return null;
     }
 
+//    @Transactional
+//    public Map<String, String> updateOrderStatus(String orderId, byte newStatusByte) {
+//        Optional<Orders> orderOpt = ordersRepository.findById(orderId);
+//        if (orderOpt.isEmpty()) return null;
+//
+//        Orders order = orderOpt.get();
+//        OrdersEnums currentStatus = OrdersEnums.fromOrderStatus(order.getStatus());
+//        OrdersEnums newStatus = OrdersEnums.fromOrderStatus(newStatusByte);
+//
+//        // Kiểm tra trạng thái hợp lệ
+//        if (!isValidStatusTransition(currentStatus, newStatus)) return null;
+//
+//        double orderAmount = order.getTotalPrice();
+//        String userId = order.getUserId();
+//
+//        // Nếu trạng thái mới là COMPLETED, trừ tiền từ ví
+//        Wallets wallet = null;
+//        if (newStatus == OrdersEnums.COMPLETED) {
+//            wallet = walletsService.getAvailableWallet(userId, orderAmount);
+//            if (wallet == null) return null;
+//
+//            boolean walletUpdated = walletsService.updateWalletBalance(wallet, orderAmount);
+//            if (!walletUpdated) return null;
+//        }
+//
+//        // Lock OrderDetails khi trạng thái thay đổi từ UNORDERED
+//        if (currentStatus == OrdersEnums.UNORDERED && newStatus != OrdersEnums.UNORDERED) {
+//            lockOrderDetails(order.getOrderId());
+//        }
+//
+//        order.setStatus(newStatus.getOrder_status());
+//        ordersRepository.save(order);
+//
+//        Map<String, String> result = new HashMap<>();
+//        result.put("orderId", orderId);
+//        if (wallet != null) {
+//            result.put("walletId", wallet.getWalletId());
+//        }
+//        return result;
+//    }
+
     @Transactional
-    public Map<String, String> updateOrderStatus(String orderId, byte newStatusByte) {
-        Optional<Orders> orderOpt = ordersRepository.findById(orderId);
+    public Map<String, String> updateOrderStatus(String userId, byte newStatusByte) {
+        // Tìm đơn hàng có trạng thái UNORDERED của user
+        Optional<Orders> orderOpt = ordersRepository.findByUserIdAndStatus(userId, OrdersEnums.UNORDERED.getOrder_status());
         if (orderOpt.isEmpty()) return null;
 
         Orders order = orderOpt.get();
@@ -149,10 +191,9 @@ public class OrdersService {
         if (!isValidStatusTransition(currentStatus, newStatus)) return null;
 
         double orderAmount = order.getTotalPrice();
-        String userId = order.getUserId();
+        Wallets wallet = null;
 
         // Nếu trạng thái mới là COMPLETED, trừ tiền từ ví
-        Wallets wallet = null;
         if (newStatus == OrdersEnums.COMPLETED) {
             wallet = walletsService.getAvailableWallet(userId, orderAmount);
             if (wallet == null) return null;
@@ -170,7 +211,7 @@ public class OrdersService {
         ordersRepository.save(order);
 
         Map<String, String> result = new HashMap<>();
-        result.put("orderId", orderId);
+        result.put("orderId", order.getOrderId());
         if (wallet != null) {
             result.put("walletId", wallet.getWalletId());
         }

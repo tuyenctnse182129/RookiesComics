@@ -66,4 +66,10 @@ public class ComicsController {
     public List<Comics> getTopMonthComics() {
         return comicsService.getTopComicsMonth();
     }
+
+    @GetMapping(value = "/search", produces = "application/json; charset=UTF-8")
+    public ResponseEntity<List<Comics>> searchComicsByName(@RequestParam String name) {
+        List<Comics> results = comicsService.searchComicsByName(name);
+        return ResponseEntity.ok(results);
+    }
 }
